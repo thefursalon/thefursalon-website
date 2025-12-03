@@ -30,7 +30,7 @@ export default function ReviewsSection() {
               href="https://g.page/r/CfGigsbIWEUeEBM/review"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gold-500 hover:text-gold-600 font-semibold underline"
+              className="text-primary-600 hover:text-primary-700 font-semibold underline"
             >
               Google Reviews
             </a>
@@ -43,7 +43,7 @@ export default function ReviewsSection() {
               >
                 <div className="mb-4">
                   <svg
-                    className="w-8 h-8 text-gold-500 mb-2"
+                    className="w-8 h-8 text-primary-600 mb-2"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >

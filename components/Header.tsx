@@ -31,14 +31,14 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-gold-500 transition-colors font-medium"
+                className="text-gray-700 hover:text-primary-600 transition-colors font-medium"
               >
                 {item.name}
               </Link>
             ))}
             <Link
               href="#contact"
-              className="bg-gold-500 text-white px-6 py-2 rounded-full hover:bg-gold-600 transition-colors font-medium"
+              className="bg-primary-600 text-white px-6 py-2 rounded-full hover:bg-primary-700 transition-colors font-medium"
             >
               Book Appointment
             </Link>
@@ -76,7 +76,7 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-700 hover:text-gold-500 transition-colors font-medium"
+                  className="text-gray-700 hover:text-primary-600 transition-colors font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
@@ -84,7 +84,7 @@ export default function Header() {
               ))}
               <Link
                 href="#contact"
-                className="bg-gold-500 text-white px-6 py-2 rounded-full hover:bg-gold-600 transition-colors font-medium text-center"
+                className="bg-primary-600 text-white px-6 py-2 rounded-full hover:bg-primary-700 transition-colors font-medium text-center"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Book Appointment

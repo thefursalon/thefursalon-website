@@ -65,7 +65,7 @@ export default function GallerySection() {
             {/* Navigation Buttons */}
             <button
               onClick={prevSlide}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-8 z-10 bg-white rounded-full p-3 shadow-lg hover:bg-gold-500 hover:text-white transition-colors"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-8 z-10 bg-white rounded-full p-3 shadow-lg hover:bg-primary-600 hover:text-white transition-colors"
               aria-label="Previous images"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -75,7 +75,7 @@ export default function GallerySection() {
             
             <button
               onClick={nextSlide}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-8 z-10 bg-white rounded-full p-3 shadow-lg hover:bg-gold-500 hover:text-white transition-colors"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-8 z-10 bg-white rounded-full p-3 shadow-lg hover:bg-primary-600 hover:text-white transition-colors"
               aria-label="Next images"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -119,7 +119,7 @@ export default function GallerySection() {
                   onClick={() => goToSlide(i)}
                   className={`h-2 rounded-full transition-all ${
                     i === currentIndex
-                      ? 'bg-gold-500 w-8'
+                      ? 'bg-primary-600 w-8'
                       : 'bg-gray-300 w-2 hover:bg-gray-400'
                   }`}
                   aria-label={`Go to slide ${i + 1}`}

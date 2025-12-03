@@ -19,7 +19,7 @@ export default function AboutSection() {
             <p>
               At The Fur Salon, we believe grooming should be a an enjoyable experience. No rush, no stress. Just quality care, premium products and craftsmanship dedicated to bringing out the best in every dog.
             </p>
-            <p className="text-gold-600 font-semibold text-xl">
+            <p className="text-primary-400 font-semibold text-xl">
               Your dog deserves to look and feel amazing.
             </p>
           </div>

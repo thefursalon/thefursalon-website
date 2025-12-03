@@ -10,37 +10,37 @@ export default function Footer() {
             <h3 className="text-white font-bold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#home" className="hover:text-gold-500 transition-colors">
+                <Link href="#home" className="hover:text-primary-400 transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="#about" className="hover:text-gold-500 transition-colors">
+                <Link href="#about" className="hover:text-primary-400 transition-colors">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="#services" className="hover:text-gold-500 transition-colors">
+                <Link href="#services" className="hover:text-primary-400 transition-colors">
                   Services
                 </Link>
               </li>
               <li>
-                <Link href="#prices" className="hover:text-gold-500 transition-colors">
+                <Link href="#prices" className="hover:text-primary-400 transition-colors">
                   Prices
                 </Link>
               </li>
               <li>
-                <Link href="#gallery" className="hover:text-gold-500 transition-colors">
+                <Link href="#gallery" className="hover:text-primary-400 transition-colors">
                   Gallery
                 </Link>
               </li>
               <li>
-                <Link href="#reviews" className="hover:text-gold-500 transition-colors">
+                <Link href="#reviews" className="hover:text-primary-400 transition-colors">
                   Reviews
                 </Link>
               </li>
               <li>
-                <Link href="#contact" className="hover:text-gold-500 transition-colors">
+                <Link href="#contact" className="hover:text-primary-400 transition-colors">
                   Contact
                 </Link>
               </li>
@@ -55,7 +55,7 @@ export default function Footer() {
                 href="https://www.instagram.com/thefursalon.nl/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-gold-500 transition-colors"
+                className="hover:text-primary-400 transition-colors"
                 aria-label="Instagram"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -66,7 +66,7 @@ export default function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-gold-500 transition-colors"
+                className="hover:text-primary-400 transition-colors"
                 aria-label="Facebook"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -81,12 +81,12 @@ export default function Footer() {
             <h3 className="text-white font-bold text-lg mb-4">Legal</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/privacy" className="hover:text-gold-500 transition-colors">
+                <Link href="/privacy" className="hover:text-primary-400 transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/cookies" className="hover:text-gold-500 transition-colors">
+                <Link href="/cookies" className="hover:text-primary-400 transition-colors">
                   Cookies
                 </Link>
               </li>
@@ -98,7 +98,7 @@ export default function Footer() {
           <p className="text-sm mb-2">
             ©️ The Fur Salon – All Rights Reserved.
           </p>
-          <p className="text-gold-500 italic font-medium">
+          <p className="text-primary-400 italic font-medium">
             "Tailored grooming. Canine Couture."
           </p>
         </div>

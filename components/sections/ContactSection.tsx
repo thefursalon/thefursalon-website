@@ -31,7 +31,7 @@ export default function ContactSection() {
                   <span className="text-2xl mr-3">📞</span>
                   <div>
                     <p className="font-semibold">Phone</p>
-                    <a href="tel:+31614255832" className="hover:text-gold-500 transition-colors">
+                    <a href="tel:+31614255832" className="hover:text-primary-600 transition-colors">
                       +31 6 14255832
                     </a>
                   </div>
@@ -40,7 +40,7 @@ export default function ContactSection() {
                   <span className="text-2xl mr-3">💬</span>
                   <div>
                     <p className="font-semibold">WhatsApp</p>
-                    <a href="https://wa.me/31614255832" className="hover:text-gold-500 transition-colors" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/31614255832" className="hover:text-primary-600 transition-colors" target="_blank" rel="noopener noreferrer">
                       +31 6 14255832
                     </a>
                   </div>
@@ -49,7 +49,7 @@ export default function ContactSection() {
                   <span className="text-2xl mr-3">📧</span>
                   <div>
                     <p className="font-semibold">Email</p>
-                    <a href="mailto:info@thefursalon.nl" className="hover:text-gold-500 transition-colors">
+                    <a href="mailto:info@thefursalon.nl" className="hover:text-primary-600 transition-colors">
                       info@thefursalon.nl
                     </a>
                   </div>
@@ -68,7 +68,7 @@ export default function ContactSection() {
               <div className="mt-8">
                 <Link
                   href="#contact"
-                  className="inline-block bg-gold-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-gold-600 transition-colors shadow-lg hover:shadow-xl"
+                  className="inline-block bg-primary-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary-700 transition-colors shadow-lg hover:shadow-xl"
                 >
                   Book Now
                 </Link>
