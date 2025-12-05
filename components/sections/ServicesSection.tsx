@@ -1,52 +1,58 @@
-const services = [
-  {
-    title: 'Full Grooming',
-    description: 'Complete cut & style tailored to your dog\'s breed or your preferred look. Includes bath, blow-dry, hygiene area, nails clipping and cleaning ears.',
-  },
-  {
-    title: 'Bathing service',
-    description: 'Perfect for regular maintenance. Gentle shampoo, blow-dry and thorough brushing to keep the coat healthy and shiny.',
-  },
-  {
-    title: 'Puppy First Time',
-    description: 'A gentle introduction for puppies. Soft handling, nice bath, small trimming and a calm experience to build confidence from the start.',
-  },
-  {
-    title: 'Stripping / Carding',
-    description: 'Specific hand techniques used on wire haired and other breeds to properly work their fur. This helps getting the perfect quality, texture and color of the coat.',
-  },
-  {
-    title: 'Deep teeth cleaning',
-    description: 'Cleaning and removal of the tartar that may build.',
-  },
-  {
-    title: 'Basic teeth cleaning',
-    description: 'Brushing with specific products to maintain a clean and healthy teeth',
-  },
-  {
-    title: 'Nail Trimming',
-    description: 'Quick and safe nail care to keep your dog comfortable and healthy.',
-  },
-  {
-    title: 'Ear Cleaning',
-    description: 'Delicate cleaning to maintain hygiene and prevent infections.',
-  },
-  {
-    title: 'Coloring',
-    description: 'Non-toxic and vegan products made for animals that can add some sparkle of colour to your dog.',
-  },
-]
+'use client'
+
+import { useTranslation } from '@/contexts/TranslationContext'
 
 export default function ServicesSection() {
+  const { t } = useTranslation()
+
+  const services = [
+    {
+      title: t.services.fullGrooming.title,
+      description: t.services.fullGrooming.description,
+    },
+    {
+      title: t.services.bathingService.title,
+      description: t.services.bathingService.description,
+    },
+    {
+      title: t.services.puppyFirstTime.title,
+      description: t.services.puppyFirstTime.description,
+    },
+    {
+      title: t.services.strippingCarding.title,
+      description: t.services.strippingCarding.description,
+    },
+    {
+      title: t.services.deepTeethCleaning.title,
+      description: t.services.deepTeethCleaning.description,
+    },
+    {
+      title: t.services.basicTeethCleaning.title,
+      description: t.services.basicTeethCleaning.description,
+    },
+    {
+      title: t.services.nailTrimming.title,
+      description: t.services.nailTrimming.description,
+    },
+    {
+      title: t.services.earCleaning.title,
+      description: t.services.earCleaning.description,
+    },
+    {
+      title: t.services.coloring.title,
+      description: t.services.coloring.description,
+    },
+  ]
+
   return (
     <section id="services" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 text-center">
-            Our Services
+            {t.services.title}
           </h2>
           <p className="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
-            We offer personalised grooming for all dog breeds, with modern techniques and high-quality care.
+            {t.services.description}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (

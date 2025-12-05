@@ -1,26 +1,32 @@
+'use client'
+
+import { useTranslation } from '@/contexts/TranslationContext'
+
 export default function AboutSection() {
+  const { t } = useTranslation()
+
   return (
     <section id="about" className="py-20 bg-primary-600">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 text-center">
-            About The Fur Salon
+            {t.about.title}
           </h2>
           <div className="prose prose-lg max-w-none text-gray-100 space-y-6">
             <p>
-              Welcome to The Fur Salon, a boutique dog grooming studio located in Amsterdam Oost.
+              {t.about.paragraph1}
             </p>
             <p>
-              We specialise in tailored grooming, modern styles and a gentle, stress-free approach so your dog always feels safe, comfortable and loved.
+              {t.about.paragraph2}
             </p>
             <p>
-              With years of professional experience in grooming salons and veterinary environments, we understand both the beauty and the health needs of each dog. Every treatment is personalised — from coat type and styling preferences to temperament and comfort level.
+              {t.about.paragraph3}
             </p>
             <p>
-              At The Fur Salon, we believe grooming should be a an enjoyable experience. No rush, no stress. Just quality care, premium products and craftsmanship dedicated to bringing out the best in every dog.
+              {t.about.paragraph4}
             </p>
             <p className="text-primary-400 font-semibold text-xl">
-              Your dog deserves to look and feel amazing.
+              {t.about.paragraph5}
             </p>
           </div>
         </div>

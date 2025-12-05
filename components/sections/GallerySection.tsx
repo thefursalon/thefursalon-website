@@ -2,8 +2,10 @@
 
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
+import { useTranslation } from '@/contexts/TranslationContext'
 
 export default function GallerySection() {
+  const { t } = useTranslation()
   const totalImages = 15
   const [currentIndex, setCurrentIndex] = useState(0)
   const [imagesPerView, setImagesPerView] = useState(4)
@@ -54,10 +56,10 @@ export default function GallerySection() {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 text-center">
-            Gallery
+            {t.gallery.title}
           </h2>
           <p className="text-lg text-gray-700 text-center mb-12">
-            A selection of our grooming results and happy clients.
+            {t.gallery.description}
           </p>
           
           {/* Carousel Container */}
@@ -66,7 +68,7 @@ export default function GallerySection() {
             <button
               onClick={prevSlide}
               className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-8 z-10 bg-white rounded-full p-3 shadow-lg hover:bg-primary-600 hover:text-white transition-colors"
-              aria-label="Previous images"
+              aria-label={t.gallery.previousImages}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -76,7 +78,7 @@ export default function GallerySection() {
             <button
               onClick={nextSlide}
               className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-8 z-10 bg-white rounded-full p-3 shadow-lg hover:bg-primary-600 hover:text-white transition-colors"
-              aria-label="Next images"
+              aria-label={t.gallery.nextImages}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -100,7 +102,7 @@ export default function GallerySection() {
                     <div className="aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
                       <Image
                         src={`/dog-${num}.jpeg`}
-                        alt={`Dog grooming ${num}`}
+                        alt={`${t.gallery.altText} ${num}`}
                         width={400}
                         height={400}
                         className="w-full h-full object-cover"
@@ -122,7 +124,7 @@ export default function GallerySection() {
                       ? 'bg-primary-600 w-8'
                       : 'bg-gray-300 w-2 hover:bg-gray-400'
                   }`}
-                  aria-label={`Go to slide ${i + 1}`}
+                  aria-label={`${t.gallery.goToSlide} ${i + 1}`}
                 />
               ))}
             </div>

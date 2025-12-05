@@ -1,36 +1,38 @@
-import Link from 'next/link'
+'use client'
+
+import { useTranslation } from '@/contexts/TranslationContext'
 
 export default function ContactSection() {
+  const { t } = useTranslation()
+
   return (
     <section id="contact" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 text-center">
-            Book an Appointment
+            {t.contact.title}
           </h2>
           <p className="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
-            We would love to welcome you and your dog to The Fur Salon.
-            <br />
-            For bookings or questions, feel free to contact us.
+            {t.contact.description}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Contact Information */}
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">{t.contact.contactInformation}</h3>
               <div className="space-y-4 text-gray-700">
                 <div className="flex items-start">
                   <span className="text-2xl mr-3">📍</span>
                   <div>
-                    <p className="font-semibold">Location</p>
-                    <p>Derde Oosterparkstraat 46</p>
-                    <p>1091 JZ Amsterdam, Netherlands</p>
+                    <p className="font-semibold">{t.contact.location}</p>
+                    <p>{t.contact.address1}</p>
+                    <p>{t.contact.address2}</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <span className="text-2xl mr-3">📞</span>
                   <div>
-                    <p className="font-semibold">Phone</p>
+                    <p className="font-semibold">{t.contact.phone}</p>
                     <a href="tel:+31614255832" className="hover:text-primary-600 transition-colors">
                       +31 6 14255832
                     </a>
@@ -39,7 +41,7 @@ export default function ContactSection() {
                 <div className="flex items-start">
                   <span className="text-2xl mr-3">💬</span>
                   <div>
-                    <p className="font-semibold">WhatsApp</p>
+                    <p className="font-semibold">{t.contact.whatsapp}</p>
                     <a href="https://wa.me/31614255832" className="hover:text-primary-600 transition-colors" target="_blank" rel="noopener noreferrer">
                       +31 6 14255832
                     </a>
@@ -48,7 +50,7 @@ export default function ContactSection() {
                 <div className="flex items-start">
                   <span className="text-2xl mr-3">📧</span>
                   <div>
-                    <p className="font-semibold">Email</p>
+                    <p className="font-semibold">{t.contact.email}</p>
                     <a href="mailto:info@thefursalon.nl" className="hover:text-primary-600 transition-colors">
                       info@thefursalon.nl
                     </a>
@@ -57,27 +59,29 @@ export default function ContactSection() {
               </div>
 
               <div className="mt-8">
-                <h4 className="text-xl font-bold text-gray-900 mb-4">Opening Hours</h4>
+                <h4 className="text-xl font-bold text-gray-900 mb-4">{t.contact.openingHours}</h4>
                 <div className="space-y-2 text-gray-700">
-                  <p><span className="font-semibold">Mon – Fri:</span> 10:00 – 18:00</p>
-                  <p><span className="font-semibold">Sat:</span> By appointment</p>
-                  <p><span className="font-semibold">Sun:</span> Closed</p>
+                  <p>{t.contact.openingHoursMonFri}</p>
+                  <p>{t.contact.openingHoursSat}</p>
+                  <p>{t.contact.openingHoursSun}</p>
                 </div>
               </div>
 
               <div className="mt-8">
-                <Link
-                  href="#contact"
+                <a
+                  href="https://wa.me/31614255832"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-block bg-primary-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary-700 transition-colors shadow-lg hover:shadow-xl"
                 >
-                  Book Now
-                </Link>
+                  {t.contact.bookNow}
+                </a>
               </div>
             </div>
 
             {/* Google Maps */}
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Find Us</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">{t.contact.findUs}</h3>
               <div className="rounded-lg overflow-hidden shadow-md aspect-square">
                 <iframe
                   src="https://www.google.com/maps?q=Derde+Oosterparkstraat+46,+1091+JZ+Amsterdam,+Netherlands&output=embed"
@@ -92,7 +96,7 @@ export default function ContactSection() {
                 ></iframe>
               </div>
               <p className="mt-4 text-gray-600 text-sm">
-                Derde Oosterparkstraat 46, 1091 JZ Amsterdam, Netherlands
+                {t.contact.address1}, {t.contact.address2}
               </p>
             </div>
           </div>

@@ -1,47 +1,52 @@
+'use client'
+
 import Link from 'next/link'
+import { useTranslation } from '@/contexts/TranslationContext'
 
 export default function Footer() {
+  const { t } = useTranslation()
+
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Quick Links */}
           <div>
-            <h3 className="text-white font-bold text-lg mb-4">Quick Links</h3>
+            <h3 className="text-white font-bold text-lg mb-4">{t.footer.quickLinks}</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="#home" className="hover:text-primary-400 transition-colors">
-                  Home
+                  {t.footer.home}
                 </Link>
               </li>
               <li>
                 <Link href="#about" className="hover:text-primary-400 transition-colors">
-                  About
+                  {t.footer.about}
                 </Link>
               </li>
               <li>
                 <Link href="#services" className="hover:text-primary-400 transition-colors">
-                  Services
+                  {t.footer.services}
                 </Link>
               </li>
               <li>
                 <Link href="#prices" className="hover:text-primary-400 transition-colors">
-                  Prices
+                  {t.footer.prices}
                 </Link>
               </li>
               <li>
                 <Link href="#gallery" className="hover:text-primary-400 transition-colors">
-                  Gallery
+                  {t.footer.gallery}
                 </Link>
               </li>
               <li>
                 <Link href="#reviews" className="hover:text-primary-400 transition-colors">
-                  Reviews
+                  {t.footer.reviews}
                 </Link>
               </li>
               <li>
                 <Link href="#contact" className="hover:text-primary-400 transition-colors">
-                  Contact
+                  {t.footer.contact}
                 </Link>
               </li>
             </ul>
@@ -49,7 +54,7 @@ export default function Footer() {
 
           {/* Social Media */}
           <div>
-            <h3 className="text-white font-bold text-lg mb-4">Follow Us</h3>
+            <h3 className="text-white font-bold text-lg mb-4">{t.footer.followUs}</h3>
             <div className="flex space-x-4">
               <a
                 href="https://www.instagram.com/thefursalon.nl/"
@@ -78,16 +83,16 @@ export default function Footer() {
 
           {/* Legal */}
           <div>
-            <h3 className="text-white font-bold text-lg mb-4">Legal</h3>
+            <h3 className="text-white font-bold text-lg mb-4">{t.footer.legal}</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/privacy" className="hover:text-primary-400 transition-colors">
-                  Privacy Policy
+                  {t.footer.privacyPolicy}
                 </Link>
               </li>
               <li>
                 <Link href="/cookies" className="hover:text-primary-400 transition-colors">
-                  Cookies
+                  {t.footer.cookies}
                 </Link>
               </li>
             </ul>
@@ -96,10 +101,10 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-sm mb-2">
-            ©️ The Fur Salon – All Rights Reserved.
+            {t.footer.copyright}
           </p>
           <p className="text-primary-400 italic font-medium">
-            "Tailored grooming. Canine Couture."
+            "{t.footer.tagline}"
           </p>
         </div>
       </div>

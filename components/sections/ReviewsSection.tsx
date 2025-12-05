@@ -1,38 +1,44 @@
-const testimonials = [
-  {
-    quote: "Best groomer in Amsterdam Oost. My cockapoo always looks perfect and feels calm after every visit.",
-    author: "Sophie",
-    dog: "Cockapoo owner",
-  },
-  {
-    quote: "Very gentle with my anxious dog. Beautiful results and professional service.",
-    author: "Daniel",
-    dog: "Shih Tzu owner",
-  },
-  {
-    quote: "Amazing styling! My pomeranian has never looked better. Highly recommended.",
-    author: "Laura",
-    dog: "Pomeranian owner",
-  },
-]
+'use client'
+
+import { useTranslation } from '@/contexts/TranslationContext'
 
 export default function ReviewsSection() {
+  const { t } = useTranslation()
+
+  const testimonials = [
+    {
+      quote: t.reviews.testimonial1.quote,
+      author: t.reviews.testimonial1.author,
+      dog: t.reviews.testimonial1.dog,
+    },
+    {
+      quote: t.reviews.testimonial2.quote,
+      author: t.reviews.testimonial2.author,
+      dog: t.reviews.testimonial2.dog,
+    },
+    {
+      quote: t.reviews.testimonial3.quote,
+      author: t.reviews.testimonial3.author,
+      dog: t.reviews.testimonial3.dog,
+    },
+  ]
+
   return (
     <section id="reviews" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 text-center">
-            What Our Clients Say
+            {t.reviews.title}
           </h2>
           <p className="text-lg text-gray-700 text-center mb-12">
-            Read more reviews on{' '}
+            {t.reviews.description}{' '}
             <a
               href="https://g.page/r/CfGigsbIWEUeEBM/review"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary-600 hover:text-primary-700 font-semibold underline"
             >
-              Google Reviews
+              {t.reviews.googleReviews}
             </a>
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
