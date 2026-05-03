@@ -17,6 +17,7 @@ export default function ContactSection() {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {/* Contact Information */}
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-6">{t.contact.contactInformation}</h3>
               <div className="space-y-4 text-gray-700">
@@ -60,7 +61,7 @@ export default function ContactSection() {
               <div className="mt-8">
                 <h4 className="text-xl font-bold text-gray-900 mb-4">{t.contact.openingHours}</h4>
                 <div className="space-y-2 text-gray-700">
-                  <p>Monday to Saturday: 9:00 AM - 5:00 PM</p>
+                  <p>Monday to Saturday: 9:00 - 17:00</p>
                   <p>Sunday: Closed</p>
                 </div>
               </div>
@@ -77,6 +78,7 @@ export default function ContactSection() {
               </div>
             </div>
 
+            {/* Google Maps */}
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-6">{t.contact.findUs}</h3>
               <div className="rounded-lg overflow-hidden shadow-md aspect-square">
