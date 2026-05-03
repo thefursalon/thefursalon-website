@@ -17,7 +17,6 @@ export default function ContactSection() {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {/* Contact Information */}
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-6">{t.contact.contactInformation}</h3>
               <div className="space-y-4 text-gray-700">
@@ -78,7 +77,6 @@ export default function ContactSection() {
               </div>
             </div>
 
-            {/* Google Maps */}
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-6">{t.contact.findUs}</h3>
               <div className="rounded-lg overflow-hidden shadow-md aspect-square">
