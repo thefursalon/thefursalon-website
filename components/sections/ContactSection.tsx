@@ -51,8 +51,8 @@ export default function ContactSection() {
                   <span className="text-2xl mr-3">📧</span>
                   <div>
                     <p className="font-semibold">{t.contact.email}</p>
-                    <a href="mailto:info@thefursalon.nl" className="hover:text-primary-600 transition-colors">
-                      info@thefursalon.nl
+                    <a href="mailto:thefursalon.nl@gmail.com" className="hover:text-primary-600 transition-colors">
+                      thefursalon.nl@gmail.com
                     </a>
                   </div>
                 </div>
@@ -61,14 +61,13 @@ export default function ContactSection() {
               <div className="mt-8">
                 <h4 className="text-xl font-bold text-gray-900 mb-4">{t.contact.openingHours}</h4>
                 <div className="space-y-2 text-gray-700">
-                  <p>{t.contact.openingHoursMonFri}</p>
-                  <p>{t.contact.openingHoursSat}</p>
-                  <p>{t.contact.openingHoursSun}</p>
+                  <p>Monday to Saturday: 9:00 AM - 5:00 PM</p>
+                  <p>Sunday: Closed</p>
                 </div>
               </div>
 
               <div className="mt-8">
-                <a
+                
                   href="https://wa.me/31614255832"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -105,4 +104,3 @@ export default function ContactSection() {
     </section>
   )
 }
-
