@@ -1,0 +1,17 @@
+{
+  "framework": null,
+  "buildCommand": "",
+  "outputDirectory": ".",
+  "redirects": [
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/cookies",
+      "destination": "/privacy.html",
+      "permanent": true
+    }
+  ]
+}

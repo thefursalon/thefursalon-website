@@ -1,7 +1,21 @@
-node_modules
-.next
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Working notes and tools: kept in the local folder, never pushed or deployed
+LAUNCH-NOTES.md
+TECH-TODO.md
+WEBSITE-TEXT-FOR-ANNA.md
+CASE-STUDY-SOURCE.md
+GO-LIVE.md
+The Fur Salon - website text.docx
+The Fur Salon - Brand Identity.pdf
+launch.py
+gallery.py
+gallery.json
+assets/media/gallery-inbox/
+assets/brand/mockups/
+_redirects
+__pycache__/
+.DS_Store
+brand-v2/
+home-v2.html
+TRACKING.md
+LAUNCH-OFFER.md
+the fur salon before.mp4

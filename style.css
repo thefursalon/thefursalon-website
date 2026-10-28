@@ -1,0 +1,1110 @@
+@font-face{font-family:'Cinzel';src:url('/assets/fonts/cinzel-400.woff2') format('woff2'),url('assets/fonts/cinzel-400.woff2') format('woff2'),url('../assets/fonts/cinzel-400.woff2') format('woff2');font-weight:400;font-display:swap;font-style:normal}
+@font-face{font-family:'Cinzel';src:url('/assets/fonts/cinzel-500.woff2') format('woff2'),url('assets/fonts/cinzel-500.woff2') format('woff2'),url('../assets/fonts/cinzel-500.woff2') format('woff2');font-weight:500;font-display:swap;font-style:normal}
+@font-face{font-family:'Synonym';src:url('/assets/fonts/Synonym-Variable.ttf') format('truetype-variations'),url('assets/fonts/Synonym-Variable.ttf') format('truetype-variations'),url('../assets/fonts/Synonym-Variable.ttf') format('truetype-variations');font-weight:200 700;font-display:swap;font-style:normal}
+@font-face{font-family:'Chillax';src:url('/assets/fonts/Chillax-Variable.ttf') format('truetype-variations'),url('assets/fonts/Chillax-Variable.ttf') format('truetype-variations'),url('../assets/fonts/Chillax-Variable.ttf') format('truetype-variations');font-weight:200 700;font-display:swap;font-style:normal}
+/* The Fur Salon — design system */
+:root{
+  --cream:#F6F3EA; --card:#EDE9DD; --ink:#2A2E24; --ink2:#64695B;
+  --olive:#4A5340; --deep:#3A4133; --gold:#C0764A; --line:#E2DED0; --paper:#EFEBDF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Synonym',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.serif{font-family:'Chillax',system-ui,sans-serif;font-optical-sizing:auto}
+.logo,.foot-word{font-weight:400;letter-spacing:.01em}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:1300;transition:opacity .55s ease;background:var(--olive);border-bottom:1px solid rgba(0,0,0,.06)}
+nav.scrolled{border-bottom-color:rgba(0,0,0,.12)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:76px}
+nav .wrap.nav-in{max-width:none;padding:0 clamp(20px,3vw,44px)}
+.logo{font-family:'Chillax',system-ui,sans-serif;font-weight:400;font-size:1.25rem;letter-spacing:.02em;color:var(--cream)}
+.logo span{color:#E8E2CE}
+.nav-links{display:flex;gap:30px;align-items:center;font-size:1.02rem}
+.nav-links .btn{background:var(--cream);color:var(--ink);padding:15px 30px;font-size:1rem}
+.nav-links .btn:hover{background:#fff}
+.nav-links a{color:#CFC9B8;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.btn{display:inline-block;background:var(--deep);color:var(--cream);padding:13px 26px;border-radius:6px;font-weight:600;font-size:.95rem;letter-spacing:.01em;transition:background .25s}
+.btn:hover{background:var(--olive)}
+.btn.gold{background:var(--olive);color:var(--cream)}
+.btn.gold:hover{background:var(--deep)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--cream)}
+.btn.ghost:hover{border-color:var(--gold);background:transparent}
+
+/* hero (editorial split) */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;min-height:92vh;background:var(--cream);color:var(--ink)}
+.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:120px clamp(24px,5vw,72px) 60px clamp(24px,5vw,72px)}
+.hero-copy h1{font-family:'Chillax',system-ui,sans-serif;font-weight:400;font-size:clamp(2.9rem,6vw,5.2rem);line-height:1.02;letter-spacing:0;color:var(--ink)}
+.hero-copy h1 .g{color:var(--olive)}
+.hero-copy .sub{margin-top:24px;font-size:clamp(1.02rem,1.4vw,1.15rem);color:var(--ink2);max-width:44ch}
+.hero-copy .cta{margin-top:34px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.hero-copy .btn{background:var(--olive);color:var(--cream)}
+.hero-copy .btn:hover{background:var(--deep)}
+.hero-copy .rating{margin-top:38px;padding-top:20px;border-top:1px solid var(--line);display:flex;gap:12px;align-items:baseline;font-size:.95rem;color:var(--ink2)}
+.hero-copy .rating b{font-family:'Chillax',system-ui,sans-serif;font-size:1.7rem;color:var(--olive)}
+.hero-photo{position:relative;min-height:520px}
+.hero-photo .img{position:absolute;inset:0;background-size:cover;background-position:center 62%}
+.tlink{font-weight:600;color:var(--ink)}
+.tlink:hover{color:var(--olive)}
+/* The strip under the hero carries the three practical facts plus the two
+   claims worth repeating. It scrolls because five items will not sit on one
+   line on a phone, and a wrapped five-line block would push the page down.
+   Duplicated content plus a -50% translate gives a seamless loop. */
+.infobar{background:var(--olive);overflow:hidden;position:relative}
+.tk-track{display:flex;width:max-content;animation:tkroll 46s linear infinite}
+.tk-set{display:flex;align-items:center;white-space:nowrap}
+.tk-item{display:inline-flex;align-items:center;gap:9px;padding:0 22px;font-size:.9rem;color:var(--cream)}
+.tk-item svg{color:var(--gold);flex:none}
+.tk-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex:none}
+.infobar{padding:14px 0}
+@keyframes tkroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.infobar:hover .tk-track{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.tk-track{animation:none}}
+.old-hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;color:var(--cream)}
+.hero-img{position:absolute;inset:0;background-size:cover;background-position:center 60%}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(28,29,18,.92) 0%,rgba(28,29,18,.45) 55%,rgba(28,29,18,.55) 100%)}
+.hero-in{position:relative;z-index:2;width:100%;padding-bottom:clamp(48px,7vh,90px)}
+/* legacy .hero h1 removed: the hero heading is now .hero-mark .hero-name */
+.hero p{margin-top:18px;font-size:clamp(1.02rem,1.6vw,1.25rem);max-width:46ch;color:#EDE8DB}
+.hero-cta{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.hero-meta{margin-top:26px;font-size:.9rem;color:#CFC9B8;display:flex;gap:22px;flex-wrap:wrap}
+.hero-meta b{color:var(--gold)}
+
+/* sections */
+section{padding:clamp(70px,9vw,120px) 0}
+.eyebrow{font-size:.95rem;font-weight:700;letter-spacing:0;text-transform:none;color:var(--ink2);margin-bottom:14px}
+h2{font-family:'Chillax',system-ui,sans-serif;font-size:clamp(2.2rem,4.6vw,4rem);line-height:1.06}
+.lead{font-size:clamp(1.02rem,1.5vw,1.2rem);color:var(--ink2);max-width:60ch}
+
+/* intro split */
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,80px);align-items:center}
+.split .photo{border-radius:18px;overflow:hidden;aspect-ratio:4/5;background:var(--card)}
+.split .photo img{width:100%;height:100%;object-fit:cover}
+.split h2{margin-bottom:20px}
+.split p{color:var(--ink2);margin-bottom:16px}
+.sig{font-weight:600;font-size:1.05rem;color:var(--olive)}
+
+/* services editorial list */
+.svc-list{border-top:1px solid var(--line)}
+.svc-row{display:grid;grid-template-columns:70px 1fr auto auto;gap:clamp(14px,3vw,40px);align-items:center;padding:26px 6px;border-bottom:1px solid var(--line);transition:background .25s,padding .25s}
+.svc-row:hover{background:var(--paper);padding-left:16px}
+.svc-num{color:var(--ink2);font-size:.9rem;font-weight:600}
+.svc-name{font-family:'Chillax',system-ui,sans-serif;font-weight:400;font-size:clamp(1.25rem,2.4vw,1.8rem)}
+.svc-desc{color:var(--ink2);font-size:.95rem;max-width:44ch;display:block;margin-top:4px}
+.svc-price{color:var(--gold);font-weight:600;font-size:.95rem;white-space:nowrap}
+.svc-arrow{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;transition:all .25s;color:var(--ink2)}
+.svc-row:hover .svc-arrow{background:var(--olive);border-color:var(--olive);color:var(--cream);transform:rotate(-45deg)}
+
+/* calm / niche */
+.calm{background:var(--olive);color:var(--cream)}
+.calm .btn{background:var(--cream);color:var(--ink)}
+.calm .btn:hover{background:#fff}
+.calm .eyebrow{color:#DCD6C0}
+.calm h2{color:var(--cream)}
+.calm-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,80px);align-items:center}
+.calm p{color:#DCD8C8;margin-bottom:16px}
+.calm .photo{border-radius:18px;overflow:hidden;aspect-ratio:4/5}
+.calm .photo img{width:100%;height:100%;object-fit:cover}
+.calm-points{margin-top:26px;display:grid;gap:14px}
+.calm-point{display:flex;gap:14px;align-items:flex-start}
+.calm-point .dot{width:9px;height:9px;border-radius:50%;background:var(--gold);margin-top:9px;flex-shrink:0}
+.calm-point b{color:var(--cream)}
+.calm-point span{color:#DCD8C8}
+
+/* gallery */
+.gal-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:34px;gap:20px;flex-wrap:wrap}
+.gallery{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;margin:0 calc(-1*clamp(20px,4vw,48px));padding-left:clamp(20px,4vw,48px);padding-right:clamp(20px,4vw,48px)}
+.gallery::-webkit-scrollbar{height:6px}
+.gallery::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+.gal-item{flex:0 0 clamp(240px,30vw,360px);aspect-ratio:4/5;border-radius:16px;overflow:hidden;scroll-snap-align:start;background:var(--card)}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gal-item:hover img{transform:scale(1.04)}
+
+/* prices */
+.prices{background:var(--paper)}
+.price-tables{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+.ptable{background:none;border:none;border-top:2px solid var(--ink);border-radius:0;padding:20px 0 0}
+.ptable h3{font-family:'Chillax',system-ui,sans-serif;font-size:1.35rem;margin-bottom:4px}
+.ptable .pdesc{font-size:.88rem;color:var(--ink2);margin-bottom:18px;min-height:42px}
+.prow{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);font-size:.97rem}
+.prow:last-child{border-bottom:none}
+.prow b{font-weight:600}
+.prow span{color:var(--ink2)}
+.pnote{margin-top:26px;font-size:.9rem;color:var(--ink2);max-width:70ch}
+/* the honest limit next to a welcoming claim: present, but quieter than the promise */
+.calm-caveat{font-size:.94rem;color:#CFCBBB;border-left:2px solid rgba(192,118,74,.55);padding-left:14px;margin-top:4px}
+.pmark{color:var(--gold);font-weight:600}
+/* .sp-hero sits on --paper (light), so this has to be dark ink, not the
+   cream used by .calm-caveat on the olive band. */
+.lead-caveat{margin-top:14px;font-size:.95rem;color:var(--ink2);max-width:60ch;border-left:2px solid var(--gold);padding-left:14px}
+.faq-sig{margin-top:12px;font-weight:600;color:var(--olive)}
+.pfoot{margin-top:12px;font-size:.82rem;color:var(--ink2);line-height:1.5}
+.pnote a{color:var(--olive);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+/* reviews */
+.rev-quote{font-family:'Chillax',system-ui,sans-serif;font-weight:400;font-size:clamp(1.5rem,3.2vw,2.5rem);line-height:1.25;max-width:22ch}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
+.rev-card{background:none;border-top:2px solid var(--ink);border-radius:0;padding:20px 0 0;font-size:.97rem}
+.rev-card .stars{color:var(--gold);letter-spacing:3px;margin-bottom:12px;font-size:.9rem}
+.rev-card p{color:var(--ink)}
+.rev-card .who{margin-top:14px;color:var(--ink2);font-size:.88rem}
+.rev-badge{display:flex;align-items:center;gap:16px;margin-top:44px}
+.rev-badge .score{font-family:'Chillax',system-ui,sans-serif;font-size:2.4rem;color:var(--deep)}
+.rev-badge .sub{font-size:.92rem;color:var(--ink2)}
+.rev-badge a{color:var(--olive);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+/* about */
+.about .split .photo{aspect-ratio:3/4}
+
+/* contact */
+.contact{background:var(--olive);color:var(--cream)}
+.contact .eyebrow{color:#DCD6C0}
+.contact h2{color:var(--cream)}
+.c-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,70px);margin-top:44px}
+.c-info{display:grid;gap:22px;align-content:start}
+.c-item b{display:block;color:#E6DFC8;font-size:.95rem;letter-spacing:0;text-transform:none;margin-bottom:5px}
+.c-item div,.c-item a{color:#E7E1D2;font-size:1.05rem}
+.c-item a:hover{color:#fff}
+.c-map{border-radius:18px;overflow:hidden;min-height:380px;background:var(--card)}
+/* click-to-load map placeholder: styled to read as a deliberate panel rather
+   than a failed embed, with a direct Google Maps link for anyone who never
+   loads the iframe */
+.c-map{position:relative}
+.map-ask{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:var(--card);padding:26px;text-align:center}
+.map-ask-in{max-width:32ch}
+.map-ask b{display:block;color:var(--ink);font-family:'Chillax',system-ui,sans-serif;font-size:1.05rem;margin-bottom:8px}
+.map-ask p{font-size:.9rem;color:var(--ink2);margin-bottom:16px;line-height:1.5}
+.map-ask .btn{min-height:44px;display:inline-flex;align-items:center}
+.map-direct{display:block;margin-top:12px;font-size:.86rem;color:var(--olive);
+  text-decoration:underline;text-underline-offset:3px;min-height:44px;line-height:44px}
+.c-map iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(.2)}
+.c-map iframe{width:100%;height:100%;border:0;filter:grayscale(.2)}
+
+/* footer */
+footer{background:var(--deep);color:#B9B7A4;padding:0 0 40px}
+.foot-word{font-family:'Chillax',system-ui,sans-serif;font-weight:400;font-size:clamp(3rem,9vw,7.5rem);color:rgba(246,243,234,.09);text-align:center;line-height:1;padding:30px 0 40px;user-select:none}
+.foot-in{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border-top:1px solid rgba(250,247,240,.08);padding-top:28px;font-size:.9rem}
+.foot-in a{color:#CFC9B8}
+.foot-in a:hover{color:#fff}
+.foot-links{display:flex;gap:22px;flex-wrap:wrap}
+
+/* floating whatsapp */
+.wa-float{position:fixed;right:22px;bottom:22px;z-index:60;display:flex;align-items:center;gap:10px;background:var(--olive);color:var(--cream);padding:14px 20px;border-radius:8px;font-weight:600;box-shadow:0 12px 30px -10px rgba(0,0,0,.4);transition:background .25s}
+.wa-float:hover{background:var(--olive);transform:translateY(-2px)}
+.wa-float svg{flex-shrink:0}
+
+/* service page */
+.sp-hero{padding:150px 0 70px;background:var(--paper)}
+.sp-hero .crumb{font-size:.88rem;color:var(--ink2);margin-bottom:18px}
+.sp-hero .crumb a{color:var(--olive);font-weight:600}
+.sp-hero h1{font-family:'Chillax',system-ui,sans-serif;font-weight:400;font-size:clamp(2.4rem,5vw,4rem);line-height:1.05;max-width:16ch}
+.sp-hero .lead{margin-top:18px}
+.sp-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,70px);align-items:start}
+.sp-list{margin-top:8px;display:grid;gap:0;border-top:1px solid var(--line)}
+.sp-item{display:flex;gap:14px;padding:15px 4px;border-bottom:1px solid var(--line);align-items:flex-start}
+.sp-item .tick{color:var(--gold);font-weight:700}
+.sp-photo{border-radius:18px;overflow:hidden;aspect-ratio:4/5;background:var(--card);position:sticky;top:100px}
+.sp-photo img{width:100%;height:100%;object-fit:cover}
+.sp-photo video,.photo video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+/* a slot holding a 9:16 clip needs a portrait box, or cover() crops it to a strip */
+.sp-photo.sp-media,.photo.sp-media{aspect-ratio:3/4}
+video.sp-vid::-webkit-media-controls,video.sp-vid::-webkit-media-controls-panel,
+video.sp-vid::-webkit-media-controls-start-playback-button{display:none!important;-webkit-appearance:none}
+.sp-price{background:none;border:none;border-top:2px solid var(--ink);border-radius:0;padding:20px 0 0;margin-top:34px}
+.sp-price h3{font-family:'Chillax',system-ui,sans-serif;font-size:1.2rem;margin-bottom:12px}
+.sp-cta{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;min-height:0}
+  .hero-photo{min-height:340px;order:-1}
+  .hero-copy{padding-top:60px}
+  .hero-copy{padding-top:100px}
+  .nav-links{display:none}
+  .split,.calm-grid,.c-grid,.sp-grid{grid-template-columns:1fr}
+  .price-tables,.rev-grid{grid-template-columns:1fr}
+  .svc-row{grid-template-columns:1fr auto;grid-template-areas:"name arrow" "price arrow"}
+  .svc-num{display:none}
+  .svc-name{grid-area:name}.svc-price{grid-area:price}.svc-arrow{grid-area:arrow}
+  .sp-photo{position:static}
+}
+
+/* == element upgrades == */
+/* animated underline links */
+.tlink{border-bottom:none;background:linear-gradient(currentColor,currentColor) bottom left no-repeat;background-size:100% 2px;padding-bottom:4px;transition:background-size .35s ease,color .2s}
+.tlink:hover{background-size:18% 2px}
+.nav-links a:not(.btn){background:linear-gradient(#fff,#fff) bottom left no-repeat;background-size:0 1px;padding-bottom:3px;transition:background-size .3s,color .2s}
+.nav-links a:not(.btn):hover{background-size:100% 1px}
+/* button arrow slide */
+.btn{position:relative;overflow:hidden}
+.btn .ar{display:inline-block;margin-left:8px;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.btn:hover .ar{transform:translateX(5px)}
+
+@media(hover:hover) and (min-width:1000px){.svc-row:hover }
+/* editorial price table */
+.pricetable{margin-top:48px;border-top:2px solid var(--ink);overflow-x:auto}
+.pt-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;min-width:680px}
+.pt-grid>div{padding:18px 12px 18px 0;border-bottom:1px solid var(--line);display:flex;align-items:baseline}
+.pt-head{font-size:.85rem;font-weight:600;color:var(--ink2)}
+.pt-svc{font-family:'Chillax',system-ui,sans-serif;font-size:clamp(1.15rem,1.8vw,1.5rem)}
+.pt-val{font-weight:500;font-size:1.02rem}
+.pt-row:hover>div{background:var(--paper)}
+.pt-note{font-size:.85rem;color:var(--ink2)}
+/* gallery: varied rhythm + numbered captions */
+.gal-item{position:relative}
+.gal-item:nth-child(4n+1){flex-basis:clamp(260px,26vw,330px)}
+.gal-item:nth-child(4n+2){flex-basis:clamp(300px,34vw,430px)}
+.gal-item:nth-child(4n+3){flex-basis:clamp(240px,23vw,300px)}
+.gal-item:nth-child(4n+4){flex-basis:clamp(290px,30vw,380px)}
+.gal-item::after{content:attr(data-n);position:absolute;left:14px;bottom:10px;font-family:'Chillax',system-ui,sans-serif;color:var(--cream);font-size:1rem;letter-spacing:.06em;text-shadow:0 2px 10px rgba(0,0,0,.5);opacity:0;transition:opacity .3s}
+.gal-item:hover::after{opacity:1}
+/* reviews: stars over quote */
+.rev-stars{color:var(--gold);letter-spacing:6px;font-size:1.05rem;margin-bottom:18px}
+
+.contact .btn,.contact .btn.gold{background:var(--cream);color:var(--ink)}
+.contact .btn:hover{background:#fff}
+
+/* logo mark */
+.logo{display:flex;align-items:center;gap:11px}
+.logo .mark{width:34px;height:auto;color:currentColor;flex-shrink:0}
+.logo .lw{font-family:'Chillax',system-ui,sans-serif;font-size:1.15rem;letter-spacing:.02em}
+.logo .lw em{font-style:normal;color:#E8E2CE}
+.foot-mark{display:flex;justify-content:center;padding-top:46px}
+.foot-mark .mark{width:78px;color:rgba(246,243,234,.22)}
+@media(max-width:600px){.logo .mark{width:28px}.logo .lw{font-size:1rem}}
+
+
+
+/* ===== video hero ===== */
+.hero{position:relative;display:block;min-height:100svh;background:var(--deep);overflow:hidden}
+.vwall{position:absolute;inset:0;display:flex}
+.vcell{flex:1 1 0;min-width:0;height:100%;object-fit:cover;filter:saturate(.92)}
+/* Phones show one clip at a time and cycle through all three, so the wall
+   becomes a sequence instead of a crop. Desktop keeps the wall of three.
+   The cells are stacked rather than hidden so a crossfade is possible;
+   video.js flips .is-live when a clip ends. */
+.vcell:nth-child(2),.vcell:nth-child(3){position:absolute;inset:0;width:100%;opacity:0}
+.vcell:nth-child(1){opacity:1}
+@media(max-width:759px){
+  .vwall{position:absolute;inset:0;display:block}
+  .vcell{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .7s ease}
+  .vcell.is-live{opacity:1}
+}
+@media(min-width:760px){
+  .vcell:nth-child(2),.vcell:nth-child(3){position:static;opacity:1;width:auto}
+}
+.vscrim{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%,rgba(28,31,20,.30),rgba(28,31,20,.78))}
+.hero-mark{position:absolute;inset:0;z-index:1000;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 0;color:#F3EFE4}
+.heromark{width:clamp(96px,10vw,140px);height:auto;color:#F3EFE4;filter:drop-shadow(0 8px 26px rgba(0,0,0,.45))}
+.hero-name{font-size:clamp(1.6rem,3.4vw,2.9rem);letter-spacing:.13em;margin-top:16px;text-shadow:0 3px 22px rgba(0,0,0,.5)}
+.hero-tag{font-size:clamp(.7rem,1vw,.8rem);letter-spacing:.42em;opacity:.85;margin-top:6px;padding-left:.42em}
+.hero-mark .btn{margin-top:34px;background:#F3EFE4;color:var(--ink)}
+.hero-mark .btn:hover{background:#fff}
+.hero-rating{margin-top:20px;font-size:.88rem;letter-spacing:.06em;color:#DBD5C4}
+.scrollcue{position:absolute;left:50%;bottom:26px;width:1px;height:52px;background:linear-gradient(#F3EFE4,transparent);opacity:.6;z-index:1000}
+/* splash: pure dissolve, logo stays put */
+body.locked{overflow:hidden}
+body.locked nav{opacity:0;pointer-events:none}
+#tfsSplash{position:fixed;inset:0;z-index:990;background:var(--olive);transition:opacity 1.15s ease}
+#tfsSplash.done{opacity:0}
+@media (prefers-reduced-motion:reduce){#tfsSplash{display:none}}
+@media(max-width:759px){.hero-mark{padding-top:70px}}
+
+/* hero rating badge */
+.hero-rating{display:inline-flex;align-items:center;gap:12px;margin-top:24px;padding:10px 18px 10px 14px;
+  border:1px solid rgba(243,239,228,.35);border-radius:10px;background:rgba(28,31,20,.28);backdrop-filter:blur(3px);
+  color:#F3EFE4;transition:border-color .25s,background .25s}
+.hero-rating:hover{border-color:rgba(243,239,228,.7);background:rgba(28,31,20,.45)}
+.hr-score{font-family:'Chillax',system-ui,sans-serif;font-size:2rem;line-height:1}
+.hr-txt{font-size:.84rem;line-height:1.35;text-align:left;letter-spacing:.04em}
+.hr-stars{letter-spacing:2px;font-size:.72rem}
+/* service page review */
+.sp-review{margin-top:26px;padding:22px 0 0;border-top:2px solid var(--ink)}
+.sp-review .q{font-family:'Chillax',system-ui,sans-serif;font-size:1.12rem;line-height:1.42;color:var(--ink)}
+.sp-review .who{margin-top:10px;font-size:.86rem;color:var(--ink2)}
+.sp-review .stars{color:var(--gold);letter-spacing:3px;font-size:.8rem;margin-bottom:10px}
+.sp-rating{display:inline-flex;align-items:baseline;gap:8px;margin-top:14px;font-size:.88rem;color:var(--ink2)}
+.sp-rating b{font-family:'Chillax',system-ui,sans-serif;font-size:1.3rem;color:var(--ink)}
+.sp-rating a{color:var(--olive);text-decoration:underline;text-underline-offset:3px}
+
+/* hero entrance: builds in, doesn't just appear */
+.heromark{opacity:0;animation:markIn 1.05s cubic-bezier(.16,.84,.28,1) .15s forwards}
+@keyframes markIn{0%{opacity:0;transform:scale(.86) translateY(10px)}60%{opacity:1}100%{opacity:1;transform:none}}
+.hero-name{opacity:0;animation:spreadIn .95s cubic-bezier(.22,.8,.24,1) .5s forwards}
+@keyframes spreadIn{from{opacity:0;letter-spacing:.34em}to{opacity:1;letter-spacing:.13em}}
+.hero-tag{opacity:0;animation:spreadTag .9s cubic-bezier(.22,.8,.24,1) .78s forwards}
+@keyframes spreadTag{from{opacity:0;letter-spacing:.85em}to{opacity:.85;letter-spacing:.42em}}
+.hero-mark .btn{opacity:0;animation:riseIn .7s ease-out 2.25s forwards}
+.hero-rating{opacity:0;animation:riseIn .7s ease-out 2.42s forwards}
+.scrollcue{opacity:0;animation:cueIn .9s ease-out 2.6s forwards}
+@keyframes riseIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes cueIn{from{opacity:0;transform:scaleY(.2)}to{opacity:.6;transform:none}}
+@media (prefers-reduced-motion:reduce){
+ .heromark,.hero-name,.hero-tag,.hero-mark .btn,.hero-rating,.scrollcue{animation:none;opacity:1}
+ .hero-tag{opacity:.85}.scrollcue{opacity:.6}
+}
+
+/* Chillax weights */
+h1,h2,h3,.svc-name,.rev-quote,.sp-hero h1,.ptable h3,.pt-svc,.hero-copy h1,.rev-badge .score,.hr-score,.sp-price h3,.sp-review .q{font-family:'Chillax',system-ui,sans-serif;font-weight:700;letter-spacing:-.01em}
+.hero-name{font-family:'Cinzel',Georgia,serif;font-weight:500;letter-spacing:.13em}
+.hero-tag{font-family:'Cinzel',Georgia,serif;font-weight:400;letter-spacing:.42em}
+.nav-links a,.nav-links .btn,.btn,.wa-float{font-family:'Chillax',system-ui,sans-serif;font-weight:600}
+.logo .lw{font-family:'Cinzel',Georgia,serif;font-weight:500;letter-spacing:.04em}
+.eyebrow{font-family:'Chillax',system-ui,sans-serif;font-weight:600}
+
+.foot-word{font-family:'Cinzel',Georgia,serif;font-weight:500}
+
+/* booking modal */
+#bk{position:fixed;inset:0;z-index:1400;background:rgba(28,31,20,.55);backdrop-filter:blur(3px);display:none;place-items:center;padding:20px}
+#bk.on{display:grid}
+.bk-card{background:var(--cream);border-radius:16px;width:min(420px,100%);padding:26px 24px 18px;position:relative;box-shadow:0 30px 70px -20px rgba(0,0,0,.5)}
+.bk-x{position:absolute;top:10px;right:14px;border:0;background:none;font-size:26px;line-height:1;color:var(--ink2);cursor:pointer}
+.bk-x:hover{color:var(--ink)}
+.bk-bar{height:3px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:20px}
+.bk-bar i{display:block;height:100%;background:var(--olive);width:0;transition:width .35s cubic-bezier(.2,.8,.25,1)}
+.bk-q{font-family:'Chillax',system-ui,sans-serif;font-weight:700;font-size:1.35rem;color:var(--ink);margin-bottom:16px;line-height:1.2}
+.bk-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.bk-grid.one{grid-template-columns:1fr}
+.bk-opt{font-family:'Synonym',system-ui,sans-serif;font-size:.97rem;padding:13px 14px;border:1px solid var(--line);background:#fff;border-radius:9px;cursor:pointer;text-align:left;color:var(--ink);transition:border-color .2s,background .2s,transform .15s}
+.bk-opt:hover{border-color:var(--olive);background:var(--paper);transform:translateY(-1px)}
+.bk-in{width:100%;font-family:'Synonym',system-ui,sans-serif;font-size:1rem;padding:13px 14px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)}
+.bk-in:focus{outline:none;border-color:var(--olive)}
+.bk-next{margin-top:12px;width:100%;font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:.97rem;padding:13px;border:0;border-radius:9px;background:var(--olive);color:var(--cream);cursor:pointer}
+.bk-next:hover{background:var(--deep)}
+.bk-skip{display:block;margin:14px auto 0;border:0;background:none;font-family:'Synonym',system-ui,sans-serif;font-size:.85rem;color:var(--ink2);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.bk-skip:hover{color:var(--ink)}
+
+/* let clicks through the hero overlay, except on its own controls */
+.hero-mark .btn,.hero-mark .hero-rating{pointer-events:auto}
+.scrollcue{pointer-events:none}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* cookie consent, in two stages.
+   Stage 1: a quiet card bottom-left, page fully usable.
+   Stage 2: if still unanswered, it slides to the middle and blocks.
+
+   Only the transform and the overlay opacity change between the two, because
+   position and flex alignment do not animate. The percentages in translate
+   refer to the dialog's own size, so the maths puts its corner exactly 24px
+   from the viewport edge without measuring anything.
+
+   Accept and Decline carry equal weight on purpose: a modal where declining
+   is harder than accepting is a cookie wall, and those are not lawful. */
+#tfsConsentWrap{position:fixed;inset:0;z-index:1600;display:flex;align-items:center;
+  justify-content:center;padding:20px;background:rgba(28,31,20,.55);
+  opacity:0;transition:opacity .45s ease,background .5s ease}
+#tfsConsentWrap.on{opacity:1}
+#tfsConsentWrap.corner{background:rgba(28,31,20,0);pointer-events:none}
+#tfsConsentWrap.corner #tfsConsent{pointer-events:auto}
+#tfsConsent{width:100%;max-width:430px;background:var(--cream);color:var(--ink);
+  border-radius:16px;padding:28px 28px 24px;box-shadow:0 30px 70px rgba(28,31,20,.34);
+  transform:translateY(18px);
+  transition:transform .6s cubic-bezier(.22,.9,.24,1),box-shadow .5s ease}
+#tfsConsentWrap.on #tfsConsent{transform:none}
+#tfsConsentWrap.corner.on #tfsConsent{
+  transform:translate(calc(-50vw + 50% + 24px), calc(50vh - 50% - 24px));
+  box-shadow:0 14px 34px rgba(28,31,20,.22)}
+#tfsConsent h2{font-family:'Chillax',system-ui,sans-serif;font-size:1.22rem;margin-bottom:10px}
+#tfsConsent p{font-size:.93rem;line-height:1.6;color:var(--ink2)}
+#tfsConsent p a{color:var(--olive);text-decoration:underline;text-underline-offset:3px}
+.tfsc-warm{margin-top:12px;font-size:.87rem;line-height:1.55;color:var(--olive);
+  border-left:2px solid var(--gold);padding-left:12px}
+.tfsc-btns{display:flex;gap:12px;margin-top:20px}
+.tfsc-btns button{flex:1 1 0;font-family:'Chillax',system-ui,sans-serif;font-weight:600;
+  font-size:.94rem;min-height:46px;padding:12px 18px;border-radius:8px;
+  border:1px solid var(--olive);cursor:pointer;
+  transition:background .2s,color .2s,border-color .2s}
+.tfsc-btns .tfsc-no{background:transparent;color:var(--olive)}
+.tfsc-btns .tfsc-no:hover{background:rgba(74,83,64,.08)}
+.tfsc-btns .tfsc-yes{background:var(--olive);color:var(--cream)}
+.tfsc-btns .tfsc-yes:hover{background:var(--deep);border-color:var(--deep)}
+.tfsc-btns button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+/* the per-category panel, hidden until someone asks for it: most people just
+   want to answer the question, and a wall of toggles is why banners get hated */
+.tfsc-more{display:block;margin:14px auto 0;background:none;border:0;padding:8px 4px;
+  font-family:'Synonym',system-ui,sans-serif;font-size:.86rem;color:var(--ink2);
+  text-decoration:underline;text-underline-offset:3px;cursor:pointer;min-height:44px}
+.tfsc-more:hover{color:var(--olive)}
+.tfsc-detail{margin-top:18px;border-top:1px solid var(--line);padding-top:6px}
+.tfsc-row{display:flex;gap:12px;align-items:flex-start;padding:13px 0;cursor:pointer;
+  border-bottom:1px solid var(--line)}
+.tfsc-row:last-child{border-bottom:0}
+.tfsc-row input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--olive);cursor:pointer}
+.tfsc-row span{font-size:.86rem;line-height:1.5;color:var(--ink2)}
+.tfsc-row b{display:block;font-family:'Chillax',system-ui,sans-serif;font-size:.95rem;
+  color:var(--ink);margin-bottom:2px}
+body.tfs-ask{overflow:hidden}
+@media(prefers-reduced-motion:reduce){
+  #tfsConsent{transition:none}
+  #tfsConsentWrap{transition:opacity .01s}
+}
+/* phones have no corner worth speaking of: it sits along the bottom instead,
+   then rises to the middle */
+@media(max-width:600px){
+  #tfsConsentWrap.corner.on #tfsConsent{
+    transform:translateY(calc(50vh - 50% - 16px))}
+}
+@media(max-width:560px){
+  #tfsConsent{padding:24px 22px 22px}
+  .tfsc-btns{flex-direction:column-reverse}
+}
+
+/* language switcher */
+.nav-end{display:flex;align-items:center;gap:clamp(16px,2vw,26px)}
+.lang{display:inline-flex;align-items:center;gap:9px;font-family:'Chillax',system-ui,sans-serif;
+  font-weight:600;font-size:.78rem;letter-spacing:.14em}
+.lang a{color:rgba(207,201,184,.62);transition:color .22s}
+.lang a:hover{color:#fff}
+.lang a[aria-current]{color:var(--cream)}
+.lang i{display:block;width:1px;height:12px;background:rgba(207,201,184,.34)}
+.nav-end .btn{background:var(--cream);color:var(--ink);padding:15px 30px;font-size:1rem}
+.nav-end .btn:hover{background:#fff}
+@media(max-width:900px){.nav-end .btn{display:none}}
+
+/* prices: stack into cards on phones, table stays on desktop */
+@media(max-width:759px){
+  .pricetable{overflow:visible;border-top:none;margin-top:34px}
+  .pt-grid{display:block;min-width:0}
+  .pt-grid>.pt-head{display:none}
+  .pt-grid>.pt-svc{display:block;padding:15px 0 0;border-bottom:none;border-top:2px solid var(--ink);
+    margin-top:30px;font-size:1.3rem}
+  .pt-grid>.pt-svc:first-of-type{margin-top:0}
+  .pt-grid>.pt-val{display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+    padding:11px 0;border-bottom:1px solid var(--line);font-size:1.02rem}
+  .pt-grid>.pt-val::before{content:attr(data-l);font-family:'Synonym',system-ui,sans-serif;
+    font-size:.9rem;font-weight:400;color:var(--ink2);letter-spacing:.01em}
+}
+
+/* mobile menu */
+.burger{display:none;position:relative;width:44px;height:44px;background:transparent;border:0;
+  cursor:pointer;padding:0;margin-right:-8px}
+.burger span{position:absolute;left:11px;width:22px;height:1.5px;background:var(--cream);
+  transition:transform .34s cubic-bezier(.2,.8,.2,1),opacity .2s}
+.burger span:nth-child(1){top:19px}
+.burger span:nth-child(2){top:25px}
+.burger.on span:nth-child(1){transform:translateY(3px) rotate(45deg)}
+.burger.on span:nth-child(2){transform:translateY(-3px) rotate(-45deg)}
+.mmenu{position:fixed;inset:0;z-index:1100;background:var(--olive);
+  opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s}
+.mmenu.on{opacity:1;visibility:visible}
+.mmenu-in{height:100%;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
+  gap:6px;padding:0 clamp(20px,7vw,44px)}
+.mmenu-in a{font-family:'Chillax',system-ui,sans-serif;font-weight:500;font-size:clamp(1.5rem,7vw,2.1rem);
+  color:#E4DFCE;padding:11px 0;letter-spacing:.005em;
+  opacity:0;transform:translateY(14px);transition:color .2s}
+.mmenu.on .mmenu-in a{opacity:1;transform:none;transition:opacity .42s ease,transform .42s cubic-bezier(.2,.8,.2,1),color .2s}
+.mmenu.on .mmenu-in a:nth-child(1){transition-delay:.06s}
+.mmenu.on .mmenu-in a:nth-child(2){transition-delay:.10s}
+.mmenu.on .mmenu-in a:nth-child(3){transition-delay:.14s}
+.mmenu.on .mmenu-in a:nth-child(4){transition-delay:.18s}
+.mmenu.on .mmenu-in a:nth-child(5){transition-delay:.22s}
+.mmenu.on .mmenu-in a:nth-child(6){transition-delay:.26s}
+.mmenu.on .mmenu-in a:nth-child(7){transition-delay:.32s}
+.mmenu-in a:active{color:#fff}
+.mmenu-in a.btn{margin-top:26px;background:var(--cream);color:var(--ink);font-size:1.05rem;
+  padding:16px 32px;border-radius:6px}
+body.mlock{overflow:hidden}
+@media(max-width:900px){
+  .burger{display:block}
+  .nav-end{gap:14px}
+}
+@media(min-width:901px){.mmenu{display:none}}
+@media (prefers-reduced-motion:reduce){
+  .mmenu-in a,.mmenu.on .mmenu-in a{opacity:1;transform:none;transition:none}
+  .burger span{transition:none}
+}
+
+/* focus visibility: cream ring on dark, ink ring on light */
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:3px}
+.mmenu-in a:focus-visible,.nav-links a:focus-visible,.lang a:focus-visible,
+.burger:focus-visible,.logo:focus-visible{outline:2px solid var(--cream);outline-offset:4px}
+
+/* tap targets: 44px minimum on touch devices */
+@media(max-width:900px){
+  .lang{gap:2px}
+  .lang a{padding:12px 9px;min-height:44px;display:inline-flex;align-items:center}
+  .logo{padding:9px 0;min-height:44px}
+  .pnote a,.c-item a,.foot-links a,.rev-badge a,.sp-rating a,
+  .crumb a,.sp-review a,section p a,.calm-more,.soc{display:inline-flex;align-items:center;
+    padding:9px 0;min-height:44px}
+  .calm-more{padding:11px 0}
+  .crumb{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+  .foot-links{gap:6px 22px;flex-wrap:wrap}
+  .wa-float{width:56px;height:56px;padding:0;border-radius:50%;justify-content:center;right:16px;bottom:16px}
+  .wa-float .waL{display:none}
+  .wa-float svg{width:25px;height:25px}
+  footer{padding-bottom:96px}
+}
+
+/* service pages on mobile: photo, prices, book, then the detail
+   (desktop keeps the two-column layout untouched) */
+@media(max-width:900px){
+  .sp-grid{display:flex;flex-direction:column;gap:26px}
+  .sp-photo{order:1;aspect-ratio:4/3;margin-top:4px}
+  .sp-photo.sp-media,.photo.sp-media{aspect-ratio:3/4}
+  .sp-main{order:2;display:flex;flex-direction:column}
+  .sp-main .sp-price{order:1;margin-top:0}
+  .sp-main .sp-note{order:2}
+  .sp-main .sp-cta{order:3;margin-top:22px}
+  .sp-main .eyebrow{order:4;margin-top:34px}
+  .sp-main .sp-list{order:5}
+  .sp-main .sp-review{order:6}
+  .sp-cta .btn{flex:1 1 100%;text-align:center}
+  .sp-hero{padding:120px 0 44px}
+}
+
+/* WebKit shows an unremovable start-playback button on any video carrying the
+   autoplay attribute while the device is in Low Power Mode (webkit bug 219889,
+   closed WONTFIX). We drive playback from assets/video.js instead, so the
+   attribute is gone. These rules suppress the native chrome in every other case. */
+video.vcell::-webkit-media-controls,
+video.vcell::-webkit-media-controls-panel,
+video.vcell::-webkit-media-controls-start-playback-button,
+video.vcell::-webkit-media-controls-play-button{display:none!important;-webkit-appearance:none}
+video.vcell{pointer-events:none}
+.vscrim{pointer-events:none}
+
+/* homepage: flat-rate services under the size table */
+.pextras{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);margin-top:44px}
+.pex h3{font-family:'Chillax',system-ui,sans-serif;font-size:1.2rem;margin-bottom:6px;
+  padding-bottom:12px;border-bottom:2px solid var(--ink)}
+@media(max-width:759px){.pextras{grid-template-columns:1fr;gap:30px;margin-top:34px}}
+
+/* FAQ accordion */
+.faqs{margin-top:4px}
+.faq{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:16px 30px 16px 0;position:relative;
+  font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:1.02rem;color:var(--ink)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:4px;top:24px;width:9px;height:9px;
+  border-right:1.5px solid var(--ink2);border-bottom:1.5px solid var(--ink2);
+  transform:rotate(45deg);transition:transform .25s}
+.faq[open] summary::after{transform:rotate(-135deg);top:27px}
+.faq summary:hover{color:var(--olive)}
+.faq p{padding:0 8px 18px 0;color:var(--ink2);font-size:.97rem;line-height:1.65}
+/* inline link out of the homepage niche band */
+.calm-more{display:inline-block;margin-top:18px;color:#E4DFCE;font-size:.95rem;
+  background:linear-gradient(currentColor,currentColor) bottom left no-repeat;background-size:100% 1px;
+  padding-bottom:3px;transition:background-size .35s ease,color .2s}
+.calm-more:hover{background-size:22% 1px;color:#fff}
+
+/* homepage FAQ */
+.faq-sec{padding:clamp(60px,8vw,96px) 0;background:var(--paper)}
+.faq-sec .faq summary{font-size:1.06rem;padding:18px 32px 18px 0}
+.faq-sec .faq p{max-width:70ch}
+
+/* follow row */
+.social{padding:0 0 clamp(56px,7vw,84px)}
+.social h2{font-size:clamp(1.5rem,2.6vw,2rem)}
+.soc-lead{margin-top:10px;color:var(--ink2);max-width:52ch}
+.soc-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.soc{display:inline-flex;align-items:center;gap:11px;padding:14px 22px;min-height:44px;
+  border:1px solid var(--line);border-radius:8px;color:var(--ink);
+  font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:.95rem;
+  transition:border-color .22s,background .22s,color .22s}
+.soc:hover{border-color:var(--olive);background:var(--olive);color:var(--cream)}
+.soc svg{flex:none}
+@media(max-width:560px){.soc{flex:1 1 100%;justify-content:center}}
+
+/* anchor jumps must clear the fixed nav, otherwise headings land behind it */
+section[id],header[id],div[id]{scroll-margin-top:96px}
+#top{scroll-margin-top:0}
+@media(max-width:900px){section[id],header[id],div[id]{scroll-margin-top:90px}}
+
+/* Privacy page. Long-form text, so it gets a slightly larger line-height and a
+   clear heading rhythm. Nothing here is used anywhere else. */
+.priv{margin-top:26px;color:var(--ink2);line-height:1.75}
+.priv p{margin:0 0 14px}
+.priv-lead{font-size:1.06rem;color:var(--ink);padding-bottom:6px}
+.priv h3{font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:1.18rem;color:var(--ink);
+  margin:32px 0 12px;letter-spacing:.01em}
+.priv h3:first-of-type{margin-top:26px}
+.priv a{text-decoration:underline;text-underline-offset:2px}
+.priv code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;
+  background:rgba(74,83,64,.09);padding:1px 5px;border-radius:4px}
+.priv-date{margin-top:30px;font-size:.88rem;opacity:.72}
+
+/* Cancellation policy: in the booking popup, and as a box under the prices */
+.bk-policy{margin:18px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:.84rem;line-height:1.5;color:var(--ink2);text-align:left}
+.bk-policy b{color:var(--ink);font-weight:600}
+.bk-policy a{color:var(--olive);text-decoration:underline;text-underline-offset:2px}
+.policy{margin:26px 0 0;max-width:760px;background:#fff;border-left:3px solid var(--gold);border-radius:10px;padding:18px 22px}
+.policy b{display:block;font-family:'Chillax',system-ui,sans-serif;font-weight:700;font-size:1.05rem;color:var(--ink);margin-bottom:4px}
+.policy p{margin:0;font-size:.95rem;line-height:1.55;color:var(--ink2)}
+#cancellation{scroll-margin-top:110px}
+
+/* ==================================================================
+   Finish layer (after an independent design review).
+   Paper grain, quiet gradients, olive with depth, one raised card
+   (the price table), flat buttons, hairlines elsewhere, three radii.
+   ================================================================== */
+:root{
+  --surface:#FFFDF8;
+  --r-ctl:6px; --r-panel:12px; --r-photo:16px;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .16 0 0 0 0 .18 0 0 0 0 .14 0 0 0 .03 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --grain-lt:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 .95 0 0 0 .03 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --sh-2:0 1px 2px rgba(42,46,36,.05),0 14px 30px -16px rgba(42,46,36,.24),0 34px 64px -34px rgba(42,46,36,.20);
+  --sh-photo:0 2px 4px rgba(28,31,20,.06),0 26px 52px -24px rgba(28,31,20,.42);
+  --sh-dark:0 2px 6px rgba(0,0,0,.12),0 34px 64px -28px rgba(0,0,0,.55);
+}
+
+/* backgrounds: grain plus a quiet vertical gradient, no glows */
+body{background-image:var(--grain)}
+.about{background:var(--grain),linear-gradient(180deg,#F9F6EF,#F3EEE3)}
+#services{background:var(--grain),linear-gradient(180deg,#F3EEE3,#F6F2E8)}
+#gallery{background:var(--grain),linear-gradient(180deg,#F6F2E8,#F2EDE1)}
+.social{background:var(--grain),#F2EDE1}
+.prices{background:var(--grain),linear-gradient(180deg,#EFE9DC,#E9E2D2)}
+#reviews{background:var(--grain),linear-gradient(180deg,#F8F4EC,#F2EDE2)}
+.faq-sec{background:var(--grain),linear-gradient(180deg,#F0EADD,#EAE3D4)}
+.sp-hero{background:var(--grain),linear-gradient(180deg,#F1EBDF,#EAE3D4)}
+
+/* olive with depth */
+.calm,.contact{background:var(--grain-lt),
+  radial-gradient(70% 60% at 8% 0%,rgba(214,226,190,.14),transparent 65%),
+  radial-gradient(60% 60% at 100% 100%,rgba(16,20,12,.26),transparent 65%),
+  linear-gradient(155deg,#56614A 0%,#4A5340 45%,#3A4133 100%)}
+nav{background:linear-gradient(180deg,#525B47,var(--olive))}
+.infobar{background:var(--grain-lt),var(--olive)}
+footer{background:var(--grain-lt),var(--deep)}
+
+/* the one raised card: the price table */
+.pricetable{background:var(--surface);border-top:none;border-radius:var(--r-panel);padding:6px 30px 8px;box-shadow:var(--sh-2)}
+.pricetable .pt-grid>div:nth-last-child(-n+5){border-bottom:none}
+.pt-grid{grid-template-columns:1.3fr repeat(4,minmax(0,1fr));min-width:0}
+@media(max-width:759px){
+  .pricetable{padding:8px 20px 10px}
+  .pricetable .pt-grid>div:nth-last-child(-n+5){border-bottom:1px solid var(--line)}
+  .pricetable .pt-grid>.pt-svc{border-top:none;margin-top:0;padding-top:22px}
+  .pricetable .pt-grid>.pt-svc~.pt-svc{border-top:1px solid var(--line);margin-top:6px}
+  .pricetable .pt-grid>div:nth-child(5n){border-bottom:none}
+  .pricetable .pt-grid>.pt-svc{border-bottom:none}
+}
+.pextras{align-items:start}
+
+/* policy: a plain rule, no striped box */
+.policy{background:none;box-shadow:none;border-left:0;border-radius:0;border-top:1px solid var(--line);padding:18px 0 0}
+
+/* photos: weight and one radius */
+.split .photo,.sp-photo,.gal-item,.c-map{box-shadow:var(--sh-photo)}
+.calm .photo,.contact .c-map{box-shadow:var(--sh-dark)}
+.split .photo,.calm .photo,.gal-item,.sp-photo,.c-map{border-radius:var(--r-photo)}
+.gallery{padding-bottom:26px;scroll-padding-inline:clamp(20px,4vw,48px)}
+
+/* flat buttons, colour change on hover only */
+.btn{background:var(--deep);box-shadow:none;border-radius:var(--r-ctl)}
+.btn:hover{background:var(--olive)}
+.btn.gold,.hero-copy .btn{background:var(--olive)}
+.btn.gold:hover,.hero-copy .btn:hover{background:var(--deep)}
+.calm .btn,.contact .btn,.contact .btn.gold,.nav-end .btn,.nav-links .btn,.hero-mark .btn,.mmenu-in a.btn{background:#F6F3EA;color:var(--ink)}
+.calm .btn:hover,.contact .btn:hover,.contact .btn.gold:hover,.nav-end .btn:hover,.nav-links .btn:hover,.hero-mark .btn:hover{background:#fff}
+.soc,.bk-opt,.bk-in,.bk-next,.wa-float{border-radius:var(--r-ctl)}
+.bk-card{border-radius:var(--r-panel)}
+
+/* hero: quieter, quicker */
+.hero-rating{border:0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;padding:0}
+.hero-rating:hover{background:none}
+.scrollcue{display:none}
+.hero-mark .btn{animation-delay:1.1s}
+.hero-rating{animation-delay:1.25s}
+.hero-sub{margin-top:14px;font-size:clamp(.95rem,1.4vw,1.05rem);color:#E6E1D3;letter-spacing:.01em}
+
+/* info bar: static, wraps instead of scrolling */
+.tk-track{animation:none;width:auto;justify-content:center}
+.tk-set+.tk-set{display:none}
+.tk-set{flex-wrap:wrap;justify-content:center;white-space:normal;row-gap:8px;padding:0 12px}
+@media(max-width:759px){.tk-set>:nth-child(n+4){display:none}}
+.hero-sub{opacity:0;animation:riseIn .7s ease-out .95s forwards}
+@media(prefers-reduced-motion:reduce){.hero-sub{animation:none;opacity:1}}
+
+/* booking: add-on step (extras before sending) */
+.bk-sub{margin:-8px 0 14px;font-size:.9rem;color:var(--ink2)}
+.bk-adds{display:grid;gap:8px}
+.bk-add{display:grid;grid-template-columns:20px 1fr auto;align-items:center;gap:12px;width:100%;padding:13px 14px;
+  border:1px solid var(--line);border-radius:var(--r-ctl,6px);background:#fff;cursor:pointer;text-align:left;
+  font-family:'Synonym',system-ui,sans-serif;font-size:.97rem;color:var(--ink);transition:border-color .2s,background .2s}
+.bk-add:hover{border-color:var(--olive)}
+.bk-add i{width:20px;height:20px;border:1.5px solid var(--ink2);border-radius:3px;position:relative;transition:background .15s,border-color .15s}
+.bk-add b{font-weight:600;font-variant-numeric:tabular-nums}
+.bk-add[aria-pressed="true"]{border-color:var(--olive);background:var(--paper)}
+.bk-add[aria-pressed="true"] i{background:var(--olive);border-color:var(--olive)}
+.bk-add[aria-pressed="true"] i::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid var(--cream);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.bk-none{display:block;width:100%;margin-top:8px;padding:11px;border:0;background:none;font-family:'Synonym',system-ui,sans-serif;
+  font-size:.92rem;color:var(--ink2);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.bk-none:hover{color:var(--ink)}
+.bk-go svg{vertical-align:-3px;margin-right:8px}
+
+/* ===== UI v2 (Oct 2026): type scale, square corners, ruled tables, booking buttons with the WhatsApp glyph.
+   Overrides the rules above. Spec and sources: brand identity deck, section 07. ===== */
+
+
+html{
+  /* type scale: six sizes, nothing else */
+  --t-display:clamp(56px,8vw,112px);   /* section names */
+  --t-title:clamp(32px,4vw,48px);      /* headings inside a column, the big quote */
+  --t-head:24px;                       /* service names, table rows, sub-heads */
+  --t-lead:19px;                       /* intros, FAQ questions, prices in lists */
+  --t-body:16px;
+  --t-small:13px;                      /* labels, table heads, meta */
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --tint:rgba(74,83,64,.08);           /* hover fill on light */
+  --tint-dk:rgba(246,243,234,.12);     /* hover fill on olive */
+  --rule-dk:rgba(246,243,234,.2);
+  --wa:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M12%202a10%2010%200%200%200-8.6%2015l-1.3%204.7%204.8-1.3A10%2010%200%201%200%2012%202zm0%201.9a8.1%208.1%200%201%201-4.2%2015l-.3-.2-2.8.8.8-2.7-.2-.3A8.1%208.1%200%200%201%2012%203.9zm4.6%2010.4c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.7.9-.3.2-.5.1a6.6%206.6%200%200%201-3.3-2.9c-.2-.4.2-.4.6-1.2.1-.1%200-.3%200-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5a1%201%200%200%200-.7.3%203%203%200%200%200-.9%202.2%205.2%205.2%200%200%200%201.1%202.7%2011.8%2011.8%200%200%200%204.5%204c1.9.7%202.3.6%202.7.6a2.6%202.6%200%200%200%201.7-1.2%202.1%202.1%200%200%200%20.1-1.2z%22/%3E%3C/svg%3E");
+}
+
+/* ---------- grid + rhythm ---------- */
+html section{padding:clamp(72px,10vw,128px) 0}
+html body{font-size:var(--t-body);font-weight:450}
+
+/* ---------- headings (Hulsmann: the section name is the headline) ---------- */
+html h2{font-size:var(--t-display);font-weight:700;line-height:.95;letter-spacing:-.025em}
+html .split h2,html .calm h2{font-size:var(--t-title);line-height:1.02;letter-spacing:-.02em;margin-bottom:24px}
+html #services h2,html #reviews h2{margin-bottom:56px!important}
+html .lead,html .soc-lead{font-size:var(--t-lead);line-height:1.5}
+/* heading left, intro to its right on the same baseline */
+@media(min-width:900px){
+  html .prices>.wrap,html .social>.wrap{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
+  html .prices>.wrap>*,html .social>.wrap>*{grid-column:1/-1}
+  html .prices>.wrap>h2,html .social>.wrap>h2{grid-column:1/9}
+  html .prices>.wrap>.lead,html .social>.wrap>.soc-lead{grid-column:9/13;grid-row:1;align-self:end;margin:0!important;padding-bottom:10px}
+}
+
+/* ---------- logo: no accent word ---------- */
+html .logo .lw em{color:inherit}
+
+/* ---------- buttons: exactly two ---------- */
+/* 1. Primary: hero and the sticky book button only */
+html .btn{display:inline-flex;align-items:center;height:52px;padding:0 24px;border-radius:4px;
+  font-size:var(--t-body);font-weight:600;letter-spacing:0;transition:background .16s var(--ease)}
+html .btn .ar{display:none}
+/* 2. Link: secondary actions only ("Say hello") */
+html .about .btn{height:auto;padding:6px 2px;border-radius:0;
+  background:linear-gradient(var(--tint),var(--tint)) 0 0/0 100% no-repeat,
+             linear-gradient(var(--gold),var(--gold)) 0 100%/100% 1px no-repeat;
+  color:var(--ink);transition:background-size .32s var(--ease)}
+html .about .btn:hover{background-size:100% 100%,100% 2px}
+/* every booking button stays a filled button: cream on olive and video, deep on cream */
+html .nav-end .btn,html .calm .btn,html .contact .btn,html .contact .btn.gold{background:var(--cream);color:var(--ink)}
+html .nav-end .btn:hover,html .calm .btn:hover,html .contact .btn:hover{background:#fff}
+html .nav-end .btn{height:44px;padding:0 20px;font-size:15px}
+/* instead of the arrow: the WhatsApp glyph, because that is where the booking ends up */
+html a.btn[href*="wa.me"]:not(.about .btn)::before,html .wa-float::before{content:"";width:18px;height:18px;margin-right:10px;flex:none;
+  background:currentColor;-webkit-mask:var(--wa) center/contain no-repeat;mask:var(--wa) center/contain no-repeat}
+html .about a.btn::before{content:none}
+html .btn:focus-visible,html .wa-float:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* floating book button: always there, square, WhatsApp glyph */
+html .wa-float{height:52px;padding:0 22px;border-radius:4px;right:20px;bottom:20px;background:var(--deep);
+  border:1px solid rgba(246,243,234,.16);box-shadow:0 10px 24px -12px rgba(0,0,0,.45);font-size:var(--t-body);transition:background .16s var(--ease)}
+html .wa-float svg{display:none}
+html .wa-float:hover{background:var(--olive);transform:none}
+@media(max-width:759px){html .wa-float{width:56px;height:56px;padding:0;justify-content:center;right:16px;bottom:16px}
+  html .wa-float::before{width:24px;height:24px;margin:0}}
+
+/* ---------- hero: no letter-spread animation, no stars ---------- */
+html .hero-name{animation:riseIn .8s var(--ease) .5s forwards;letter-spacing:.13em}
+html .hero-tag{animation:riseIn .8s var(--ease) .65s forwards;letter-spacing:.24em;padding-left:.24em}
+html .hr-stars{color:var(--gold);letter-spacing:2px;font-size:var(--t-small)}
+html .hero-rating{gap:10px;align-items:baseline}
+html .hr-score{font-size:var(--t-head);font-weight:500;font-variant-numeric:tabular-nums}
+html .hr-txt{font-size:var(--t-small);letter-spacing:.02em}
+html .hero-mark .btn{background:var(--cream);color:var(--ink)}
+html .hero-mark .btn:hover{background:#fff}
+
+/* ---------- info bar: ruled cells, no icons, no dots (Le Petit Salon) ---------- */
+html .tk-dot{display:none}
+html .tk-item svg{opacity:.7}
+html .tk-set{row-gap:0;padding:0}
+html .tk-item{padding:14px 24px;font-size:var(--t-small);letter-spacing:.02em;color:#E6E1D3}
+html .tk-item+.tk-dot+.tk-item{border-left:1px solid var(--rule-dk)}
+
+/* ---------- services: a ruled table (ALICE, Le Petit Salon) ---------- */
+html .svc-list{border-top:1px solid var(--ink)}
+html .svc-row{position:relative;grid-template-columns:minmax(0,3fr) minmax(0,6fr) minmax(0,2fr);gap:24px;
+  align-items:baseline;padding:24px 0;border-bottom:1px solid var(--line);transition:none}
+html .svc-row:hover{background:none;padding-left:0}
+html .svc-row::before{content:"";position:absolute;inset:0 -12px;background:var(--tint);transform:scaleX(0);
+  transform-origin:left;transition:transform .32s var(--ease);z-index:-1}
+html .svc-list{position:relative;z-index:0}
+html .svc-row:hover::before{transform:scaleX(1)}
+html .svc-num{display:none}
+html .svc-arrow{width:auto;height:auto;border:0;border-radius:0;color:var(--gold);font-size:var(--t-lead);transition:transform .32s var(--ease)}
+html .svc-row:hover .svc-arrow{background:none;color:var(--gold);transform:translateX(4px)}
+html .svc-row>span:nth-of-type(2){display:contents}
+html .svc-name{font-size:var(--t-head);font-weight:700;line-height:1.2}
+html .svc-desc{font-size:var(--t-body);margin:0;max-width:52ch}
+html .svc-price{color:var(--ink);font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:var(--t-lead);
+  text-align:right;font-variant-numeric:tabular-nums}
+@media(max-width:759px){
+  html .svc-row{grid-template-columns:1fr auto;row-gap:6px;padding:20px 0}
+  html .svc-name{grid-column:1;grid-row:1}
+  html .svc-price{grid-column:2;grid-row:1}
+  html .svc-desc{grid-column:1/-1;grid-row:2}
+}
+
+/* ---------- photos: square corners, no shadow, one placed off the line (Hulsmann) ---------- */
+html .split .photo,html .calm .photo,html .gal-item,html .c-map{border-radius:0}
+html .gallery{align-items:flex-start;padding-bottom:12px}
+html .gal-item:nth-child(3n+2){margin-top:64px}
+html .gal-item::after{display:none}
+
+/* ---------- big dogs: one flat colour field (Rendezvous), ruled points instead of dots ---------- */
+html .calm-points{gap:0;margin-top:28px;border-top:1px solid var(--rule-dk)}
+html .calm-point{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;padding:14px 0;border-bottom:1px solid var(--rule-dk)}
+html .calm-point .dot{display:none}
+html .calm-point>span{display:contents}
+html .calm-point b{font-family:'Chillax',system-ui,sans-serif;font-weight:600}
+html .calm-caveat{border-left:2px solid var(--gold)}
+@media(max-width:600px){html .calm-point{grid-template-columns:1fr;gap:2px}}
+
+/* ---------- social ---------- */
+html .soc{border-radius:4px}
+
+/* ---------- prices: back to a ruled table, no raised card ---------- */
+html .pricetable{background:none;box-shadow:none;border-radius:0;padding:0;border-top:2px solid var(--gold)}
+html .pricetable .pt-grid>div:nth-last-child(-n+5){border-bottom:1px solid var(--line)}
+html .pt-grid>div{padding:20px 12px 20px 0}
+html .pt-head{font-size:var(--t-small);font-weight:500}
+html .pt-svc{font-size:var(--t-head)}
+html .pt-val{font-size:var(--t-body);font-variant-numeric:tabular-nums}
+html .pex h3{font-size:var(--t-head)}
+html .prow{font-size:var(--t-body);font-variant-numeric:tabular-nums}
+html .pfoot{font-size:var(--t-small)}
+@media(max-width:759px){
+  html .pricetable{border-top:0}
+  html .pricetable .pt-grid>.pt-svc{border-top:1px solid var(--ink)!important;padding-top:18px}
+}
+
+/* ---------- reviews: no stars, the number does the work (Blind Barber) ---------- */
+html .rev-stars,html .rev-card .stars{color:var(--gold)}
+html .rev-quote{font-size:var(--t-title);font-weight:700;line-height:1.12;max-width:24ch}
+html .rev-grid{gap:24px;margin-top:56px}
+html .rev-card{border-top:1px solid var(--ink);padding-top:20px;font-size:var(--t-body)}
+html .rev-card .who{font-size:var(--t-small)}
+html .rev-badge{align-items:flex-end;gap:24px;margin-top:72px;border-top:1px solid var(--line);padding-top:32px}
+html .rev-badge .score{font-size:var(--t-display);font-weight:500;line-height:.85;font-variant-numeric:tabular-nums;color:var(--ink)}
+html .rev-badge .sub{font-size:var(--t-lead);line-height:1.4;color:var(--ink)}
+html .rev-badge .sub a{font-size:var(--t-body)}
+
+/* odometer: digits roll up once, 900ms, 70ms apart */
+.odo-roll{display:none}
+html .odo-txt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+html .odo-roll{display:inline-flex;vertical-align:bottom;height:1em;line-height:1em;overflow:hidden;font-variant-numeric:tabular-nums}
+.odo-d,.odo-s{display:block;height:1em;overflow:hidden}
+.odo-col{display:block;transform:translateY(0);transition:transform .9s var(--ease,cubic-bezier(.2,.7,.2,1))}
+.odo-col i{display:block;height:1em;font-style:normal}
+@media(prefers-reduced-motion:reduce){.odo-col{transition:none}}
+
+/* ---------- FAQ ---------- */
+html .faq-sec .faq summary{font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:var(--t-lead);padding:20px 32px 20px 0}
+html .faq-sec .faq p{font-size:var(--t-body)}
+html .faqs{border-top:1px solid var(--ink)}
+
+/* ---------- contact: labels small, hours as a table ---------- */
+html .c-item b{font-size:var(--t-small);font-weight:500;color:#CFC9B8;margin-bottom:6px}
+html .c-item div,html .c-item a{font-size:var(--t-lead)}
+html .hours{width:100%;max-width:420px;border-collapse:collapse;font-size:var(--t-lead);font-variant-numeric:tabular-nums;color:#E7E1D2}
+html .hours td{padding:10px 0;border-bottom:1px solid var(--rule-dk)}
+html .hours tr:first-child td{border-top:1px solid var(--rule-dk)}
+html .hours td+td{text-align:right}
+
+/* ---------- motion: one reveal, shorter ---------- */
+html .rv{transform:translateY(16px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+html .rv.in{transform:none}
+
+@media(max-width:900px){html .nav-end .btn{display:none}}
+html .map-ask .btn{height:44px;padding:0 20px;border-radius:4px;background:var(--deep);color:var(--cream)}
+html .map-ask .btn:hover{background:var(--olive)}
+.odo-s{margin:0 -.07em}
+.odo-col i{text-align:center}
+@media(max-width:759px){html .tk-item+.tk-dot+.tk-item{border-left:0;border-top:1px solid var(--rule-dk)}html .tk-set{flex-direction:column;align-items:center}html .tk-item{padding:12px 20px}}
+
+/* ---------- detail layer (after review: v2 felt flat) ---------- */
+/* gallery hover: slow, small zoom */
+html .gal-item img{transition:transform .8s var(--ease)}
+html .gal-item:hover img{transform:scale(1.03)}
+.badge-stars{display:none}
+html .badge-stars{display:block;color:var(--gold);font-size:28px;letter-spacing:4px;line-height:1;margin-bottom:8px}
+
+/* ---------- square corners everywhere: buttons, panels, popups, photos ---------- */
+html *,html *::before,html *::after{border-radius:0!important}
+
+/* ---------- no soft drop shadows: photos flat, panels get a 1px edge ---------- */
+html .split .photo,html .calm .photo,html .gal-item,html .c-map,html .contact .c-map{box-shadow:none}
+html .wa-float{box-shadow:none}
+html .c-map{outline:1px solid rgba(246,243,234,.18)}
+html .bk-card,html #tfsConsent{box-shadow:0 0 0 1px rgba(42,46,36,.14)!important}
+
+/* ---------- olive sections: grain + a straight vertical gradient, no glows ---------- */
+html .calm,html .contact{background:var(--grain-lt),linear-gradient(180deg,#535C47 0%,#4A5340 55%,#424A39 100%)}
+
+/* ---------- hero: even darkening, no vignette ---------- */
+html .vscrim{background:rgba(28,31,20,.5)}
+
+/* ---------- info bar: no line icons ---------- */
+html .tk-item svg{display:none}
+
+/* ---------- appearance: no sliding. Text sharpens into focus, photos open like a blind ---------- */
+html .rv{transform:none;filter:blur(6px);transition:opacity .8s var(--ease),filter .8s var(--ease)}
+html .rv.in{filter:none}
+html .photo.rv,html .gallery.rv{filter:none}
+html .photo.rv{opacity:1;clip-path:inset(0 0 100% 0);transition:clip-path 1.1s cubic-bezier(.65,0,.15,1)}
+html .photo.rv.in{clip-path:inset(0)}
+html .gallery.rv{opacity:1}
+html .gallery.rv .gal-item{clip-path:inset(0 0 100% 0);transition:clip-path 1.1s cubic-bezier(.65,0,.15,1)}
+html .gallery.rv.in .gal-item{clip-path:inset(0)}
+html .gallery .gal-item:nth-child(2){transition-delay:.08s}
+html .gallery .gal-item:nth-child(3){transition-delay:.16s}
+html .gallery .gal-item:nth-child(4){transition-delay:.24s}
+html .gallery .gal-item:nth-child(n+5){transition-delay:.32s}
+@media(prefers-reduced-motion:reduce){html .rv,html .photo.rv,html .gallery.rv .gal-item{filter:none;clip-path:none;opacity:1;transition:none}}
+
+
+/* ---------- no arrows. Links: underline + fill (Hulsmann, ALICE). Service rows: the whole row inverts (ALICE nav) ---------- */
+html .svc-arrow,html .go{display:none}
+html .svc-row::before{background:var(--olive);inset:0 -16px}
+html .svc-name,html .svc-desc,html .svc-price{transition:color .2s var(--ease) .05s}
+@media(hover:hover){
+  html .svc-row:hover .svc-name,html .svc-row:hover .svc-price{color:var(--cream)}
+  html .svc-row:hover .svc-desc{color:#D9D4C4}
+}
+
+/* ---------- caveat: a pull statement in large quotes, no side bar ---------- */
+html .calm-caveat{border:0;padding:0;margin:28px 0 24px;font-family:'Chillax',system-ui,sans-serif;font-weight:500;
+  font-size:var(--t-head);line-height:1.3;color:var(--cream);text-indent:-.42em}
+html .calm-caveat::before{content:"\201C"}
+html .calm-caveat::after{content:"\201D"}
+
+/* hero rating: the score spans both lines (stars over text) */
+html .hero-rating{display:inline-flex;align-items:center;gap:12px}
+html .hr-score{font-size:38px;font-weight:500;line-height:.9;letter-spacing:-.01em}
+html .hr-txt{display:block;font-size:var(--t-small);line-height:1.45;letter-spacing:.02em;text-align:left}
+html .hr-stars{display:inline-block;font-size:15px;letter-spacing:3px;line-height:1;margin-bottom:3px}
+
+/* service and privacy pages: same flat photos */
+html .sp-photo{box-shadow:none}
+/* privacy: a document, so the title uses the Title size, not Display */
+html .wrap>h2.serif{font-size:var(--t-title);line-height:1.05;letter-spacing:-.02em}
+html .priv h3{font-size:var(--t-head)}
+/* services hover, softened: a light olive tint that stays inside the row lines; text keeps its colour */
+html .svc-row::before{background:rgba(74,83,64,.07);inset:1px 0 1px;transition:transform .32s var(--ease)}
+@media(hover:hover){
+  html .svc-row:hover .svc-name,html .svc-row:hover .svc-price{color:var(--ink)}
+  html .svc-row:hover .svc-desc{color:var(--ink2)}
+}
+html .svc-row{padding-left:12px;padding-right:12px}
+@media(max-width:759px){html .svc-row{padding-left:0;padding-right:0}}
+/* no movement on hover: the row keeps its padding */
+html .svc-row,html .svc-row:hover{padding-left:12px;padding-right:12px;transition:none}
+@media(max-width:759px){html .svc-row,html .svc-row:hover{padding-left:0;padding-right:0}}
+
+/* ===== service pages, v2: one heading style, ruled two-column list, price table, pull quote ===== */
+/* section heads: same size and rule for "What's included", "Prices" and the review */
+html .sp-main .eyebrow,html .sp-price h3{font-family:'Chillax',system-ui,sans-serif;font-weight:700;font-size:var(--t-head);
+  color:var(--ink);letter-spacing:-.01em;line-height:1.2;margin:0;padding:18px 0 14px;border-top:1px solid var(--ink)}
+html .sp-price{border-top:2px solid var(--gold);padding:0;margin-top:48px}
+html .sp-price h3{border-top:0}
+/* what's included: ruled cells in two columns, no ticks (ALICE rows, Le Petit Salon grid) */
+html .sp-list{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;margin-top:0;border-top:0}
+html .sp-item{padding:14px 0;border-bottom:1px solid var(--line);font-size:var(--t-body);color:var(--ink);gap:0}
+html .sp-item .tick{display:none}
+/* prices: the v2 table */
+html .sp-price .prow{padding:14px 0;font-size:var(--t-body);align-items:baseline}
+html .sp-price .prow:last-of-type{border-bottom:1px solid var(--line)}
+html .sp-price .prow span{color:var(--ink)}
+html .sp-price .prow b{font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:var(--t-lead);font-variant-numeric:tabular-nums}
+html .sp-note{font-size:var(--t-small)!important;margin-top:14px!important}
+/* review: a pull quote in Chillax Medium, stars kept */
+html .sp-review{margin-top:48px;padding-top:24px;border-top:1px solid var(--ink)}
+html .sp-review .stars{font-size:15px;letter-spacing:3px;margin-bottom:14px}
+html .sp-review .q{font-weight:500;font-size:22px;line-height:1.32;letter-spacing:-.005em}
+html .sp-review .who{font-size:var(--t-small);margin-top:14px}
+html .sp-rating{margin-top:20px;gap:10px}
+html .sp-rating b{font-weight:500;font-size:28px;line-height:1;font-variant-numeric:tabular-nums}
+@media(max-width:600px){html .sp-list{grid-template-columns:1fr}html .sp-review .q{font-size:19px}}
+html .sp-list{grid-template-columns:1fr}
+@media(max-width:900px){html .sp-main .eyebrow{margin-top:44px}}
+
+/* ===== same elements, everywhere ===== */
+/* section heads that are not price tables (bull breeds page) get the ink rule, not clay */
+html .sp-price:not(:has(.prow)){border-top:0;margin-top:48px}
+html .sp-price:not(:has(.prow)) h3{border-top:1px solid var(--ink)}
+/* homepage extras (Teeth cleaning, Extra services): same as the service-page price blocks */
+html .pex{border-top:2px solid var(--gold)}
+html .pex h3{font-weight:700;font-size:var(--t-head);color:var(--ink);padding:18px 0 14px;margin:0;border:0}
+html .pex .prow{padding:14px 0;font-size:var(--t-body);align-items:baseline}
+html .pex .prow:last-of-type{border-bottom:1px solid var(--line)}
+html .pex .prow span{color:var(--ink)}
+html .pex .prow b{font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:var(--t-lead);font-variant-numeric:tabular-nums}
+/* homepage pull quote: same Chillax Medium as the service-page quotes */
+html .rev-quote{font-weight:500;line-height:1.2}
+/* FAQ inside service pages: same as the homepage FAQ */
+html .sp-main .faqs{border-top:0}
+html .sp-main .faq summary{font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:var(--t-lead);padding:18px 32px 18px 0}
+html .sp-main .faq p{font-size:var(--t-body)}
+/* caveat in the bull-breeds hero: no clay side bar, a statement in quotes like the homepage */
+html .lead-caveat{border:0;padding:0;margin-top:22px;max-width:46ch;font-family:'Chillax',system-ui,sans-serif;font-weight:500;
+  font-size:19px;line-height:1.35;color:var(--ink);text-indent:-.42em}
+html .lead-caveat::before{content:"\201C"}
+html .lead-caveat::after{content:"\201D"}
+
+/* ===== booking window, v2: olive header with step count, segmented progress, ruled option rows,
+   underline inputs, square primary button. Same parts as the rest of the site. ===== */
+#bk{background:rgba(28,31,20,.6);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+html .bk-card{width:min(460px,100%);padding:0;background:var(--cream);box-shadow:0 0 0 1px rgba(42,46,36,.14)!important}
+.bk-head{display:flex;align-items:center;gap:12px;padding:14px 16px 14px 24px;background:var(--olive);color:var(--cream)}
+.bk-title{font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:15px}
+.bk-count{margin-left:auto;font-size:13px;color:rgba(246,243,234,.75);font-variant-numeric:tabular-nums}
+html .bk-x{position:static;color:var(--cream);font-size:24px;line-height:1;padding:2px 6px}
+html .bk-x:hover{color:#fff}
+.bk-steps{display:grid;gap:4px;padding:18px 24px 0}
+.bk-steps i{display:block;height:3px;background:var(--line);transition:background .3s var(--ease,ease)}
+.bk-steps i.done{background:var(--olive)}
+.bk-steps i.on{background:var(--gold)}
+.bk-body{padding:18px 24px 0}
+html .bk-q{font-size:26px;line-height:1.15;margin-bottom:18px}
+/* options as ruled rows with a square marker on the right */
+html .bk-grid,html .bk-grid.one{grid-template-columns:1fr;gap:0;border-top:1px solid var(--ink)}
+html .bk-opt{display:flex;justify-content:space-between;align-items:center;width:100%;padding:15px 4px;border:0;border-bottom:1px solid var(--line);
+  background:none;font-size:17px;color:var(--ink);transition:background .2s}
+html .bk-opt::after{content:"";width:14px;height:14px;border:1.5px solid var(--ink2);flex:none;transition:background .15s,border-color .15s}
+html .bk-opt:hover{background:rgba(74,83,64,.07);transform:none;border-color:var(--line)}
+html .bk-opt:hover::after,html .bk-opt[aria-pressed="true"]::after{background:var(--olive);border-color:var(--olive)}
+/* text fields: underline only */
+html .bk-in{border:0;border-bottom:1.5px solid var(--ink);background:transparent;padding:10px 0;font-size:19px}
+html .bk-in:focus{border-bottom-color:var(--olive)}
+html .bk-in::placeholder{color:#9A9D90}
+html .bk-next{display:block;height:52px;margin-top:20px;padding:0 24px;background:var(--deep);color:var(--cream);font-size:16px}
+html .bk-next:hover{background:var(--olive)}
+/* extras step: same rows */
+html .bk-sub{font-size:13px;margin:-8px 0 14px}
+html .bk-adds{gap:0;border-top:1px solid var(--ink)}
+html .bk-add{border:0;border-bottom:1px solid var(--line);background:none;padding:15px 4px;font-size:17px}
+html .bk-add:hover{background:rgba(74,83,64,.07)}
+html .bk-add[aria-pressed="true"]{background:rgba(74,83,64,.07)}
+html .bk-add i{width:16px;height:16px}
+html .bk-add b{font-family:'Chillax',system-ui,sans-serif;font-weight:600}
+html .bk-none{font-size:13px;margin-top:10px}
+/* footer: policy, then back and skip */
+html .bk-policy{margin:22px 24px 0;padding-top:14px;font-size:13px}
+.bk-foot{display:flex;justify-content:space-between;align-items:center;padding:12px 24px 18px}
+.bk-back{border:0;background:none;padding:6px 0;font-family:'Synonym',system-ui,sans-serif;font-size:13px;color:var(--ink);cursor:pointer;
+  border-bottom:1px solid var(--gold)}
+html .bk-skip{margin:0;font-size:13px;text-decoration-color:var(--gold)}
+@media(max-width:480px){#bk{padding:0}#bk.on{place-items:end center}html .bk-card{width:100%}html .bk-q{font-size:23px}}
+/* wordmark: all capitals at one height, like the logo files (Cinzel turns lowercase into small caps) */
+html .logo .lw{text-transform:uppercase;letter-spacing:.1em;font-size:1.02rem}
+@media(max-width:600px){html .logo .lw{font-size:.86rem;letter-spacing:.08em}}
+/* phones: long Dutch section names ("Behandelingen") must fit the screen */
+@media(max-width:600px){html{--t-display:clamp(38px,11vw,56px)}html h2{overflow-wrap:break-word;hyphens:auto}}
