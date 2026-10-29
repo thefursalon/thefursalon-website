@@ -1266,3 +1266,44 @@ html .about .s-text>p:first-child{font-size:var(--t-lead);line-height:1.45}
 html #services{padding-top:0}
 html #services>.wrap{position:relative;padding-top:clamp(72px,10vw,128px)}
 html #services>.wrap::before{content:"";position:absolute;top:0;left:clamp(20px,4vw,48px);right:clamp(20px,4vw,48px);height:1px;background:var(--line)}
+
+/* ===== Service pages, v3 ===== */
+/* page title: bigger, like the homepage section names, sized for long sentences */
+html .sp-hero h1{font-size:clamp(44px,6.2vw,84px);line-height:1;letter-spacing:-.025em;max-width:17ch}
+/* sub-heads: no rule above. The heading sits on its own; the list or table below starts with the rule */
+html .sp-main .eyebrow,html .sp-price h3{border-top:0!important;padding:0 0 16px;margin:0}
+html .sp-price,html .sp-price:not(:has(.prow)){border-top:0;margin-top:56px;padding:0}
+html .sp-main .sp-list{border-top:1px solid var(--ink)}
+html .sp-price h3+.prow{border-top:2px solid var(--gold)}
+html .sp-main .faqs{border-top:1px solid var(--ink)}
+html .sp-review{border-top:0;margin-top:56px;padding-top:0}
+@media(max-width:900px){html .sp-main .eyebrow{margin-top:48px}}
+/* photo with a caption, sticky as one piece */
+html .sp-fig{margin:0;position:sticky;top:100px;align-self:start}
+html .sp-fig .sp-photo{position:static}
+/* rating: the big number with clay stars, a small version of the homepage block */
+html .sp-rating{display:flex;align-items:flex-end;gap:14px;margin-top:24px}
+html .sp-rating b{font-size:44px;font-weight:500;line-height:.85;color:var(--ink)}
+html .sp-rating span{display:flex;flex-direction:column;gap:4px;font-size:var(--t-small);color:var(--ink2)}
+.sp-stars{font-style:normal;color:var(--gold);font-size:15px;letter-spacing:3px;line-height:1}
+/* secondary action as a text link */
+.sp-all{align-self:center;font-family:'Chillax',system-ui,sans-serif;font-weight:600;color:var(--ink);border-bottom:2px solid var(--gold);padding:8px 0;margin-left:10px}
+@media(max-width:759px){html .sp-cta .sp-all{flex:0 0 auto;margin:6px 0 0}}
+/* other services: the homepage services table */
+html .sp-more{padding-top:clamp(56px,8vw,104px)}
+html .sp-more>.wrap{position:relative;padding-top:clamp(56px,8vw,104px)}
+html .sp-more>.wrap::before{content:"";position:absolute;top:0;left:clamp(20px,4vw,48px);right:clamp(20px,4vw,48px);height:1px;background:var(--line)}
+html .sp-more h2{font-size:var(--t-title);margin-bottom:32px}
+html .sp-rating span{display:block}
+html .sp-rating .sp-stars{display:block;margin-bottom:6px}
+html .sp-rating em{font-style:normal}
+html .sp-section,html .sp-main{padding-bottom:0}
+html .sp-more{padding-top:0}
+html .sp-more>.wrap{padding-top:clamp(48px,6vw,80px);margin-top:clamp(56px,7vw,88px)}
+html .sp-more>.wrap{margin-top:0;padding-top:clamp(48px,6vw,80px)}
+html section:has(.sp-grid){padding-bottom:clamp(56px,7vw,96px)}
+/* sub-heads on service pages: a real step between body text and the page title */
+html .sp-main .eyebrow,html .sp-price h3{font-size:clamp(26px,2.5vw,36px);line-height:1.1;letter-spacing:-.015em;padding-bottom:20px}
+/* asides without the side bar: a short rule above and the salon's own voice in Chillax */
+html .tfsc-warm{border-left:0;padding:12px 0 0;margin-top:14px;position:relative;font-family:'Chillax',system-ui,sans-serif;font-weight:500;font-size:15px;line-height:1.4;color:var(--olive)}
+html .tfsc-warm::before{content:"";position:absolute;top:0;left:0;width:32px;height:2px;background:var(--gold)}
