@@ -1108,3 +1108,20 @@ html .logo .lw{text-transform:uppercase;letter-spacing:.1em;font-size:1.02rem}
 @media(max-width:600px){html .logo .lw{font-size:.86rem;letter-spacing:.08em}}
 /* phones: long Dutch section names ("Behandelingen") must fit the screen */
 @media(max-width:600px){html{--t-display:clamp(38px,11vw,56px)}html h2{overflow-wrap:break-word;hyphens:auto}}
+
+/* ===== touch screens: no hover, so every link has to look like one at rest ===== */
+/* service rows: the same chevron as the FAQ, pointing right (list-item convention), plus a pressed state */
+html .svc-row::after{content:"";position:absolute;right:4px;top:50%;width:9px;height:9px;margin-top:-5px;
+  border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:rotate(-45deg);transition:transform .25s var(--ease)}
+html .svc-row{padding-right:28px}
+@media(hover:hover){html .svc-row:hover::after{transform:translateX(3px) rotate(-45deg)}}
+html .svc-row:active::before{transform:scaleX(1)}
+@media(max-width:759px){html .svc-row{padding-right:28px}}
+/* text links: olive text and a thicker clay line on touch, so they read as links without hovering */
+@media(hover:none){
+  html .about .btn,html a.calm-more,html .rev-badge a,html .sp-rating a,html .pnote a,html .policy a{
+    text-decoration:none;border-bottom:2px solid var(--gold);padding-bottom:2px;background-image:none}
+  html .about .btn,html .rev-badge a,html .sp-rating a,html .pnote a{color:var(--olive)}
+  html a.calm-more{color:var(--cream)}
+  html .btn:active,html .wa-float:active,html .bk-opt:active,html .bk-add:active,html .soc:active{opacity:.85}
+}
