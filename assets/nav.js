@@ -60,6 +60,7 @@
   }
   var end = nav.querySelector('.nav-end');
   if (end) end.insertBefore(make(), end.firstChild);
+  [].forEach.call(document.querySelectorAll('[data-status]'), function (el) { el.textContent = s.t; el.classList.toggle('is-open', s.open); });
   var menu = document.querySelector('#tfsMenu .mmenu-in');
   if (menu) menu.insertBefore(make(), menu.firstChild);
 })();

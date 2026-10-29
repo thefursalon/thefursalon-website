@@ -1215,3 +1215,26 @@ html .about .split h2+p{font-size:var(--t-lead);line-height:1.45}
 /* small print keeps the soft grey */
 html .pfoot,html .pnote,html .sp-note,html .rev-card .who,html .sp-review .who,html .sp-rating span,html .priv-date,html .faq-sig{color:var(--ink2)}
 html .pnote{color:var(--ink2)!important}
+
+/* ===== Find us, v2: the address as a ruled table (Le Petit Salon), a live open/closed line,
+   a real photo of the salon beside it (Aesop store pages), and the map as a full-width strip. ===== */
+html .contact .c-top{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:64px;align-items:end}
+html .contact .c-status{margin:20px 0 28px;font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:var(--t-lead);color:#D99A70}
+html .contact .c-list{margin:0;border-top:1px solid var(--rule-dk)}
+html .contact .c-row{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:24px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--rule-dk)}
+html .contact .c-row dt{font-size:var(--t-small);color:rgba(246,243,234,.65)}
+html .contact .c-row dd{margin:0;font-size:var(--t-lead);color:var(--cream);line-height:1.4}
+html .contact .c-row dd a{color:var(--cream);border-bottom:1px solid #D99A70;padding-bottom:1px}
+html .contact .c-row dd a:hover{border-bottom-width:2px}
+html .contact .c-actions{display:flex;align-items:center;gap:28px;flex-wrap:wrap;margin-top:32px}
+html .contact .c-dir{font-family:'Chillax',system-ui,sans-serif;font-weight:600;color:var(--cream);border-bottom:2px solid #D99A70;padding:6px 0}
+html .contact .c-photo{aspect-ratio:4/5;overflow:hidden;margin:0}
+html .contact .c-photo img{width:100%;height:100%;object-fit:cover}
+html .contact .c-map{margin-top:64px;min-height:0;height:360px;outline:1px solid var(--rule-dk);box-shadow:none}
+@media(max-width:899px){
+  html .contact .c-top{grid-template-columns:1fr;gap:40px}
+  html .contact .c-photo{aspect-ratio:4/3}
+  html .contact .c-map{height:280px;margin-top:40px}
+  html .contact .c-row{grid-template-columns:1fr;gap:2px}
+}
+@media(max-width:899px){html .contact .c-photo img{object-position:center 20%}}
