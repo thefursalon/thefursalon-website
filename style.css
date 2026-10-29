@@ -1262,3 +1262,7 @@ html .about .sig::after{content:"\201D";color:var(--gold)}
   html .about .s-media .photo{aspect-ratio:4/3}
 }
 html .about .s-text>p:first-child{font-size:var(--t-lead);line-height:1.45}
+/* separator between Who we are and Services: same spacing as every other section, with a hairline */
+html #services{padding-top:0}
+html #services>.wrap{position:relative;padding-top:clamp(72px,10vw,128px)}
+html #services>.wrap::before{content:"";position:absolute;top:0;left:clamp(20px,4vw,48px);right:clamp(20px,4vw,48px);height:1px;background:var(--line)}
