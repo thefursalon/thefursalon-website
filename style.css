@@ -1238,3 +1238,4 @@ html .contact .c-map{margin-top:64px;min-height:0;height:360px;outline:1px solid
   html .contact .c-row{grid-template-columns:1fr;gap:2px}
 }
 @media(max-width:899px){html .contact .c-photo img{object-position:center 20%}}
+@media(max-width:899px){html .contact .c-photo{display:none}}
