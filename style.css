@@ -1145,3 +1145,8 @@ html .lead-caveat::before,html .lead-caveat::after{color:var(--gold)}
   html .more-toggle,html .about .btn{min-height:44px;display:inline-flex;align-items:center;padding-top:0;padding-bottom:0}
   html .crumb a{display:inline-flex;align-items:center;min-height:44px;min-width:44px}
 }
+/* homepage FAQ: two balanced columns on wide screens, one column on phones */
+@media(min-width:900px){
+  html .faq-sec .faqs{max-width:none!important;column-count:2;column-gap:48px}
+  html .faq-sec .faq{break-inside:avoid;-webkit-column-break-inside:avoid}
+}
