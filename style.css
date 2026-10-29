@@ -1125,3 +1125,18 @@ html .svc-row:active::before{transform:scaleX(1)}
   html a.calm-more{color:var(--cream)}
   html .btn:active,html .wa-float:active,html .bk-opt:active,html .bk-add:active,html .soc:active{opacity:.85}
 }
+
+/* quote marks in clay: reviews, pull quotes, caveats */
+.qm{color:var(--gold)}
+html .calm-caveat::before,html .calm-caveat::after{color:#D99A70}
+html .lead-caveat::before,html .lead-caveat::after{color:var(--gold)}
+
+/* Who we are on phones: first paragraph and the signature line, the rest behind "Read more" */
+.more-toggle{display:none}
+@media(max-width:759px){
+  .about-more{display:none}
+  .about-more.open{display:block}
+  .more-toggle{display:inline-block;margin:2px 0 18px;padding:6px 0;border:0;background:none;cursor:pointer;
+    font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:15px;color:var(--olive);border-bottom:2px solid var(--gold)}
+  html .about .split .photo{aspect-ratio:4/3}
+}

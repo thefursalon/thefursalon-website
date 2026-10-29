@@ -21,7 +21,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" href="favicon.ico" sizes="any"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#4A5340">
 <link rel="preload" href="/assets/fonts/Chillax-Variable.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="/assets/fonts/Synonym-Variable.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="stylesheet" href="style.css?v=51896972">
+<link rel="stylesheet" href="style.css?v=ab061617">
 <script src="assets/analytics.js?v=39529e74"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","name":"The Fur Salon","alternateName":["Trimsalon Amsterdam Oost","Hondentrimsalon Amsterdam Oost"],"image":"https://www.thefursalon.nl/assets/media/og-card.jpg","description":"Boutique dog grooming salon (trimsalon) in Amsterdam Oost. Tailored grooming with a calm, gentle approach.","address":{"@type":"PostalAddress","streetAddress":"Derde Oosterparkstraat 46","postalCode":"1091 JZ","addressLocality":"Amsterdam","addressCountry":"NL"},"telephone":"+31614255832","email":"thefursalon.nl@gmail.com","url":"https://www.thefursalon.nl","openingHours":"Mo-Sa 09:00-17:00","priceRange":"€€","aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"149"}}
@@ -68,9 +68,12 @@
   <div class="rv">
     <h2>Who we are</h2>
     <p>The Fur Salon is a grooming studio in Amsterdam Oost, founded and led by Anna, our main groomer. With a background as a veterinary assistant and experience in both veterinary practice and professional grooming, Anna brings a calm, thoughtful and dog-first approach to every groom.</p>
+    <div class="about-more" id="aboutMore">
     <p>Here, grooming begins long before the scissors come out. We take the time to understand the dog in front of us: their personality, coat, preferences and how they are feeling that day. Because no two dogs are the same, and exceptional grooming should never be one-size-fits-all.</p>
     <p>From coat care and styling to the smallest details, each groom is tailored to your dog and the look you have in mind. Our approach combines professional technique with patience, intuition and genuine care, creating an experience that feels calm, considered and personal.</p>
     <p>At The Fur Salon, your dog is cared for as an individual, never treated as just another appointment.</p>
+    </div>
+    <button class="more-toggle" type="button" aria-expanded="false" aria-controls="aboutMore" data-more="Read more" data-less="Read less">Read more</button>
     <p class="sig">We&#8217;re dog people first. Always.</p>
     <div style="margin-top:26px"><a class="btn" href="https://wa.me/31614255832?text=Hi%20Anna!">Say hello</a></div>
   </div>
@@ -165,11 +168,11 @@
 <section id="reviews"><div class="wrap">
   <h2 class="rv" style="margin-bottom:30px">What owners say</h2>
   <div class="rev-stars rv">★★★★★</div>
-  <p class="rev-quote rv">“Very gentle with my anxious dog. Beautiful results and professional service.”</p>
+  <p class="rev-quote rv"><span class="qm">“</span>Very gentle with my anxious dog. Beautiful results and professional service.<span class="qm">”</span></p>
   <div class="rev-grid rv">
-    <div class="rev-card"><div class="stars">★★★★★</div><p>“Best groomer in Amsterdam Oost. My cockapoo always looks perfect and feels calm after every visit.”</p><div class="who">Sophie, Cockapoo</div></div>
-    <div class="rev-card"><div class="stars">★★★★★</div><p>“Anna was super friendly, gave my dog a treat on arrival! You can tell she genuinely loves the dogs.”</p><div class="who">Google review</div></div>
-    <div class="rev-card"><div class="stars">★★★★★</div><p>“Amazing styling! My Pomeranian has never looked better. Highly recommended.”</p><div class="who">Laura, Pomeranian</div></div>
+    <div class="rev-card"><div class="stars">★★★★★</div><p><span class="qm">“</span>Best groomer in Amsterdam Oost. My cockapoo always looks perfect and feels calm after every visit.<span class="qm">”</span></p><div class="who">Sophie, Cockapoo</div></div>
+    <div class="rev-card"><div class="stars">★★★★★</div><p><span class="qm">“</span>Anna was super friendly, gave my dog a treat on arrival! You can tell she genuinely loves the dogs.<span class="qm">”</span></p><div class="who">Google review</div></div>
+    <div class="rev-card"><div class="stars">★★★★★</div><p><span class="qm">“</span>Amazing styling! My Pomeranian has never looked better. Highly recommended.<span class="qm">”</span></p><div class="who">Laura, Pomeranian</div></div>
   </div>
   <div class="rev-badge rv"><span class="score"><span class="odo" data-n="5.0">5.0</span></span><span class="sub"><span class="badge-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>from 149 Google reviews<br><a href="https://g.page/r/CfGigsbIWEUeEBM/review" target="_blank" rel="noopener">Read them all</a></span></div>
 </div></section>
@@ -228,6 +231,7 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 })();
 </script>
 <script src="assets/booking.js?v=b89ee9b8" defer></script>
+<script>document.querySelectorAll(".more-toggle").forEach(function(b){b.addEventListener("click",function(){var o=b.getAttribute("aria-expanded")!=="true";b.setAttribute("aria-expanded",o);document.getElementById(b.getAttribute("aria-controls")).classList.toggle("open",o);b.textContent=o?b.dataset.less:b.dataset.more;});});</script>
 <script src="assets/odo.js?v=a710ccef" defer></script>
 <script src="assets/menu.js?v=c02ac8d8"></script>
 <script src="assets/video.js?v=1a386d76"></script>
