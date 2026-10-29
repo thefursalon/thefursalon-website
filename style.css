@@ -1201,3 +1201,17 @@ html .mmenu-in .nav-status{display:block;margin-bottom:22px;font-size:15px;color
   html nav .nav-end{grid-column:3;grid-row:1;justify-self:end}
 }
 html nav.over{background:linear-gradient(180deg,rgba(28,31,20,.45),rgba(28,31,20,0))}
+
+/* ===== Body text, firmer: near-black ink instead of soft grey, 17px, 1.5 line height.
+   The soft grey on cream read like an AI chat window. Grey stays for small print only. ===== */
+html{--t-body:17px}
+html body{line-height:1.5}
+html section:not(.calm):not(.contact) p,
+html .lead,html .sp-hero .lead,html .svc-desc,html .faq p,html .faq-sec .faq p,html .rev-card p,
+html .sp-item,html .policy p,html .soc-lead{color:var(--ink)}
+html .about .split p,html section p{line-height:1.5}
+/* first paragraph of "Who we are" as a lead */
+html .about .split h2+p{font-size:var(--t-lead);line-height:1.45}
+/* small print keeps the soft grey */
+html .pfoot,html .pnote,html .sp-note,html .rev-card .who,html .sp-review .who,html .sp-rating span,html .priv-date,html .faq-sig{color:var(--ink2)}
+html .pnote{color:var(--ink2)!important}
