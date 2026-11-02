@@ -995,7 +995,8 @@ html .hr-stars{display:inline-block;font-size:15px;letter-spacing:3px;line-heigh
 /* service and privacy pages: same flat photos */
 html .sp-photo{box-shadow:none}
 /* privacy: a document, so the title uses the Title size, not Display */
-html .wrap>h2.serif{font-size:var(--t-title);line-height:1.05;letter-spacing:-.02em}
+html .wrap>h2.serif,html .wrap>h1.serif{font-size:var(--t-title);line-height:1.05;letter-spacing:-.02em}
+html .wrap>h1.serif{color:var(--ink);margin-bottom:24px}
 html .priv h3{font-size:var(--t-head)}
 /* services hover, softened: a light olive tint that stays inside the row lines; text keeps its colour */
 html .svc-row::before{background:rgba(74,83,64,.07);inset:1px 0 1px;transition:transform .32s var(--ease)}
