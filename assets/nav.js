@@ -88,3 +88,57 @@
     });
   });
 })();
+
+/* Smooth wheel scrolling (desktop only), in the spirit of Lenis.
+   The wheel moves a target; the page eases towards it every frame, so a
+   notched mouse wheel glides instead of jumping 100px at a time.
+   Left alone: touch screens, reduced motion, pinch-zoom (ctrl+wheel),
+   sideways scrolling, anything that scrolls by itself (booking window,
+   gallery, menu) and moments when the page is locked behind a dialog. */
+(function () {
+  if (!window.requestAnimationFrame) return;
+  if (window.matchMedia && (matchMedia('(prefers-reduced-motion: reduce)').matches || matchMedia('(hover: none)').matches)) return;
+  var root = document.documentElement, body = document.body;
+  var target = window.scrollY, current = window.scrollY, running = false, last = 0;
+  var EASE = 0.1; // share of the remaining distance covered per 60fps frame
+
+  function max() { return Math.max(0, root.scrollHeight - window.innerHeight); }
+  function locked() {
+    return body.style.overflow === 'hidden' || /\b(mlock|tfs-ask|locked)\b/.test(body.className) ||
+           getComputedStyle(body).overflowY === 'hidden';
+  }
+  function scrollsItself(el, dy) {
+    for (; el && el !== body && el !== root; el = el.parentElement) {
+      var oy = getComputedStyle(el).overflowY;
+      if ((oy === 'auto' || oy === 'scroll') && el.scrollHeight > el.clientHeight + 1) {
+        if (dy < 0 ? el.scrollTop > 0 : el.scrollTop + el.clientHeight < el.scrollHeight - 1) return true;
+      }
+    }
+    return false;
+  }
+  function frame(t) {
+    var dt = last ? Math.min(64, t - last) : 16.7; last = t;
+    var k = 1 - Math.pow(1 - EASE, dt / 16.7);
+    current += (target - current) * k;
+    if (Math.abs(target - current) < 0.5) current = target;
+    window.scrollTo(0, Math.round(current));
+    if (current !== target) requestAnimationFrame(frame);
+    else { running = false; last = 0; root.style.scrollBehavior = ''; }
+  }
+  window.addEventListener('wheel', function (e) {
+    if (e.defaultPrevented || e.ctrlKey || locked()) return;
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+    if (scrollsItself(e.target, e.deltaY)) return;
+    var dy = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : 1);
+    e.preventDefault();
+    if (!running) { current = window.scrollY; target = current; }
+    target = Math.max(0, Math.min(max(), target + dy));
+    if (!running) {
+      running = true;
+      root.style.scrollBehavior = 'auto'; // the CSS smooth setting would fight the per-frame steps
+      requestAnimationFrame(frame);
+    }
+  }, { passive: false });
+  /* keyboard, scrollbar drag or a link moved the page: start from there next time */
+  window.addEventListener('scroll', function () { if (!running) { current = target = window.scrollY; } }, { passive: true });
+})();
