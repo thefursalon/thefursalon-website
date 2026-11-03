@@ -1308,3 +1308,12 @@ html .sp-main .eyebrow,html .sp-price h3{font-size:clamp(26px,2.5vw,36px);line-h
 /* asides without the side bar: a short rule above and the salon's own voice in Chillax */
 html .tfsc-warm{border-left:0;padding:12px 0 0;margin-top:14px;position:relative;font-family:'Chillax',system-ui,sans-serif;font-weight:500;font-size:15px;line-height:1.4;color:var(--olive)}
 html .tfsc-warm::before{content:"";position:absolute;top:0;left:0;width:32px;height:2px;background:var(--gold)}
+
+/* page scrollbar: thin olive bar on cream, square like the rest of the system.
+   Chrome, Edge and Safari on Mac/Windows use the -webkit rules; Firefox the standard ones.
+   iPhone and Android always show their own overlay bar: browsers don't allow styling it. */
+html::-webkit-scrollbar{width:10px;height:10px}
+html::-webkit-scrollbar-track{background:var(--cream)}
+html::-webkit-scrollbar-thumb{background:var(--olive);border:3px solid var(--cream);border-radius:0;min-height:48px}
+html::-webkit-scrollbar-thumb:hover{background:var(--gold);border-width:2px}
+@supports (-moz-appearance:none){html{scrollbar-width:thin;scrollbar-color:var(--olive) var(--cream)}}

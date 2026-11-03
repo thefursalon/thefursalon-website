@@ -64,3 +64,27 @@
   var menu = document.querySelector('#tfsMenu .mmenu-in');
   if (menu) menu.insertBefore(make(), menu.firstChild);
 })();
+
+/* Smooth scroll for links to a section on the same page.
+   CSS scroll-behavior alone gets cut off on iPhone when the mobile menu
+   closes in the same tap, so the scroll is started here, one frame after
+   the menu has let go of the page. Reduced motion = instant jump. */
+(function () {
+  var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    var a = e.target.closest && e.target.closest('a[href*="#"]');
+    if (!a || a.target === '_blank') return;
+    var url = new URL(a.href, location.href);
+    if (url.origin !== location.origin || url.pathname.replace(/index\.html$/, '') !== location.pathname.replace(/index\.html$/, '')) return;
+    var id = decodeURIComponent(url.hash.slice(1));
+    var el = id ? document.getElementById(id) : null;
+    if (!el && id !== 'top') return;
+    e.preventDefault();
+    requestAnimationFrame(function () {
+      var go = { behavior: still ? 'auto' : 'smooth', block: 'start' };
+      if (el) el.scrollIntoView(go); else window.scrollTo({ top: 0, behavior: go.behavior });
+      if (history.replaceState) history.replaceState(null, '', '#' + id);
+    });
+  });
+})();

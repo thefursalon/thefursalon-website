@@ -68,7 +68,7 @@
       if (f) setTimeout(function () { f.focus(); }, 240);
     } else {
       document.body.classList.remove('mlock');
-      btn.focus();
+      btn.focus({ preventScroll: true }); // don't let focus cancel the scroll to a section
     }
   }
 
