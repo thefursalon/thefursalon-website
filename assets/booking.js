@@ -21,14 +21,25 @@
         moods:[['Helemaal ontspannen','relaxed'],['Een beetje onzeker','nervous'],['Het is de eerste keer','first']]}}[L];
   var S={size:'',breed:'',mood:'',name:'',addons:[],service:document.body.getAttribute('data-service')||''};
   /* add-on step: skipped on the teeth & nails page itself; spa only goes with a bath or full groom */
-  var SV=S.service.toLowerCase();
-  var ADDONS=/teeth|tanden/.test(SV)?[]:C.addons.filter(function(a){
-    if(a[0]==='spa'&&/puppy|pup|hand|strip/.test(SV)) return false;   /* spa only with bath or full groom */
-    if(a[0]==='deep'&&/puppy|pup/.test(SV)) return false;               /* no deep clean for puppies */
-    return true;});
+  function addonsFor(service){
+    var SV=(service||'').toLowerCase();
+    return /teeth|tanden/.test(SV)?[]:C.addons.filter(function(a){
+      if(a[0]==='spa'&&/puppy|pup|hand|strip/.test(SV)) return false;   /* spa only with bath or full groom */
+      if(a[0]==='deep'&&/puppy|pup/.test(SV)) return false;               /* no deep clean for puppies */
+      return true;});
+  }
+  /* Service step: asked first, but only when the page doesn't already say
+     which service it is (homepage, nav, floating button, Find us). */
+  var SVC={en:{q:'What would you like to book?',advise:' I’m not sure which service is best, could you advise?',
+        list:[['Full Grooming','Full Grooming'],['Bath & Brush','Bath & Brush'],['Puppy Training','Puppy Training'],['Hand-Stripping','Hand-Stripping'],['Just nails or teeth','Teeth, Nails & Care'],['Not sure yet','?']]},
+     nl:{q:'Wat wil je boeken?',advise:' Ik weet nog niet welke behandeling het beste is, kun je me adviseren?',
+        list:[['Volledige trimbeurt','een volledige trimbeurt'],['Wassen & borstelen','wassen & borstelen'],['Puppytraining','een eerste trimbeurt voor mijn pup'],['Handstrippen','handstrippen'],['Alleen nagels of tanden','tanden, nagels & verzorging'],['Weet ik nog niet','?']]}}[L];
+  var PAGE=S.service, OFF=PAGE?0:1;
+  var ADDONS=addonsFor(PAGE);
+  function setup(){ ADDONS=addonsFor(S.service); STEPS=OFF+(ADDONS.length?5:4); }
   /* link to the policy on this language's homepage, from any depth */
   var POLICY=(location.pathname.indexOf('/services/')>-1?'../':'')+'index.html#cancellation';
-  var STEPS=ADDONS.length?5:4, step=0;
+  var STEPS=OFF+(ADDONS.length?5:4), step=0;
 
   var wrap=document.createElement('div');
   wrap.id='bk'; wrap.setAttribute('aria-hidden','true');
@@ -52,17 +63,21 @@
     segs.style.gridTemplateColumns='repeat('+STEPS+',1fr)';
     count.textContent=C.stepOf(step+1,STEPS);
     back.style.visibility=step>0?'visible':'hidden';
-    if(step===0) body.innerHTML='<p class="bk-q">'+C.q1+'</p><div class="bk-grid">'+
+    var s=step-OFF;
+    if(OFF&&step===0) body.innerHTML='<p class="bk-q">'+SVC.q+'</p><div class="bk-grid one">'+
+      SVC.list.map(function(o){var v=o[1],on=(v==='?'?S.advise:(!S.advise&&S.service===v));
+        return '<button class="bk-opt" data-k="service" data-v="'+v.replace(/"/g,'&quot;')+'" aria-pressed="'+on+'">'+o[0]+'</button>';}).join('')+'</div>';
+    else if(s===0) body.innerHTML='<p class="bk-q">'+C.q1+'</p><div class="bk-grid">'+
       opts(C.sizes,'size')+'</div>';
-    else if(step===1) body.innerHTML='<p class="bk-q">'+C.q2+'</p>'+
+    else if(s===1) body.innerHTML='<p class="bk-q">'+C.q2+'</p>'+
       '<input class="bk-in" id="bkBreed" placeholder="'+C.ph2+'" autocomplete="off" value="'+S.breed.replace(/"/g,'&quot;')+'">'+
       '<button class="bk-next" data-k="breed">'+C.next+'</button>';
-    else if(step===2) body.innerHTML='<p class="bk-q">'+C.q3+'</p><div class="bk-grid one">'+
+    else if(s===2) body.innerHTML='<p class="bk-q">'+C.q3+'</p><div class="bk-grid one">'+
       opts(C.moods,'mood')+'</div>';
-    else if(step===3&&STEPS===5) body.innerHTML='<p class="bk-q">'+C.q4+'</p>'+
+    else if(s===3&&ADDONS.length) body.innerHTML='<p class="bk-q">'+C.q4+'</p>'+
       '<input class="bk-in" id="bkName" placeholder="'+C.ph4+'" autocomplete="off" value="'+S.name.replace(/"/g,'&quot;')+'">'+
       '<button class="bk-next" data-k="name">'+C.next+'</button>';
-    else if(step===4) body.innerHTML='<p class="bk-q">'+C.q5(S.name.trim())+'</p><p class="bk-sub">'+C.sub5+'</p><div class="bk-adds">'+
+    else if(s===4) body.innerHTML='<p class="bk-q">'+C.q5(S.name.trim())+'</p><p class="bk-sub">'+C.sub5+'</p><div class="bk-adds">'+
       ADDONS.map(function(a){var on=S.addons.indexOf(a[0])>-1;return '<button class="bk-add" data-a="'+a[0]+'" aria-pressed="'+on+'"><i aria-hidden="true"></i><span>'+a[1]+'</span><b>'+a[2]+'</b></button>'}).join('')+
       '</div><button class="bk-next bk-go" data-k="addons">'+WA+C.go+'</button><button class="bk-none">'+C.none+'</button>';
     else body.innerHTML='<p class="bk-q">'+C.q4+'</p>'+
@@ -86,6 +101,7 @@
       if(S.mood==='first') t+=' Het wordt '+(n?n+'s':'zijn')+' eerste keer in een trimsalon.';
       if(S.mood==='relaxed') t+=' '+(n?n:'Hij')+' vindt trimmen helemaal prima.';
       t+=extras();
+      if(S.advise) t+=SVC.advise;
       t+=' Laat je weten wanneer je tijd hebt?';
     } else {
       var who=n?n:'my dog';
@@ -96,6 +112,7 @@
       if(S.mood==='first') t+=' It would be '+(n?n+'\u2019s':'their')+' first time at a salon.';
       if(S.mood==='relaxed') t+=' '+(n?n:'They')+' is totally relaxed about grooming.';
       t+=extras();
+      if(S.advise) t+=SVC.advise;
       t+=' Could you let me know your availability?';
     }
     return t;
@@ -108,7 +125,7 @@
   }
   function T(n,p){ if(window.tfsTrack) window.tfsTrack(n,p||{}); }
   function go(text,how){
-    T('booking_submit',{method:how||'quiz',service:S.service||'general',dog_size:S.size||'',
+    T('booking_submit',{method:how||'quiz',service:S.service||(S.advise?'not sure':'general'),dog_size:S.size||'',
       dog_breed:S.breed||'',dog_mood:S.mood||'',named_dog:S.name?'yes':'no',addons:S.addons.join(',')||'none',addon_count:S.addons.length});
     window.open('https://wa.me/'+PHONE+'?text='+encodeURIComponent(text+C.ack),'_blank','noopener'); close();
   }
@@ -139,7 +156,7 @@
       var f=body.querySelector('.bk-in'); if(f) f.focus({preventScroll:true});
     };
   }
-  function open(src,el){ if(busy) return; step=0; S.addons=[]; S.name=''; S.size=''; S.breed=''; S.mood=''; render(); wrap.classList.add('on'); wrap.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+  function open(src,el){ if(busy) return; step=0; S.addons=[]; S.name=''; S.size=''; S.breed=''; S.mood=''; S.service=PAGE; S.advise=false; setup(); render(); wrap.classList.add('on'); wrap.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
     T('booking_start',{service:S.service||'general',source:src||'cta'});
     from=seen(el)?el:null;
     if(!anim) return;
@@ -176,7 +193,9 @@
             ad.setAttribute('aria-pressed',String(i<0)); return; }
     if(e.target.closest('.bk-none')){ S.addons=[]; T('booking_step',{step:5,field:'addons',value:'none'}); return go(msg()); }
     var o=e.target.closest('.bk-opt');
-    if(o){ S[o.dataset.k]=o.dataset.v; T('booking_step',{step:step+1,field:o.dataset.k,value:o.dataset.v});
+    if(o){ if(o.dataset.k==='service'){ S.advise=o.dataset.v==='?'; S.service=S.advise?'':o.dataset.v; var keep=S.addons; setup(); S.addons=keep.filter(function(k){return ADDONS.some(function(a){return a[0]===k})}); }
+           else S[o.dataset.k]=o.dataset.v;
+           T('booking_step',{step:step+1,field:o.dataset.k,value:o.dataset.v});
            step++; return step<STEPS?slide(1):go(msg()); }
     var n=e.target.closest('.bk-next');
     if(n){ var f=body.querySelector('.bk-in'); if(f) S[n.dataset.k]=f.value;
