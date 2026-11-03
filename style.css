@@ -1388,3 +1388,7 @@ html .infobar:hover .tk-track{animation-play-state:paused}
   html .tk-set+.tk-set{display:none}
   html .tk-set{flex-wrap:wrap;justify-content:center;row-gap:10px}
 }
+
+/* booking window: the tapped button grows into the window (assets/booking.js) */
+.bk-morph{position:fixed;z-index:1401;display:none;pointer-events:none;box-shadow:0 0 0 1px rgba(42,46,36,.14)}
+html .bk-card{overflow:hidden}

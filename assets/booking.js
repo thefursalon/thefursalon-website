@@ -112,14 +112,64 @@
       dog_breed:S.breed||'',dog_mood:S.mood||'',named_dog:S.name?'yes':'no',addons:S.addons.join(',')||'none',addon_count:S.addons.length});
     window.open('https://wa.me/'+PHONE+'?text='+encodeURIComponent(text+C.ack),'_blank','noopener'); close();
   }
-  function open(src){ step=0; S.addons=[]; S.name=''; S.size=''; S.breed=''; S.mood=''; render(); wrap.classList.add('on'); wrap.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
-    T('booking_start',{service:S.service||'general',source:src||'cta'}); }
-  function close(){ wrap.classList.remove('on'); wrap.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  /* Motion. The button that was tapped grows into the window (and the window
+     shrinks back into it on close); steps slide sideways and the card eases
+     to its new height. Reduced motion: everything is instant. */
+  var card=wrap.querySelector('.bk-card'), EASE='cubic-bezier(.2,.8,.2,1)';
+  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var anim=!still&&!!card.animate, from=null, busy=false;
+  var morph=document.createElement('div'); morph.className='bk-morph'; morph.setAttribute('aria-hidden','true'); document.body.appendChild(morph);
+  function box(el){ var r=el.getBoundingClientRect(); return {left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px'}; }
+  function seen(el){ if(!el||!el.isConnected) return false; var r=el.getBoundingClientRect(); return r.width>0&&r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth; }
+  function look(el){ var cs=getComputedStyle(el); return {bg:cs.backgroundColor==='rgba(0, 0, 0, 0)'?'#4A5340':cs.backgroundColor,r:cs.borderTopLeftRadius}; }
+  function fly(a,b,la,lb,ms,done){
+    var A=Object.assign({backgroundColor:la.bg,borderRadius:la.r},a), B=Object.assign({backgroundColor:lb.bg,borderRadius:lb.r},b);
+    Object.assign(morph.style,A); morph.style.display='block';
+    var m=morph.animate([A,B],{duration:ms,easing:EASE,fill:'forwards'});
+    m.onfinish=function(){ done&&done(); morph.style.display='none'; m.cancel(); };
+  }
+  function slide(dir){
+    if(!anim){ render(); return; }
+    var h0=card.offsetHeight;
+    body.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateX('+(-18*dir)+'px)'}],{duration:140,easing:'ease-in'}).onfinish=function(){
+      render();
+      var h1=card.offsetHeight;
+      if(h1!==h0) card.animate([{height:h0+'px'},{height:h1+'px'}],{duration:260,easing:EASE});
+      body.animate([{opacity:0,transform:'translateX('+(18*dir)+'px)'},{opacity:1,transform:'none'}],{duration:240,easing:EASE});
+      var f=body.querySelector('.bk-in'); if(f) f.focus({preventScroll:true});
+    };
+  }
+  function open(src,el){ if(busy) return; step=0; S.addons=[]; S.name=''; S.size=''; S.breed=''; S.mood=''; render(); wrap.classList.add('on'); wrap.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+    T('booking_start',{service:S.service||'general',source:src||'cta'});
+    from=seen(el)?el:null;
+    if(!anim) return;
+    wrap.animate([{backgroundColor:'rgba(28,31,20,0)'},{backgroundColor:'rgba(28,31,20,.6)'}],{duration:420,easing:'ease-out'});
+    if(!from){ card.animate([{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'none'}],{duration:320,easing:EASE}); return; }
+    busy=true; from.style.visibility='hidden'; card.style.opacity='0';
+    fly(box(from),box(card),look(from),{bg:'#F6F3EA',r:'0px'},520,function(){
+      card.style.opacity='';
+      card.animate([{opacity:0},{opacity:1}],{duration:180,easing:'ease-out'});
+      body.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:280,easing:EASE});
+      busy=false;
+    });
+  }
+  function shut(){ wrap.getAnimations&&wrap.getAnimations().forEach(function(x){x.cancel();}); wrap.classList.remove('on'); wrap.setAttribute('aria-hidden','true'); document.body.style.overflow=''; card.style.opacity=''; if(from) from.style.visibility=''; busy=false; }
+  function close(){
+    if(!wrap.classList.contains('on')) return;
+    if(!anim){ shut(); return; }
+    if(busy) return; busy=true;
+    var to=seen(from)?from:null;
+    wrap.animate([{backgroundColor:'rgba(28,31,20,.6)'},{backgroundColor:'rgba(28,31,20,0)'}],{duration:380,easing:'ease-in',fill:'forwards'});
+    if(!to){ card.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(14px)'}],{duration:220,easing:'ease-in'}).onfinish=shut; return; }
+    var a=box(card);
+    to.style.visibility='hidden'; card.style.opacity='0';
+    fly(a,box(to),{bg:'#F6F3EA',r:'0px'},look(to),440,shut);
+  }
 
   wrap.addEventListener('click',function(e){
     if(e.target.closest('.bk-policy a')){ close(); return; }
     if(e.target===wrap||e.target.classList.contains('bk-x')){ T('booking_abandon',{step:step+1}); return close(); }
-    if(e.target.classList.contains('bk-back')){ if(step>0){ step--; render(); } return; }
+    if(e.target.classList.contains('bk-back')){ if(step>0){ step--; slide(-1); } return; }
     if(e.target.classList.contains('bk-skip')){ T('booking_skip',{step:step+1}); return go(L==='nl'?'Hoi Anna! Ik wil graag een afspraak maken voor mijn hond.':'Hi Anna! I\u2019d like to book an appointment for my dog.','skip'); }
     var ad=e.target.closest('.bk-add');
     if(ad){ var k=ad.dataset.a, i=S.addons.indexOf(k); if(i>-1)S.addons.splice(i,1); else S.addons.push(k);
@@ -127,12 +177,12 @@
     if(e.target.closest('.bk-none')){ S.addons=[]; T('booking_step',{step:5,field:'addons',value:'none'}); return go(msg()); }
     var o=e.target.closest('.bk-opt');
     if(o){ S[o.dataset.k]=o.dataset.v; T('booking_step',{step:step+1,field:o.dataset.k,value:o.dataset.v});
-           step++; return step<STEPS?render():go(msg()); }
+           step++; return step<STEPS?slide(1):go(msg()); }
     var n=e.target.closest('.bk-next');
     if(n){ var f=body.querySelector('.bk-in'); if(f) S[n.dataset.k]=f.value;
            if(n.dataset.k==='addons') T('booking_step',{step:step+1,field:'addons',value:S.addons.join(',')||'none'});
            else T('booking_step',{step:step+1,field:n.dataset.k,filled:(f&&f.value.trim())?'yes':'no'});
-           step++; return step<STEPS?render():go(msg()); }
+           step++; return step<STEPS?slide(1):go(msg()); }
   });
   document.addEventListener('keydown',function(e){
     if(!wrap.classList.contains('on'))return;
@@ -141,6 +191,6 @@
   });
   document.addEventListener('click',function(e){
     var a=e.target.closest('a[href*="wa.me/"]');
-    if(a){ e.preventDefault(); open(a.classList.contains('wa-float')?'float':(a.closest('nav')?'nav':'page')); }
+    if(a){ e.preventDefault(); open(a.classList.contains('wa-float')?'float':(a.closest('nav')?'nav':'page'),a); }
   });
 })();
