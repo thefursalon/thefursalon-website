@@ -56,6 +56,12 @@
 
   function set(state) {
     open = state;
+    /* the panel grows out of the menu button (a square opening from its box) */
+    var r = btn.getBoundingClientRect();
+    panel.style.setProperty('--mt', r.top + 'px');
+    panel.style.setProperty('--mr', (window.innerWidth - r.right) + 'px');
+    panel.style.setProperty('--mb', (window.innerHeight - r.bottom) + 'px');
+    panel.style.setProperty('--ml', r.left + 'px');
     panel.classList.toggle('on', state);
     btn.classList.toggle('on', state);
     panel.setAttribute('aria-hidden', state ? 'false' : 'true');

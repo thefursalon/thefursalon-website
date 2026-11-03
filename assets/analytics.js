@@ -278,7 +278,9 @@ var TFS_CLARITY_ID = 'yx1ztj42o0'; // Microsoft Clarity project ID, e.g. 'abcd12
     var CENTRE_AT = CORNER_AT + 7000;          // long enough to read the hero
 
     function corner() {
-      wrap.classList.add('corner', 'on');
+      wrap.classList.add('corner');   // park it below the corner first,
+      void wrap.offsetWidth;          // let the browser register that,
+      wrap.classList.add('on');       // then let it rise into place
     }
 
     function centre() {

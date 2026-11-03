@@ -82,27 +82,27 @@
 <section id="services" style="padding-top:0"><div class="wrap">
   <h2 class="rv" style="margin-bottom:38px">Services</h2>
   <div class="svc-list rv">
-    <a class="svc-row" href="services/full-grooming.html">
+    <a class="svc-row" href="services/full-grooming.html" style="view-transition-name:svc-full-grooming">
       <span class="svc-num">01</span>
       <span><span class="svc-name">Full Grooming</span><span class="svc-desc">Complete cut &amp; styling, tailored to breed or your preferred look. Bath, blow-dry, nails, ears included.</span></span>
       <span class="svc-price">from &euro;85</span><span class="svc-arrow">→</span>
     </a>
-    <a class="svc-row" href="services/puppy.html">
+    <a class="svc-row" href="services/puppy.html" style="view-transition-name:svc-puppy">
       <span class="svc-num">02</span>
       <span><span class="svc-name">Puppy Training</span><span class="svc-desc">A gentle introduction: soft handling, a warm bath, a small trim. Confidence from the very first visit.</span></span>
       <span class="svc-price">from &euro;70</span><span class="svc-arrow">→</span>
     </a>
-    <a class="svc-row" href="services/bath-brush.html">
+    <a class="svc-row" href="services/bath-brush.html" style="view-transition-name:svc-bath-brush">
       <span class="svc-num">03</span>
       <span><span class="svc-name">Bath &amp; Brush</span><span class="svc-desc">Gentle shampoo, blow-dry and thorough brushing. Perfect between grooms.</span></span>
       <span class="svc-price">from &euro;70</span><span class="svc-arrow">→</span>
     </a>
-    <a class="svc-row" href="services/hand-stripping.html">
+    <a class="svc-row" href="services/hand-stripping.html" style="view-transition-name:svc-hand-stripping">
       <span class="svc-num">04</span>
       <span><span class="svc-name">Hand-Stripping</span><span class="svc-desc">Specialist hand techniques for wire-haired breeds. The right texture, quality and colour of the coat.</span></span>
       <span class="svc-price">from &euro;110</span><span class="svc-arrow">→</span>
     </a>
-    <a class="svc-row" href="services/spa-extras.html">
+    <a class="svc-row" href="services/spa-extras.html" style="view-transition-name:svc-spa-extras">
       <span class="svc-num">05</span>
       <span><span class="svc-name">Teeth, Nails &amp; Care</span><span class="svc-desc">Dental cleaning, nail trims, ear cleaning and pet-safe colouring. Add to any visit.</span></span>
       <span class="svc-price">from &euro;10</span><span class="svc-arrow">→</span>
@@ -236,7 +236,6 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 })();
 </script>
 <script src="assets/booking.js?v=b89ee9b8" defer></script>
-<script>document.querySelectorAll(".more-toggle").forEach(function(b){b.addEventListener("click",function(){var o=b.getAttribute("aria-expanded")!=="true";b.setAttribute("aria-expanded",o);document.getElementById(b.getAttribute("aria-controls")).classList.toggle("open",o);b.textContent=o?b.dataset.less:b.dataset.more;});});</script>
 <script src="assets/odo.js?v=a710ccef" defer></script>
 <script src="assets/menu.js?v=b1cd719f"></script>
 <script src="assets/nav.js?v=e6394df7"></script>

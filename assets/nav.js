@@ -221,3 +221,69 @@
   window.addEventListener('scroll', req, { passive: true });
   window.addEventListener('resize', function () { if (ready) { measure(); render(); } });
 })();
+
+/* Small motion: FAQ answers and "Read more" unfold to their height, and photos
+   ease in with a slight zoom as they scroll into view. Reduced motion: instant. */
+(function () {
+  var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var EASE = 'cubic-bezier(.2,.8,.2,1)';
+  var can = !still && !!document.documentElement.animate;
+
+  /* FAQ */
+  [].forEach.call(document.querySelectorAll('details.faq'), function (d) {
+    var sum = d.querySelector('summary');
+    if (!sum) return;
+    var running = null;
+    sum.addEventListener('click', function (e) {
+      if (!can) return;
+      e.preventDefault();
+      if (running) running.cancel();
+      var cols = d.parentElement && parseInt(getComputedStyle(d.parentElement).columnCount, 10) > 1;
+      var kids = [].slice.call(d.children).filter(function (k) { return k !== sum; });
+      if (!d.open) {
+        var h0 = d.offsetHeight; d.open = true; var h1 = d.offsetHeight;
+        kids.forEach(function (k) { k.animate([{ opacity: 0, transform: 'translateY(-6px)' }, { opacity: 1, transform: 'none' }], { duration: 320, easing: EASE }); });
+        if (!cols) { d.style.overflow = 'hidden'; running = d.animate([{ height: h0 + 'px' }, { height: h1 + 'px' }], { duration: 340, easing: EASE });
+          running.onfinish = function () { d.style.overflow = ''; running = null; }; }
+      } else {
+        var a = d.offsetHeight, b = sum.offsetHeight;
+        if (cols) { d.open = false; return; }
+        d.style.overflow = 'hidden';
+        running = d.animate([{ height: a + 'px' }, { height: b + 'px' }], { duration: 280, easing: EASE });
+        kids.forEach(function (k) { k.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 180, fill: 'forwards' }).onfinish = function () { this.cancel(); }; });
+        running.onfinish = function () { d.open = false; d.style.overflow = ''; running = null; };
+      }
+    });
+  });
+
+  /* Read more (Who we are, on phones) */
+  [].forEach.call(document.querySelectorAll('.more-toggle'), function (b) {
+    var box = document.getElementById(b.getAttribute('aria-controls'));
+    if (!box) return;
+    b.addEventListener('click', function () {
+      var o = b.getAttribute('aria-expanded') !== 'true';
+      b.setAttribute('aria-expanded', o);
+      b.textContent = o ? b.dataset.less : b.dataset.more;
+      if (!can) { box.classList.toggle('open', o); return; }
+      box.style.overflow = 'hidden';
+      if (o) {
+        box.classList.add('open');
+        var h = box.offsetHeight;
+        box.animate([{ height: '0px', opacity: 0 }, { height: h + 'px', opacity: 1 }], { duration: 460, easing: EASE }).onfinish = function () { box.style.overflow = ''; };
+      } else {
+        var h2 = box.offsetHeight;
+        box.animate([{ height: h2 + 'px', opacity: 1 }, { height: '0px', opacity: 0 }], { duration: 360, easing: EASE }).onfinish = function () { box.classList.remove('open'); box.style.overflow = ''; };
+      }
+    });
+  });
+
+  /* Photos */
+  if (!can || !('IntersectionObserver' in window)) return;
+  var imgs = document.querySelectorAll('.photo img, .gal-item img, .sp-photo img, .c-photo img, .s-media img');
+  if (!imgs.length) return;
+  document.documentElement.classList.add('img-reveal');
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('img-in'); io.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
+  [].forEach.call(imgs, function (i) { io.observe(i); });
+})();

@@ -1392,3 +1392,27 @@ html .infobar:hover .tk-track{animation-play-state:paused}
 /* booking window: the tapped button grows into the window (assets/booking.js) */
 .bk-morph{position:fixed;z-index:1401;display:none;pointer-events:none;box-shadow:0 0 0 1px rgba(42,46,36,.14)}
 html .bk-card{overflow:hidden}
+
+/* ===== Motion pack (Nov 2026) ===== */
+@media (prefers-reduced-motion: no-preference){
+  /* phone menu: a square opening out of the menu button */
+  html .mmenu{opacity:1;clip-path:inset(var(--mt,0) var(--mr,0) var(--mb,100%) var(--ml,100%));
+    transition:clip-path .55s cubic-bezier(.2,.8,.2,1),visibility 0s linear .55s}
+  html .mmenu.on{clip-path:inset(0 0 0 0);transition:clip-path .6s cubic-bezier(.2,.8,.2,1),visibility 0s}
+  /* cookie window: parked below its corner, rises in with a small settle, then glides to the middle */
+  html #tfsConsent{transition:transform .75s cubic-bezier(.3,1.2,.45,1),box-shadow .5s ease}
+  html #tfsConsentWrap.corner:not(.on) #tfsConsent{transform:translate(calc(-50vw + 50% + 24px), calc(50vh + 70%))}
+  /* photos ease in with a slight zoom */
+  html.img-reveal .photo img,html.img-reveal .gal-item img,html.img-reveal .sp-photo img,html.img-reveal .c-photo img,html.img-reveal .s-media img{
+    opacity:0;transform:scale(1.06);transition:opacity .9s ease,transform 1.4s cubic-bezier(.2,.8,.2,1)}
+  html.img-reveal img.img-in{opacity:1;transform:none}
+  /* service row → service page: the row grows into the page header (browsers with cross-page view transitions) */
+  @view-transition{navigation:auto}
+  ::view-transition-group(*){animation-duration:.55s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+  ::view-transition-old(root),::view-transition-new(root){animation-duration:.3s}
+}
+@media (prefers-reduced-motion: no-preference) and (max-width:600px){
+  html #tfsConsentWrap.corner:not(.on) #tfsConsent{transform:translateY(calc(50vh + 70%))}
+}
+.photo,.gal-item,.sp-photo,.c-photo,.s-media{overflow:hidden}
+html nav .dock{opacity:0}
