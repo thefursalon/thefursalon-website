@@ -1320,3 +1320,9 @@ html::-webkit-scrollbar-thumb:hover{background:var(--gold) padding-box;border-wi
 html::-webkit-scrollbar-thumb:active{background:var(--deep) padding-box;border-width:2px 3px 2px 4px}
 html::-webkit-scrollbar-corner{background:var(--cream)}
 @supports (-moz-appearance:none){html{scrollbar-width:auto;scrollbar-color:var(--olive) var(--cream)}}
+
+/* hero logo docking into the nav (assets/nav.js) */
+html nav .dock{position:absolute;inset:0;pointer-events:none;transition:opacity .3s var(--ease)}
+html nav .dock div{will-change:transform}
+/* over the hero the bar is completely clear: no shade, no line. Both appear once the logo has docked */
+html nav.over{background:transparent;border-bottom-color:transparent}

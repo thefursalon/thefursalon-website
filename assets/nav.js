@@ -12,9 +12,10 @@
   if (hero && 'IntersectionObserver' in window) {
     document.documentElement.classList.add('nav-hero');
     nav.classList.add('over');
-    new IntersectionObserver(function (es) {
+    window.__tfsHeroIO = new IntersectionObserver(function (es) {
       nav.classList.toggle('over', es[0].isIntersecting);
-    }, { rootMargin: '-76px 0px 0px 0px', threshold: 0 }).observe(hero);
+    }, { rootMargin: '-76px 0px 0px 0px', threshold: 0 });
+    window.__tfsHeroIO.observe(hero);
   }
 
   /* 2. active section */
@@ -141,4 +142,82 @@
   }, { passive: false });
   /* keyboard, scrollbar drag or a link moved the page: start from there next time */
   window.addEventListener('scroll', function () { if (!running) { current = target = window.scrollY; } }, { passive: true });
+})();
+
+/* Hero logo docks into the nav.
+   On the homepage the big dog mark and "THE FUR SALON" ride up with the
+   scroll, shrink and slide into the logo spot in the centre of the bar.
+   Two stand-ins live inside the (fixed) nav, so nothing gets clipped by
+   the hero; the real hero logo is hidden while they fly. When they land,
+   the bar turns cream and they cross-fade into the real nav logo.
+   Reduced motion: the old behaviour (logo appears when the hero ends). */
+(function () {
+  var nav = document.getElementById('nav');
+  var hero = document.querySelector('header.hero');
+  var box = hero && hero.querySelector('.hero-mark');
+  var hMark = box && box.querySelector('.heromark');
+  var hName = box && box.querySelector('.hero-name');
+  var nMark = nav && nav.querySelector('.logo .mark');
+  var nName = nav && nav.querySelector('.logo .lw');
+  if (!hMark || !hName || !nMark || !nName || !window.requestAnimationFrame) return;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.__tfsHeroIO) window.__tfsHeroIO.disconnect();
+
+  var layer = document.createElement('div');
+  layer.className = 'dock';
+  layer.setAttribute('aria-hidden', 'true');
+  var fMark = hMark.cloneNode(true);
+  fMark.removeAttribute('class');
+  var fName = document.createElement('div');
+  fName.textContent = (hName.firstChild && hName.firstChild.nodeValue || 'THE FUR SALON').trim();
+  layer.appendChild(fMark); layer.appendChild(fName);
+  nav.appendChild(layer);
+
+  var M = {}, ready = false, ticking = false;
+  function c(el) { var r = el.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2, w: r.width, h: r.height }; }
+  function px(v) { return parseFloat(v) || 0; }
+  function measure() {
+    var sy = window.scrollY, a = c(hMark), b = c(hName), m = c(nMark), n = c(nName);
+    var hs = getComputedStyle(hName), ns = getComputedStyle(nName);
+    M = {
+      mark: { x: a.x, y: a.y + sy, w: a.w, h: a.h, tx: m.x, ty: m.y, s: m.w / a.w },
+      name: { x: b.x, y: b.y + sy, tx: n.x, ty: n.y, fs: px(hs.fontSize), s: px(ns.fontSize) / px(hs.fontSize),
+              ls0: px(hs.letterSpacing), ls1: px(ns.letterSpacing) }
+    };
+    M.D = Math.max(80, M.name.y - M.name.ty);
+    fMark.style.cssText = 'position:absolute;left:0;top:0;width:' + a.w + 'px;height:' + a.h + 'px;color:#F3EFE4;transform-origin:50% 50%;will-change:transform';
+    fName.style.cssText = 'position:absolute;left:0;top:0;white-space:nowrap;font-family:' + hs.fontFamily + ';font-weight:' + hs.fontWeight +
+      ';font-size:' + M.name.fs + 'px;line-height:' + hs.lineHeight + ';color:#F3EFE4;transform-origin:50% 50%;will-change:transform';
+    ready = true;
+  }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function render() {
+    ticking = false;
+    if (!ready) return;
+    var sy = window.scrollY, p = Math.min(1, Math.max(0, sy / M.D)), e = p * p * (3 - 2 * p);
+    var flying = sy > 0 && p < 1, docked = p >= 1;
+    nav.classList.toggle('over', !docked && hero.getBoundingClientRect().bottom > 76);
+    nav.classList.toggle('docked', docked);
+    hMark.style.visibility = hName.style.visibility = sy > 0 ? 'hidden' : '';
+    layer.style.opacity = docked ? '0' : sy > 0 ? '1' : '0';
+    var fade = Math.max(0, 1 - p * 1.6);
+    box.style.opacity = fade; box.style.visibility = fade < 0.02 ? 'hidden' : '';
+    if (!(flying || docked)) return;
+    var k = M.mark, pm = Math.min(1, p * 1.3), em = pm * pm * (3 - 2 * pm); // the mark slides aside a little earlier so it clears the name
+    var cy = lerp(k.y - sy, k.ty, p), cx = lerp(k.x, k.tx, em), s = lerp(1, k.s, em);
+    fMark.style.transform = 'translate(' + (cx - k.w / 2) + 'px,' + (cy - k.h / 2) + 'px) scale(' + s + ')';
+    fMark.style.filter = 'drop-shadow(0 8px 26px rgba(0,0,0,' + (0.45 * (1 - e)).toFixed(3) + '))';
+    var q = M.name, s2 = lerp(1, q.s, e);
+    fName.style.letterSpacing = lerp(q.ls0, q.ls1 / q.s, e) + 'px';
+    fName.style.textShadow = '0 3px 22px rgba(0,0,0,' + (0.5 * (1 - e)).toFixed(3) + ')';
+    var w = fName.offsetWidth, h = fName.offsetHeight;
+    fName.style.transform = 'translate(' + (lerp(q.x, q.tx, e) - w / 2) + 'px,' + (lerp(q.y - sy, q.ty, p) - h / 2) + 'px) scale(' + s2 + ')';
+  }
+  function req() { if (!ticking) { ticking = true; requestAnimationFrame(render); } }
+  function start() { measure(); render(); }
+  /* wait for the hero entrance animation and the web fonts before measuring */
+  var go = function () { setTimeout(start, 1700); };
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(go); else go();
+  window.addEventListener('scroll', req, { passive: true });
+  window.addEventListener('resize', function () { if (ready) { measure(); render(); } });
 })();
