@@ -44,11 +44,11 @@
     var day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(get('weekday'));
     var mins = parseInt(get('hour'), 10) * 60 + parseInt(get('minute'), 10);
     var openDay = day >= 1 && day <= 6;
-    if (openDay && mins >= 540 && mins < 1020) return { open: true, t: nl ? 'Nu open, tot 17:00' : 'Open now, until 17:00' };
-    if (openDay && mins < 540) return { open: false, t: nl ? 'Vandaag open vanaf 9:00' : 'Opens today at 9:00' };
-    if (day >= 1 && day <= 5) return { open: false, t: nl ? 'Gesloten, morgen open vanaf 9:00' : 'Closed, opens tomorrow at 9:00' };
-    if (day === 6) return { open: false, t: nl ? 'Gesloten, maandag open vanaf 9:00' : 'Closed, opens Monday at 9:00' };
-    return { open: false, t: nl ? 'Gesloten, morgen open vanaf 9:00' : 'Closed, opens tomorrow at 9:00' };
+    if (openDay && mins >= 540 && mins < 1020) return { open: true, t: nl ? 'Vandaag open tot 17:00' : 'Open today till 17:00' };
+    if (openDay && mins < 540) return { open: false, t: nl ? 'Vandaag open vanaf 9:00' : 'Opens today 9:00' };
+    if (day >= 1 && day <= 5) return { open: false, t: nl ? 'Morgen open vanaf 9:00' : 'Opens tomorrow 9:00' };
+    if (day === 6) return { open: false, t: nl ? 'Maandag open vanaf 9:00' : 'Opens Monday 9:00' };
+    return { open: false, t: nl ? 'Morgen open vanaf 9:00' : 'Opens tomorrow 9:00' };
   }
   var s = status();
   var home = document.querySelector('header.hero') ? '' : (location.pathname.indexOf('/services/') > -1 ? '../index.html' : 'index.html');

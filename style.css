@@ -1326,3 +1326,49 @@ html nav .dock{position:absolute;inset:0;pointer-events:none;transition:opacity 
 html nav .dock div{will-change:transform}
 /* over the hero the bar is completely clear: no shade, no line. Both appear once the logo has docked */
 html nav.over{background:transparent;border-bottom-color:transparent}
+
+/* ===== No grey captions (Nov 2026) =====
+   Information is set in the heading font in ink, like a label on a shop sign.
+   Grey is kept only for true legal small print. No "·" separators anywhere. */
+/* nav: opening hours read like the other nav items */
+html .nav-status{font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:15px;color:var(--ink);letter-spacing:0}
+html .nav-status:hover{color:var(--gold)}
+html nav.over .nav-status{color:var(--cream)}
+html .mmenu-in .nav-status{font-family:'Chillax',system-ui,sans-serif;font-weight:600;color:var(--cream)}
+/* review attribution: the name, then where it was written */
+html .rev-card .who,html .sp-review .who{color:var(--ink);font-size:15px;margin-top:16px}
+html .rev-card .who b,html .sp-review .who b{font-family:'Chillax',system-ui,sans-serif;font-weight:600}
+html .rev-card .who span,html .sp-review .who span{margin-left:4px}
+/* rating links: one clear link with the clay underline */
+html .rev-badge .sub a,html .sp-rlink{font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:var(--t-body);color:var(--ink);text-decoration:none;border-bottom:2px solid var(--gold);padding-bottom:2px}
+html .rev-badge .sub a:hover,html .sp-rlink:hover{color:var(--gold)}
+html .sp-rating span{color:var(--ink)}
+html .hr-txt{font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:14px;letter-spacing:.01em}
+/* price tables: a real table head */
+html .pt-head{font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:12px;color:var(--ink);text-transform:uppercase;letter-spacing:.09em}
+/* notes under prices: ink, body size */
+html .pnote,html .sp-note,html .pfoot{color:var(--ink)!important;font-size:15px;line-height:1.5}
+html .sp-note{margin-top:14px}
+/* breadcrumb */
+html .crumb{font-family:"Chillax",system-ui,sans-serif;font-weight:600;font-size:14px;color:rgba(42,46,36,.35)}
+html .crumb a{color:var(--ink);font-weight:600}
+html .crumb a:hover{color:var(--gold)}
+html .crumb .cur{color:var(--gold)}
+/* footer: address (or tagline) on one line, copyright under it */
+html .foot-legal{display:flex;flex-direction:column;gap:4px;color:#B9B7A4}
+html .foot-legal b{font-family:'Chillax',system-ui,sans-serif;font-weight:600;color:var(--cream)}
+/* cookie window */
+html #tfsConsent p{color:var(--ink)}
+html .tfsc-warm{color:var(--olive)}
+html .tfsc-more{color:var(--ink);font-family:'Chillax',system-ui,sans-serif;font-weight:600}
+html .faq-sig{color:var(--ink)}
+/* the rest of the grey, found by the audit */
+html nav .nav-links a{color:var(--ink)}
+html .sp-hero .crumb{color:rgba(42,46,36,.35)}
+.s-cap,html .s-cap{color:var(--ink)}
+html .calm .s-cap{color:var(--cream)}
+html .map-ask p{color:var(--ink)}
+html .bk-policy{color:var(--ink)}
+html .bk-skip{font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--gold);padding-bottom:1px}
+html .bk-skip:hover{color:var(--gold)}
+html .tfsc-row span{color:var(--ink)}
