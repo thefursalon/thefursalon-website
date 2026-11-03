@@ -96,6 +96,12 @@ var TFS_CLARITY_ID = 'yx1ztj42o0'; // Microsoft Clarity project ID, e.g. 'abcd12
       t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
       y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
     })(window, document, 'clarity', 'script', TFS_CLARITY_ID);
+    /* Visitors in the EU need an explicit consent signal, or Clarity runs
+       without cookies and can't follow a visit across pages. We only get
+       here after "Measuring the site" was allowed, so analytics is granted;
+       ads storage follows the separate "Marketing" choice. */
+    var mk = !!(read() || {}).marketing;
+    window.clarity('consentv2', { ad_Storage: mk ? 'granted' : 'denied', analytics_Storage: 'granted' });
   }
 
   function loadPixel() {
