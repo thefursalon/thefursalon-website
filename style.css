@@ -1416,3 +1416,10 @@ html .bk-card{overflow:hidden}
 }
 .photo,.gal-item,.sp-photo,.c-photo,.s-media{overflow:hidden}
 html nav .dock{opacity:0}
+
+/* extras in the booking window: one line on why, under the name */
+html .bk-add span{display:flex;flex-direction:column;gap:2px;text-align:left}
+html .bk-add small{font-family:'Synonym',system-ui,sans-serif;font-size:14px;line-height:1.35;color:var(--olive);font-weight:450}
+html .bk-sub{color:var(--ink)}
+html .bk-none,html .bk-back{font-family:'Chillax',system-ui,sans-serif;font-weight:600;color:var(--ink)}
+html .bk-none:hover,html .bk-back:hover{color:var(--gold)}

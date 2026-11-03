@@ -5,7 +5,7 @@
         q3:'How do they feel about grooming?',q4:'And what’s their name?',
         ph2:'Cockapoo, Shih Tzu, mix...',ph4:'Their name',next:'Continue',go:'Send booking request',
         q5:function(n){return 'Would you like to treat '+(n||'your dog')+' to something extra?'},sub5:'Pick as many as you like. Anna will confirm the total.',none:'No thanks, just the groom',
-        addons:[['nails','Nail clipping','\u20ac10','nail clipping'],['teeth','Teeth cleaning','\u20ac10','a teeth clean'],['spa','Spa treatment','\u20ac30\u201340','the spa treatment'],['deep','Deep teeth cleaning','\u20ac100','a deep teeth clean']],
+        addons:[['nails','Nail clipping','\u20ac10','nail clipping','No more clicking across the floor'],['teeth','Teeth cleaning','\u20ac10','a teeth clean','Fresher breath for the cuddles'],['spa','Spa treatment','\u20ac30\u201340','the spa treatment',''],['deep','Deep teeth cleaning','\u20ac100','a deep teeth clean','For the brown build-up you can see']],
         also:' I\u2019d also like to add ',and:' and ',
         pol:'<b>Cancellation policy:</b> cancelling less than 24 hours before your appointment costs 50% of the service; not showing up costs 100%. Your message will say you\u2019re ok with it.',more:'Read the policy',ack:' And I\u2019m ok with your cancellation policy.',
         sizes:[['Small','small'],['Medium','medium'],['Large','large'],['Extra large','extra large']],
@@ -14,7 +14,7 @@
         q3:'Hoe vindt hij het om getrimd te worden?',q4:'En hoe heet hij?',
         ph2:'Cockapoo, Shih Tzu, kruising...',ph4:'Zijn of haar naam',next:'Verder',go:'Verstuur aanvraag',
         q5:function(n){return 'Wil je '+(n||'je hond')+' nog iets extra\u2019s geven?'},sub5:'Kies er zoveel als je wilt. Anna bevestigt het totaal.',none:'Nee dank je, alleen de trimbeurt',
-        addons:[['nails','Nagels knippen','\u20ac10','nagels knippen'],['teeth','Gebitsreiniging','\u20ac10','een gebitsreiniging'],['spa','Spa-behandeling','\u20ac30\u201340','de spa-behandeling'],['deep','Diepe gebitsreiniging','\u20ac100','een diepe gebitsreiniging']],
+        addons:[['nails','Nagels knippen','\u20ac10','nagels knippen','Geen getik meer op de vloer'],['teeth','Gebitsreiniging','\u20ac10','een gebitsreiniging','Frissere adem bij het knuffelen'],['spa','Spa-behandeling','\u20ac30\u201340','de spa-behandeling',''],['deep','Diepe gebitsreiniging','\u20ac100','een diepe gebitsreiniging','Voor de bruine aanslag die je ziet']],
         also:' Ik wil er ook graag ',and:' en ',alsoEnd:' bij.',
         pol:'<b>Annuleringsbeleid:</b> annuleer je minder dan 24 uur voor je afspraak, dan betaal je 50% van de behandeling; kom je niet opdagen, dan betaal je 100%. In je bericht staat dat je ermee akkoord gaat.',more:'Lees het beleid',ack:' En ik ga akkoord met je annuleringsbeleid.',
         sizes:[['Klein','small'],['Middel','medium'],['Groot','large'],['Extra groot','extra large']],
@@ -78,7 +78,7 @@
       '<input class="bk-in" id="bkName" placeholder="'+C.ph4+'" autocomplete="off" value="'+S.name.replace(/"/g,'&quot;')+'">'+
       '<button class="bk-next" data-k="name">'+C.next+'</button>';
     else if(s===4) body.innerHTML='<p class="bk-q">'+C.q5(S.name.trim())+'</p><p class="bk-sub">'+C.sub5+'</p><div class="bk-adds">'+
-      ADDONS.map(function(a){var on=S.addons.indexOf(a[0])>-1;return '<button class="bk-add" data-a="'+a[0]+'" aria-pressed="'+on+'"><i aria-hidden="true"></i><span>'+a[1]+'</span><b>'+a[2]+'</b></button>'}).join('')+
+      ADDONS.map(function(a){var on=S.addons.indexOf(a[0])>-1;return '<button class="bk-add" data-a="'+a[0]+'" aria-pressed="'+on+'"><i aria-hidden="true"></i><span>'+a[1]+(a[4]?'<small>'+a[4]+'</small>':'')+'</span><b>'+a[2]+'</b></button>'}).join('')+
       '</div><button class="bk-next bk-go" data-k="addons">'+WA+C.go+'</button><button class="bk-none">'+C.none+'</button>';
     else body.innerHTML='<p class="bk-q">'+C.q4+'</p>'+
       '<input class="bk-in" id="bkName" placeholder="'+C.ph4+'" autocomplete="off">'+
