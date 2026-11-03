@@ -1372,3 +1372,19 @@ html .bk-policy{color:var(--ink)}
 html .bk-skip{font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--gold);padding-bottom:1px}
 html .bk-skip:hover{color:var(--gold)}
 html .tfsc-row span{color:var(--ink)}
+
+/* ===== The band under the hero, v3: a big typographic marquee =====
+   The small facts strip read like a generic trust bar. Now the same facts run
+   slowly across the band in the heading font, large, with clay squares between. */
+html .infobar{padding:clamp(18px,2.4vw,28px) 0;border-top:1px solid rgba(246,243,234,.12)}
+html .tk-track{animation:tkroll 70s linear infinite;width:max-content;justify-content:flex-start}
+html .tk-set,html .tk-set+.tk-set{display:flex;flex-wrap:nowrap;white-space:nowrap;flex-direction:row;align-items:center;padding:0}
+html .tk-set>*{display:inline-flex!important}
+html .tk-item,html .tk-item+.tk-dot+.tk-item{border:0;padding:0 clamp(18px,2.2vw,34px);font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:clamp(20px,2.5vw,34px);letter-spacing:-.01em;line-height:1.1;color:var(--cream)}
+html .tk-dot{display:inline-block;width:9px;height:9px;border-radius:0;background:var(--gold);flex:none}
+html .infobar:hover .tk-track{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){
+  html .tk-track{animation:none;width:auto;justify-content:center}
+  html .tk-set+.tk-set{display:none}
+  html .tk-set{flex-wrap:wrap;justify-content:center;row-gap:10px}
+}
