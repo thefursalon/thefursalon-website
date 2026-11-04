@@ -287,3 +287,22 @@
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
   [].forEach.call(imgs, function (i) { io.observe(i); });
 })();
+
+/* The moving band under the hero: tap (or Enter/Space) to pause and resume.
+   Hover already pauses it on desktop; this gives phones and keyboards the same control. */
+(function () {
+  var band = document.querySelector('.infobar');
+  if (!band) return;
+  var nl = (document.documentElement.lang || 'en').slice(0, 2) === 'nl';
+  band.setAttribute('role', 'button');
+  band.setAttribute('tabindex', '0');
+  band.setAttribute('aria-pressed', 'false');
+  band.setAttribute('title', nl ? 'Tik om te pauzeren' : 'Tap to pause');
+  function toggle() {
+    var p = band.classList.toggle('tk-paused');
+    band.setAttribute('aria-pressed', p ? 'true' : 'false');
+    band.setAttribute('title', p ? (nl ? 'Tik om verder te gaan' : 'Tap to resume') : (nl ? 'Tik om te pauzeren' : 'Tap to pause'));
+  }
+  band.addEventListener('click', toggle);
+  band.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+})();

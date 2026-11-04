@@ -1433,3 +1433,7 @@ html .hero-tag{font-weight:500;font-size:clamp(.8rem,1.05vw,.95rem);letter-spaci
   html .pt-grid>.pt-val::before{font-size:var(--t-body);color:var(--ink);letter-spacing:0}}
 /* Find us: labels solid, in the heading font, so they read as labels and not as faded text */
 html .contact .c-row dt{font-family:'Chillax',system-ui,sans-serif;font-weight:600;font-size:13px;letter-spacing:.02em;color:var(--cream)}
+html .infobar{cursor:pointer;-webkit-tap-highlight-color:transparent}
+html .infobar.tk-paused .tk-track{animation-play-state:paused}
+html .infobar:focus-visible{outline:2px solid var(--gold);outline-offset:-4px}
+@media (hover:none){html .infobar:hover .tk-track{animation-play-state:running}html .infobar.tk-paused .tk-track{animation-play-state:paused}}
