@@ -12,6 +12,7 @@
 (function () {
   var vids = [].slice.call(document.querySelectorAll('video.vcell, video.sp-vid'));
   if (!vids.length) return;
+  if (!window.IntersectionObserver) vids.forEach(function (v) { v._near = true; });
 
   /* If they've asked for less motion, leave the poster in place. */
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -78,8 +79,10 @@
     );
   }
 
+  /* Videos further down the page (not the hero) only load and play once they are
+     near the screen, so a phone doesn't download them on arrival. */
   function visible(v) {
-    return active(v);
+    return active(v) && (v.classList.contains('vcell') || v._near);
   }
 
   function tryPlay() {
@@ -143,11 +146,13 @@
   if (window.IntersectionObserver) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
         var v = e.target;
+        v._near = e.isIntersecting;
+        if (!e.isIntersecting) { if (!v.classList.contains('vcell')) v.pause(); return; }
+        if (v.preload === 'none') v.preload = 'auto';
         if (visible(v) && v.paused) v.play().catch(function () {});
       });
-    }, { threshold: 0.15 });
+    }, { rootMargin: '300px 0px', threshold: 0 });
     vids.forEach(function (v) { io.observe(v); });
   }
 
