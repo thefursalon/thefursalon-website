@@ -31,9 +31,9 @@
   /* Service step: asked first, but only when the page doesn't already say
      which service it is (homepage, nav, floating button, Find us). */
   var SVC={en:{q:'What would you like to book?',advise:' I’m not sure which service is best, could you advise?',
-        list:[['Full Grooming','Full Grooming'],['Bath & Brush','Bath & Brush'],['Puppy Training','Puppy Training'],['Hand-Stripping','Hand-Stripping'],['Just nails or teeth','Teeth, Nails & Care'],['Not sure yet','?']]},
+        list:[['Puppy Training','Puppy Training'],['Bath & Go','Bath & Go'],['Full Grooming','Full Grooming'],['Hand-Stripping','Hand-Stripping'],['Just nails or teeth','Teeth, Nails & Care'],['Not sure yet','?']]},
      nl:{q:'Wat wil je boeken?',advise:' Ik weet nog niet welke behandeling het beste is, kun je me adviseren?',
-        list:[['Volledige trimbeurt','een volledige trimbeurt'],['Wassen & borstelen','wassen & borstelen'],['Puppytraining','een eerste trimbeurt voor mijn pup'],['Handstrippen','handstrippen'],['Alleen nagels of tanden','tanden, nagels & verzorging'],['Weet ik nog niet','?']]}}[L];
+        list:[['Puppytraining','een eerste trimbeurt voor mijn pup'],['Wassen & borstelen','wassen & borstelen'],['Volledige trimbeurt','een volledige trimbeurt'],['Handstrippen','handstrippen'],['Alleen nagels of tanden','tanden, nagels & verzorging'],['Weet ik nog niet','?']]}}[L];
   var PAGE=S.service, OFF=PAGE?0:1;
   var ADDONS=addonsFor(PAGE);
   function setup(){ ADDONS=addonsFor(S.service); STEPS=OFF+(ADDONS.length?5:4); }
