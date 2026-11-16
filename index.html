@@ -65,7 +65,7 @@
 
 <section class="about" id="about"><div class="wrap split">
   <h2>Who we are</h2>
-  <figure class="s-media"><div class="photo rv"><img src="assets/media/anna-competition.webp" width="1200" height="900" alt="Anna of The Fur Salon grooming a poodle at a grooming competition" loading="lazy"></div><figcaption class="s-cap"><b>Anna</b><span>Founder and main groomer</span></figcaption></figure>
+  <figure class="s-media"><div class="photo rv about-swap"><img src="assets/media/anna-competition.webp" width="1200" height="900" alt="Anna of The Fur Salon grooming a poodle at a grooming competition" loading="lazy"><img class="alt" src="assets/media/anna-competition-2.webp" width="900" height="1200" alt="Anna of The Fur Salon with a black toy poodle at a grooming competition" loading="lazy"></div><figcaption class="s-cap"><b>Anna</b><span>Founder and main groomer</span></figcaption></figure>
   <div class="rv s-text">
     <p>The Fur Salon is a grooming studio in Amsterdam Oost, founded and led by Anna, our main groomer. With a background as a veterinary assistant and experience in both veterinary practice and professional grooming, Anna brings a calm, thoughtful and dog-first approach to every groom.</p>
     <div class="about-more" id="aboutMore">
@@ -226,6 +226,8 @@ addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10));
 /* photos start fully clipped, and some browsers then never report them as visible: watch the photo's wrapper instead */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){(e.target._rv||e.target).classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>{const w=(el.matches('.photo')&&el.parentElement)||el;w._rv=el;io.observe(w)});
+/* Who we are: the two photos of Anna take turns every 10 seconds (not for visitors who turn motion off) */
+document.querySelectorAll('.about-swap').forEach(s=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;setInterval(()=>{if(!document.hidden)s.classList.toggle('on')},10000)});
 </script>
 <script>
 (function(){

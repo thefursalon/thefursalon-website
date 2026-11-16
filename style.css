@@ -1447,3 +1447,8 @@ html .rev-badge a.rev-award{margin-left:auto;display:flex;align-items:center;gap
 html .rev-badge a.rev-award span{text-decoration:underline;text-decoration-color:transparent;transition:text-decoration-color .2s}
 html .rev-badge a.rev-award:hover span{text-decoration-color:currentColor}
 @media(max-width:700px){html .rev-badge a.rev-award{margin-left:0;flex-basis:100%;max-width:none}}
+
+/* Who we are: two photos that take turns */
+.about-swap{position:relative}
+.about-swap img.alt{position:absolute;inset:0;opacity:0;object-position:50% 10%;transition:opacity 1.4s ease}
+.about-swap.on img.alt{opacity:1}
