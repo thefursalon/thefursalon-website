@@ -1,3 +1,4 @@
-# STAGING. Replace this file with robots.launch.txt at real launch.
 User-agent: *
-Disallow: /
+Allow: /
+
+Sitemap: https://www.thefursalon.nl/sitemap.xml
