@@ -1452,3 +1452,8 @@ html .rev-badge a.rev-award:hover span{text-decoration-color:currentColor}
 .about-swap{position:relative}
 .about-swap img.alt{position:absolute;inset:0;opacity:0;object-position:50% 10%;transition:opacity 1.4s ease}
 .about-swap.on img.alt{opacity:1}
+
+/* the floating Book button sits in the bottom-right corner: keep the footer links clear of it on every screen */
+footer{padding-bottom:96px}
+/* the bull breeds page has its own section order (list, list, questions): don't reshuffle it on mobile */
+@media(max-width:900px){.sp-main.sp-keep{display:block}}
