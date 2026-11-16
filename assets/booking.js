@@ -1,5 +1,7 @@
 (function(){
   var PHONE='31614255832';
+  /* anything typed by the visitor is escaped before it goes into the page */
+  function esc(v){return String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
   var L=(document.documentElement.lang||'en').slice(0,2)==='nl'?'nl':'en';
   var C={en:{title:'Book an appointment',back:'Back',stepOf:function(a,b){return 'Step '+a+' of '+b},skip:'Skip and just message',q1:'How big is your dog?',q2:'What breed?',
         q3:'How do they feel about grooming?',q4:'And what’s their name?',
@@ -70,14 +72,14 @@
     else if(s===0) body.innerHTML='<p class="bk-q">'+C.q1+'</p><div class="bk-grid">'+
       opts(C.sizes,'size')+'</div>';
     else if(s===1) body.innerHTML='<p class="bk-q">'+C.q2+'</p>'+
-      '<input class="bk-in" id="bkBreed" placeholder="'+C.ph2+'" autocomplete="off" value="'+S.breed.replace(/"/g,'&quot;')+'">'+
+      '<input class="bk-in" id="bkBreed" placeholder="'+C.ph2+'" autocomplete="off" value="'+esc(S.breed)+'">'+
       '<button class="bk-next" data-k="breed">'+C.next+'</button>';
     else if(s===2) body.innerHTML='<p class="bk-q">'+C.q3+'</p><div class="bk-grid one">'+
       opts(C.moods,'mood')+'</div>';
     else if(s===3&&ADDONS.length) body.innerHTML='<p class="bk-q">'+C.q4+'</p>'+
-      '<input class="bk-in" id="bkName" placeholder="'+C.ph4+'" autocomplete="off" value="'+S.name.replace(/"/g,'&quot;')+'">'+
+      '<input class="bk-in" id="bkName" placeholder="'+C.ph4+'" autocomplete="off" value="'+esc(S.name)+'">'+
       '<button class="bk-next" data-k="name">'+C.next+'</button>';
-    else if(s===4) body.innerHTML='<p class="bk-q">'+C.q5(S.name.trim())+'</p><p class="bk-sub">'+C.sub5+'</p><div class="bk-adds">'+
+    else if(s===4) body.innerHTML='<p class="bk-q">'+C.q5(esc(S.name.trim()))+'</p><p class="bk-sub">'+C.sub5+'</p><div class="bk-adds">'+
       ADDONS.map(function(a){var on=S.addons.indexOf(a[0])>-1;return '<button class="bk-add" data-a="'+a[0]+'" aria-pressed="'+on+'"><i aria-hidden="true"></i><span>'+a[1]+(a[4]?'<small>'+a[4]+'</small>':'')+'</span><b>'+a[2]+'</b></button>'}).join('')+
       '</div><button class="bk-next bk-go" data-k="addons">'+WA+C.go+'</button><button class="bk-none">'+C.none+'</button>';
     else body.innerHTML='<p class="bk-q">'+C.q4+'</p>'+
