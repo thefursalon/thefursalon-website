@@ -1462,3 +1462,9 @@ footer{padding-bottom:96px}
 html .tfsc-warm{padding-top:0}
 html .tfsc-warm::before{content:"\201C";position:static;width:auto;height:auto;background:none;color:var(--gold)}
 html .tfsc-warm::after{content:"\201D";color:var(--gold)}
+
+/* Recent work: the scroll bar under the photos was too faint to find. Ink bar on a light track, a bit thicker */
+.gallery::-webkit-scrollbar{height:8px}
+.gallery::-webkit-scrollbar-track{background:var(--line);border-radius:4px}
+.gallery::-webkit-scrollbar-thumb{background:var(--ink);border-radius:4px}
+@supports (-moz-appearance:none){.gallery{scrollbar-width:thin;scrollbar-color:var(--ink) var(--line)}}
