@@ -1457,3 +1457,8 @@ html .rev-badge a.rev-award:hover span{text-decoration-color:currentColor}
 footer{padding-bottom:96px}
 /* the bull breeds page has its own section order (list, list, questions): don't reshuffle it on mobile */
 @media(max-width:900px){.sp-main.sp-keep{display:block}}
+
+/* cookie window: the salon's note reads as a quote, with the same orange quote marks as the reviews (no stray line) */
+html .tfsc-warm{padding-top:0}
+html .tfsc-warm::before{content:"\201C";position:static;width:auto;height:auto;background:none;color:var(--gold)}
+html .tfsc-warm::after{content:"\201D";color:var(--gold)}
