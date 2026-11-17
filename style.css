@@ -1468,3 +1468,7 @@ html .tfsc-warm::after{content:"\201D";color:var(--gold)}
 .gallery::-webkit-scrollbar-track{background:var(--line);border-radius:4px}
 .gallery::-webkit-scrollbar-thumb{background:var(--ink);border-radius:4px}
 @supports (-moz-appearance:none){.gallery{scrollbar-width:thin;scrollbar-color:var(--ink) var(--line)}}
+
+/* Who we are photo swap: the photo fade-in rule was keeping the second photo visible for good, so the swap never showed */
+html .about-swap img.alt,html.img-reveal .about-swap img.alt.img-in{opacity:0;transition:opacity 1.4s ease}
+html .about-swap.on img.alt,html.img-reveal .about-swap.on img.alt.img-in{opacity:1}
