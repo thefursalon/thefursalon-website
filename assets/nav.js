@@ -306,3 +306,48 @@
   band.addEventListener('click', toggle);
   band.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
 })();
+
+/* Keep the name "The Fur Salon" out of browser auto-translation (Chrome turned it into "De Bontsalon").
+   Every mention in the page, including text added later (reviews, booking window), is wrapped in translate="no". */
+(function () {
+  var RE = /the fur salon/i;
+  function wrap(root) {
+    if (!root || !document.createTreeWalker) return;
+    var walker = document.createTreeWalker(root, 4, {
+      acceptNode: function (n) {
+        var p = n.parentNode;
+        if (!p || !RE.test(n.nodeValue)) return 2;
+        if (p.closest && p.closest('script,style,title,textarea,[translate="no"]')) return 2;
+        return 1;
+      }
+    });
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var s = n.nodeValue, re = /the fur salon/gi, m, last = 0, frag = document.createDocumentFragment();
+      while ((m = re.exec(s))) {
+        if (m.index > last) frag.appendChild(document.createTextNode(s.slice(last, m.index)));
+        var sp = document.createElement('span');
+        sp.setAttribute('translate', 'no');
+        sp.className = 'notranslate';
+        sp.textContent = m[0];
+        frag.appendChild(sp);
+        last = m.index + m[0].length;
+      }
+      if (last < s.length) frag.appendChild(document.createTextNode(s.slice(last)));
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  function start() {
+    wrap(document.body);
+    if (window.MutationObserver) new MutationObserver(function (ms) {
+      ms.forEach(function (m) {
+        m.addedNodes.forEach(function (n) {
+          if (n.nodeType === 1) wrap(n);
+          else if (n.nodeType === 3 && n.parentNode) wrap(n.parentNode);
+        });
+      });
+    }).observe(document.body, { childList: true, subtree: true });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
