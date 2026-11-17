@@ -288,23 +288,24 @@
   [].forEach.call(imgs, function (i) { io.observe(i); });
 })();
 
-/* The moving band under the hero: tap (or Enter/Space) to pause and resume.
-   Hover already pauses it on desktop; this gives phones and keyboards the same control. */
+/* The moving band under the hero. Each item is a link (map, hours, booking, bull breeds, reviews).
+   A finger or mouse on the band stops it, so the item under it holds still and can be tapped.
+   Tapping the band between items pauses or resumes it; hover and keyboard focus pause it too. */
 (function () {
   var band = document.querySelector('.infobar');
   if (!band) return;
   var nl = (document.documentElement.lang || 'en').slice(0, 2) === 'nl';
-  band.setAttribute('role', 'button');
-  band.setAttribute('tabindex', '0');
-  band.setAttribute('aria-pressed', 'false');
   band.setAttribute('title', nl ? 'Tik om te pauzeren' : 'Tap to pause');
-  function toggle() {
+  var hold;
+  band.addEventListener('pointerdown', function () { clearTimeout(hold); band.classList.add('tk-hold'); });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (ev) {
+    band.addEventListener(ev, function () { clearTimeout(hold); hold = setTimeout(function () { band.classList.remove('tk-hold'); }, 1500); });
+  });
+  band.addEventListener('click', function (e) {
+    if (e.target.closest('a')) return;
     var p = band.classList.toggle('tk-paused');
-    band.setAttribute('aria-pressed', p ? 'true' : 'false');
     band.setAttribute('title', p ? (nl ? 'Tik om verder te gaan' : 'Tap to resume') : (nl ? 'Tik om te pauzeren' : 'Tap to pause'));
-  }
-  band.addEventListener('click', toggle);
-  band.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+  });
 })();
 
 /* Keep the name "The Fur Salon" out of browser auto-translation (Chrome turned it into "De Bontsalon").
@@ -350,4 +351,68 @@
     }).observe(document.body, { childList: true, subtree: true });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+
+/* Recent work: tap or click a photo to see it bigger. Arrows, swipe and Esc work; tap the dark area to close. */
+(function () {
+  var items = document.querySelectorAll('.gallery .gal-item img');
+  if (!items.length) return;
+  var nl = (document.documentElement.lang || '').slice(0, 2) === 'nl';
+  var imgs = Array.prototype.slice.call(items), i = 0, last = null;
+  var box = document.createElement('div');
+  box.className = 'lbx';
+  box.setAttribute('role', 'dialog');
+  box.setAttribute('aria-modal', 'true');
+  box.setAttribute('aria-label', nl ? 'Foto groot bekijken' : 'Photo viewer');
+  box.innerHTML = '<img alt=""><button type="button" class="lbx-x" aria-label="' + (nl ? 'Sluiten' : 'Close') + '">&times;</button>' +
+    '<button type="button" class="lbx-p" aria-label="' + (nl ? 'Vorige foto' : 'Previous photo') + '">&#8249;</button>' +
+    '<button type="button" class="lbx-n" aria-label="' + (nl ? 'Volgende foto' : 'Next photo') + '">&#8250;</button><div class="lbx-c" aria-live="polite"></div>';
+  document.body.appendChild(box);
+  var big = box.querySelector('img'), count = box.querySelector('.lbx-c');
+  function show(k) {
+    i = (k + imgs.length) % imgs.length;
+    big.src = imgs[i].currentSrc || imgs[i].src;
+    big.alt = imgs[i].alt || '';
+    count.textContent = (i + 1) + ' / ' + imgs.length;
+  }
+  function open(k) {
+    last = document.activeElement; show(k);
+    box.classList.add('on'); document.body.style.overflow = 'hidden';
+    box.querySelector('.lbx-x').focus();
+    if (window.tfsTrack) window.tfsTrack('gallery_open', { photo: i + 1 });
+  }
+  function close() {
+    box.classList.remove('on'); document.body.style.overflow = '';
+    if (last && last.focus) last.focus();
+  }
+  imgs.forEach(function (im, k) {
+    im.setAttribute('tabindex', '0');
+    im.setAttribute('role', 'button');
+    im.addEventListener('click', function () { open(k); });
+    im.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(k); } });
+  });
+  box.addEventListener('click', function (e) {
+    if (e.target.closest('.lbx-x')) return close();
+    if (e.target.closest('.lbx-p')) return show(i - 1);
+    if (e.target.closest('.lbx-n')) return show(i + 1);
+    if (e.target === box) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!box.classList.contains('on')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(i - 1);
+    else if (e.key === 'ArrowRight') show(i + 1);
+    else if (e.key === 'Tab') {
+      var f = box.querySelectorAll('button'), a = f[0], z = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); }
+      else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); }
+    }
+  });
+  var sx = null;
+  box.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+  box.addEventListener('touchend', function (e) {
+    if (sx === null) return;
+    var dx = e.changedTouches[0].clientX - sx; sx = null;
+    if (Math.abs(dx) > 45) show(i + (dx < 0 ? 1 : -1));
+  });
 })();

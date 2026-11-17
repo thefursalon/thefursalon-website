@@ -1472,3 +1472,26 @@ html .tfsc-warm::after{content:"\201D";color:var(--gold)}
 /* Who we are photo swap: the photo fade-in rule was keeping the second photo visible for good, so the swap never showed */
 html .about-swap img.alt,html.img-reveal .about-swap img.alt.img-in{opacity:0;transition:opacity 1.4s ease}
 html .about-swap.on img.alt,html.img-reveal .about-swap.on img.alt.img-in{opacity:1}
+
+/* info strip under the hero: every item is a link now (map, hours, booking, bull breeds, reviews) */
+html .infobar a.tk-item{color:#E6E1D3;text-decoration:none;cursor:pointer}
+html .infobar a.tk-item span{text-decoration:underline;text-decoration-color:transparent;text-underline-offset:4px;transition:text-decoration-color .2s}
+html .infobar a.tk-item:hover span,html .infobar a.tk-item:focus-visible span{text-decoration-color:var(--gold)}
+
+/* Recent work: tap a photo to see it bigger */
+.gal-item img{cursor:zoom-in}
+.lbx{position:fixed;inset:0;z-index:300;background:rgba(28,31,20,.94);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s linear .25s}
+.lbx.on{opacity:1;visibility:visible;transition:opacity .25s}
+.lbx img{max-width:min(92vw,900px);max-height:84vh;width:auto;height:auto;object-fit:contain;border-radius:4px;box-shadow:0 20px 60px -20px rgba(0,0,0,.6)}
+.lbx button{position:absolute;background:none;border:0;color:var(--cream);cursor:pointer;width:52px;height:52px;display:grid;place-items:center;font-size:30px;line-height:1}
+.lbx button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.lbx .lbx-x{top:12px;right:12px}
+.lbx .lbx-p{left:12px;top:50%;transform:translateY(-50%)}
+.lbx .lbx-n{right:12px;top:50%;transform:translateY(-50%)}
+.lbx .lbx-c{pointer-events:none;position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#D9D4C4;font-size:.85rem;letter-spacing:.06em}
+@media(max-width:700px){.lbx .lbx-p,.lbx .lbx-n{top:auto;bottom:6px;transform:none}.lbx img{max-height:76vh}}
+html .infobar:focus-within .tk-track{animation-play-state:paused}
+html .lbx{z-index:1500}
+html .infobar.tk-hold .tk-track{animation-play-state:paused}
+/* the intro splash lets taps through as soon as it starts fading (taps during the fade did nothing) */
+#tfsSplash.done{pointer-events:none}
