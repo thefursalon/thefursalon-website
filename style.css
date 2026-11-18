@@ -1495,3 +1495,6 @@ html .lbx{z-index:1500}
 html .infobar.tk-hold .tk-track{animation-play-state:paused}
 /* the intro splash lets taps through as soon as it starts fading (taps during the fade did nothing) */
 #tfsSplash.done{pointer-events:none}
+
+/* faster taps (INP): a blurred backdrop over playing video is costly to paint on phones; use a solid tint */
+html #bk{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(28,31,20,.72)}

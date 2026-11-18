@@ -341,13 +341,22 @@
   }
   function start() {
     wrap(document.body);
+    /* new text (reviews, booking window) is handled when the browser is idle, not during a tap */
+    var queue = [], waiting = false;
+    var idle = window.requestIdleCallback || function (f) { return setTimeout(f, 120); };
+    function flush() {
+      waiting = false;
+      var q = queue; queue = [];
+      q.forEach(function (n) { if (n.isConnected) wrap(n); });
+    }
     if (window.MutationObserver) new MutationObserver(function (ms) {
       ms.forEach(function (m) {
         m.addedNodes.forEach(function (n) {
-          if (n.nodeType === 1) wrap(n);
-          else if (n.nodeType === 3 && n.parentNode) wrap(n.parentNode);
+          var t = n.nodeType === 1 ? n : (n.nodeType === 3 ? n.parentNode : null);
+          if (t) queue.push(t);
         });
       });
+      if (queue.length && !waiting) { waiting = true; idle(flush, { timeout: 600 }); }
     }).observe(document.body, { childList: true, subtree: true });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();

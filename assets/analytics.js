@@ -60,8 +60,16 @@ var TFS_CLARITY_ID = 'yx1ztj42o0'; // Microsoft Clarity project ID, e.g. 'abcd12
      same instant. A normal request gets cancelled in flight. A beacon is
      handed to the browser and survives the page closing. The old site's
      Google Ads tags died of exactly this. */
+  /* Tracking runs after the tap has been painted, so the button reacts at once (INP).
+     The booking itself is sent straight away: WhatsApp opening next can pause the page. */
   window.tfsTrack = function (name, params) {
+    if (name !== 'booking_submit' && !(params && params.__now)) {
+      var later = function () { window.tfsTrack(name, Object.assign({}, params, { __now: 1 })); };
+      requestAnimationFrame(function () { setTimeout(later, 0); });
+      return;
+    }
     params = params || {};
+    delete params.__now;
     params.transport_type = 'beacon';
     try { gtag('event', name, params); } catch (e) {}
     try {
