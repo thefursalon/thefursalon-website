@@ -70,6 +70,16 @@ var TFS_CLARITY_ID = 'yx1ztj42o0'; // Microsoft Clarity project ID, e.g. 'abcd12
     }
     params = params || {};
     delete params.__now;
+    /* Clarity: mark the session (event) and keep the booking details as tags,
+       so recordings can be filtered by "picked spa" or "stopped at step 3". */
+    try {
+      if (window.clarity) {
+        window.clarity('event', name);
+        ['service', 'addons', 'addon_count', 'step', 'field', 'choice', 'dog_size', 'source', 'method'].forEach(function (k) {
+          if (params[k] !== undefined && params[k] !== '') window.clarity('set', k, String(params[k]));
+        });
+      }
+    } catch (e) {}
     params.transport_type = 'beacon';
     try { gtag('event', name, params); } catch (e) {}
     try {

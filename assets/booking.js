@@ -193,15 +193,15 @@
     var ad=e.target.closest('.bk-add');
     if(ad){ var k=ad.dataset.a, i=S.addons.indexOf(k); if(i>-1)S.addons.splice(i,1); else S.addons.push(k);
             ad.setAttribute('aria-pressed',String(i<0)); return; }
-    if(e.target.closest('.bk-none')){ S.addons=[]; T('booking_step',{step:5,field:'addons',value:'none'}); return go(msg()); }
+    if(e.target.closest('.bk-none')){ S.addons=[]; T('booking_step',{step:5,field:'addons',choice:'none'}); return go(msg()); }
     var o=e.target.closest('.bk-opt');
     if(o){ if(o.dataset.k==='service'){ S.advise=o.dataset.v==='?'; S.service=S.advise?'':o.dataset.v; var keep=S.addons; setup(); S.addons=keep.filter(function(k){return ADDONS.some(function(a){return a[0]===k})}); }
            else S[o.dataset.k]=o.dataset.v;
-           T('booking_step',{step:step+1,field:o.dataset.k,value:o.dataset.v});
+           T('booking_step',{step:step+1,field:o.dataset.k,choice:o.dataset.v});
            step++; return step<STEPS?slide(1):go(msg()); }
     var n=e.target.closest('.bk-next');
     if(n){ var f=body.querySelector('.bk-in'); if(f) S[n.dataset.k]=f.value;
-           if(n.dataset.k==='addons') T('booking_step',{step:step+1,field:'addons',value:S.addons.join(',')||'none'});
+           if(n.dataset.k==='addons') T('booking_step',{step:step+1,field:'addons',choice:S.addons.join(',')||'none'});
            else T('booking_step',{step:step+1,field:n.dataset.k,filled:(f&&f.value.trim())?'yes':'no'});
            step++; return step<STEPS?slide(1):go(msg()); }
   });
