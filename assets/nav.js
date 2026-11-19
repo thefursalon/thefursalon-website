@@ -51,7 +51,7 @@
     return { open: false, t: nl ? 'Morgen open vanaf 9:00' : 'Opens tomorrow 9:00' };
   }
   var s = status();
-  var home = document.querySelector('header.hero') ? '' : (location.pathname.indexOf('/services/') > -1 ? '../index.html' : 'index.html');
+  var home = document.querySelector('header.hero') ? '' : (location.pathname.indexOf('/services/') > -1 ? '../' : './');
   function make() {
     var a = document.createElement('a');
     a.className = 'nav-status' + (s.open ? ' is-open' : '');

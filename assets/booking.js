@@ -40,7 +40,7 @@
   var ADDONS=addonsFor(PAGE);
   function setup(){ ADDONS=addonsFor(S.service); STEPS=OFF+(ADDONS.length?5:4); }
   /* link to the policy on this language's homepage, from any depth */
-  var POLICY=(location.pathname.indexOf('/services/')>-1?'../':'')+'index.html#cancellation';
+  var POLICY=(location.pathname.indexOf('/services/')>-1?'../':'./')+'#cancellation';
   var STEPS=OFF+(ADDONS.length?5:4), step=0;
 
   var wrap=document.createElement('div');
