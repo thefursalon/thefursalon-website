@@ -12,6 +12,16 @@
       "source": "/cookies",
       "destination": "/privacy.html",
       "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/nl/index.html",
+      "destination": "/nl/",
+      "permanent": true
     }
   ],
   "headers": [
